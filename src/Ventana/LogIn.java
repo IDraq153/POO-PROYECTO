@@ -249,7 +249,7 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_iuserActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        Menu m2 = new Menu();
+
         boolean mal = false;
         String user = iuser.getText();
         String contra = icontra.getText();
@@ -259,6 +259,7 @@ public class LogIn extends javax.swing.JFrame {
             for (int i = 0; i < GP.getConta(); i++) {
                 if (user.equals(arreglo[i].getUser()) && contra.equals(arreglo[i].getContra())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido");
+                    Menu m2 = new Menu(arreglo[i]);
                     m2.setVisible(true);
                     this.dispose();
                     break;

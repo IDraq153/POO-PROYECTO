@@ -1,6 +1,7 @@
 
 package Ventana;
 
+import Code.Empleado;
 import java.awt.Color;
 import static java.lang.System.exit;
 public class Menu extends javax.swing.JFrame {
@@ -8,9 +9,16 @@ public class Menu extends javax.swing.JFrame {
     int mousepX;
     int mousepY;
     //CONSTRUCTOR
-    public Menu() {
+    public Menu(Empleado ref) {
         initComponents();
+        String userPr = ref.getNombre() +" "+ ref.getApellido();
+        luserprofile.setText(userPr.toUpperCase()); 
+        lrolprofile.setText(ref.getRol()); 
         setLocationRelativeTo(null);
+    }
+
+    private Menu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -23,9 +31,9 @@ public class Menu extends javax.swing.JFrame {
         perfilmenu = new javax.swing.JPanel();
         imgpersona = new javax.swing.JLabel();
         lrolprofile = new javax.swing.JLabel();
-        luserprofile1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         luserprofile = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lejem = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         luserprofile3 = new javax.swing.JLabel();
         dashboard = new javax.swing.JPanel();
@@ -78,29 +86,29 @@ public class Menu extends javax.swing.JFrame {
         lrolprofile.setText("ROL");
         perfilmenu.add(lrolprofile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 230, -1));
 
-        luserprofile1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
-        luserprofile1.setForeground(new java.awt.Color(255, 255, 255));
-        luserprofile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        luserprofile1.setText("USUARIO");
-        perfilmenu.add(luserprofile1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 230, -1));
+        luserprofile.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        luserprofile.setForeground(new java.awt.Color(255, 255, 255));
+        luserprofile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        luserprofile.setText("USUARIO");
+        perfilmenu.add(luserprofile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 230, -1));
 
         menu.add(perfilmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 190));
 
         jPanel1.setBackground(new java.awt.Color(121, 180, 239));
 
-        luserprofile.setBackground(new java.awt.Color(43, 137, 230));
-        luserprofile.setFont(new java.awt.Font("Segoe UI Emoji", 1, 20)); // NOI18N
-        luserprofile.setForeground(new java.awt.Color(255, 255, 255));
-        luserprofile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        luserprofile.setText("EJEMPLO 1");
-        luserprofile.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        lejem.setBackground(new java.awt.Color(43, 137, 230));
+        lejem.setFont(new java.awt.Font("Segoe UI Emoji", 1, 20)); // NOI18N
+        lejem.setForeground(new java.awt.Color(255, 255, 255));
+        lejem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lejem.setText("EJEMPLO 1");
+        lejem.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                luserprofileMouseMoved(evt);
+                lejemMouseMoved(evt);
             }
         });
-        luserprofile.addMouseListener(new java.awt.event.MouseAdapter() {
+        lejem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                luserprofileMouseExited(evt);
+                lejemMouseExited(evt);
             }
         });
 
@@ -109,12 +117,12 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(luserprofile, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lejem, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(luserprofile, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+            .addComponent(lejem, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
         );
 
         menu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 230, 47));
@@ -343,13 +351,13 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void luserprofileMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_luserprofileMouseMoved
+    private void lejemMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejemMouseMoved
         jPanel1.setBackground(new Color(86,136,187));
-    }//GEN-LAST:event_luserprofileMouseMoved
+    }//GEN-LAST:event_lejemMouseMoved
 
-    private void luserprofileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_luserprofileMouseExited
+    private void lejemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejemMouseExited
         jPanel1.setBackground(new Color(121,180,239));
-    }//GEN-LAST:event_luserprofileMouseExited
+    }//GEN-LAST:event_lejemMouseExited
 
     private void luserprofile3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_luserprofile3MouseMoved
         jPanel2.setBackground(new Color(86,136,187));
@@ -463,11 +471,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lejem;
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lminus;
     private javax.swing.JLabel lrolprofile;
     private javax.swing.JLabel luserprofile;
-    private javax.swing.JLabel luserprofile1;
     private javax.swing.JLabel luserprofile3;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel perfilmenu;
