@@ -16,6 +16,7 @@ public class LogIn extends javax.swing.JFrame {
     private Recepcionista rec;
     private Empleado[] arreglo;
     GestionPersona GP = new GestionPersona();
+
     //CONSTRUCTOR
     public LogIn() {
         initComponents();
@@ -263,7 +264,7 @@ public class LogIn extends javax.swing.JFrame {
                     m2.setVisible(true);
                     this.dispose();
                     break;
-                    
+
                 } else {
                     iuser.setText("");
                     icontra.setText("");
