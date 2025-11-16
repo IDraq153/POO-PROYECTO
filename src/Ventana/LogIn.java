@@ -1,18 +1,34 @@
-
 package Ventana;
+
+import Code.Administrador;
+import Code.Empleado;
+import Code.GestionPersona;
+import Code.Recepcionista;
 import java.awt.Color;
 import static java.lang.System.exit;
 import javax.swing.JOptionPane;
-public class LogIn extends javax.swing.JFrame { 
-    
+
+public class LogIn extends javax.swing.JFrame {
+
     int mousepX;
     int mousepY;
-    
+    private Administrador adm;
+    private Recepcionista rec;
+    private Empleado[] arreglo;
+    GestionPersona GP = new GestionPersona();
     //CONSTRUCTOR
     public LogIn() {
         initComponents();
-        setLocationRelativeTo(null); 
+
+        Administrador adm = new Administrador("Dario", "Rua", "Administrador", "60789650", "Dar123", "123");
+        Recepcionista rec = new Recepcionista("Maria", "Menda", "Recepcionista", "8313912", "Mar12", "153");
+        GP.IngresarE(adm);
+        GP.IngresarE(rec);
+        arreglo = GP.getArregloPersona();
+
+        setLocationRelativeTo(null);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -233,20 +249,27 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_iuserActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-
+        Menu m2 = new Menu();
+        boolean mal = false;
         String user = iuser.getText();
         String contra = icontra.getText();
         if (user.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
         } else {
-            if (user.equals("Dario") && contra.equals("123")) {
-                JOptionPane.showMessageDialog(null, "Bienvenido");
-                Menu m2 = new Menu();
-                m2.setVisible(true);
-                this.dispose();
-            } else {
-                iuser.setText("");
-                icontra.setText("");
+            for (int i = 0; i < GP.getConta(); i++) {
+                if (user.equals(arreglo[i].getUser()) && contra.equals(arreglo[i].getContra())) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido");
+                    m2.setVisible(true);
+                    this.dispose();
+                    break;
+                    
+                } else {
+                    iuser.setText("");
+                    icontra.setText("");
+                    mal = true;
+                }
+            }
+            if (mal == true) {
                 JOptionPane.showMessageDialog(null, "Su usuario o contraseña son incorrectas");
             }
         }
@@ -257,11 +280,11 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_icontraActionPerformed
 
     private void pexitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseMoved
-        pexit.setBackground(new Color(227,81,54));
+        pexit.setBackground(new Color(227, 81, 54));
     }//GEN-LAST:event_pexitMouseMoved
 
     private void pexitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseExited
-        pexit.setBackground(new Color(255,255,255));
+        pexit.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_pexitMouseExited
 
     private void pexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseClicked
@@ -269,23 +292,23 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_pexitMouseClicked
 
     private void lexitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseMoved
-        pexit.setBackground(new Color(227,81,54));
+        pexit.setBackground(new Color(227, 81, 54));
     }//GEN-LAST:event_lexitMouseMoved
 
     private void lexitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseExited
-        pexit.setBackground(new Color(255,255,255));
+        pexit.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_lexitMouseExited
 
     private void lexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseClicked
         exit(0);
     }//GEN-LAST:event_lexitMouseClicked
-    
+
     //UNDERCORATE MOUSE BARRA MENU
     private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
         int cordsX = evt.getXOnScreen();
         int cordsY = evt.getYOnScreen();
-        
-        this.setLocation(cordsX-mousepX,cordsY-mousepY); 
+
+        this.setLocation(cordsX - mousepX, cordsY - mousepY);
     }//GEN-LAST:event_jLabel1MouseDragged
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
@@ -294,7 +317,7 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MousePressed
 
     private void lminusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseExited
-        pminus.setBackground(new Color(255,255,255));
+        pminus.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_lminusMouseExited
 
     private void lminusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseClicked
@@ -302,10 +325,9 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_lminusMouseClicked
 
     private void lminusMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseMoved
-        pminus.setBackground(new Color(227,81,54));
+        pminus.setBackground(new Color(227, 81, 54));
     }//GEN-LAST:event_lminusMouseMoved
 
-    
     /**
      * @param args the command line arguments
      */
