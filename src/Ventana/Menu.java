@@ -1919,7 +1919,7 @@ public class Menu extends javax.swing.JFrame {
         if (Noencontro == true) {
             JOptionPane.showMessageDialog(null, "No se encontro el empleado"); 
         }
-        inombreModiE.setText(""); 
+        
     }//GEN-LAST:event_bBuscarModificarEActionPerformed
 
     private void inombreMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreMActionPerformed
@@ -1944,12 +1944,13 @@ public class Menu extends javax.swing.JFrame {
             }
         }
         //VACIA LOS TEXTFIELDS
+        CargarTabla();
         inombreM.setText("");
         iapellidoM.setText("");
         idniM.setText("");
         iuserM.setText("");
         icontraM.setText("");
-        CargarTabla();
+        inombreModiE.setText(""); 
     }//GEN-LAST:event_bmodificarEmpActionPerformed
 
     private void iapellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoMActionPerformed
