@@ -13,6 +13,7 @@ public class Menu extends javax.swing.JFrame {
     //VARIABLES
     private DefaultTableModel modelo;
     private GestionPersona GP;
+    private Empleado[] arreglo;
     int mousepX;
     int mousepY;
 
@@ -35,8 +36,11 @@ public class Menu extends javax.swing.JFrame {
         jtableEliminarEmp.getTableHeader().setReorderingAllowed(false);
         String userPr = ref.getNombre() + " " + ref.getApellido();
         luserprofile.setText(userPr.toUpperCase());
-        lrolprofile.setText(ref.getRol());
+        lrolprofile.setText(ref.getRol().toUpperCase());
+        Recepcionista refR = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
+        GP.IngresarE(refR); 
         GP.IngresarE(ref);
+        arreglo = GP.getArregloPersona();
         CargarTabla(); 
         setLocationRelativeTo(null);
     }
@@ -120,6 +124,11 @@ public class Menu extends javax.swing.JFrame {
         jPanelEliminarEmp = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableEliminarEmp = new javax.swing.JTable();
+        pEliminar = new javax.swing.JPanel();
+        lnombre1 = new javax.swing.JLabel();
+        inombreC = new javax.swing.JTextField();
+        beliminarEmp = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanelModificarEmp = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanelAgregarHab = new javax.swing.JPanel();
@@ -1062,6 +1071,43 @@ public class Menu extends javax.swing.JFrame {
 
         jPanelEliminarEmp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 400, 500));
 
+        pEliminar.setBackground(new java.awt.Color(233, 230, 230));
+        pEliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lnombre1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombre1.setForeground(new java.awt.Color(51, 51, 51));
+        lnombre1.setText("NOMBRE");
+        pEliminar.add(lnombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        inombreC.setBackground(new java.awt.Color(153, 153, 153));
+        inombreC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombreC.setForeground(new java.awt.Color(255, 255, 255));
+        inombreC.setBorder(null);
+        inombreC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombreCActionPerformed(evt);
+            }
+        });
+        pEliminar.add(inombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
+
+        beliminarEmp.setBackground(new java.awt.Color(102, 102, 102));
+        beliminarEmp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        beliminarEmp.setForeground(new java.awt.Color(255, 255, 255));
+        beliminarEmp.setText("ELIMINAR");
+        beliminarEmp.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        beliminarEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beliminarEmpActionPerformed(evt);
+            }
+        });
+        pEliminar.add(beliminarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 30));
+
+        jPanelEliminarEmp.add(pEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 280, 100));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminarEmp.png"))); // NOI18N
+        jPanelEliminarEmp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 260, 190));
+
         jMenu.addTab("tab3", jPanelEliminarEmp);
 
         jPanelModificarEmp.setBackground(new java.awt.Color(255, 255, 255));
@@ -1635,6 +1681,16 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_icontraActionPerformed
 
+    private void inombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreCActionPerformed
+
+    private void beliminarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarEmpActionPerformed
+        String nom = inombreC.getText();
+        GP.EliminarE(nom);
+        CargarTabla();
+    }//GEN-LAST:event_beliminarEmpActionPerformed
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1680,6 +1736,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arrastar;
     private javax.swing.JButton bagregar;
+    private javax.swing.JButton beliminarEmp;
     private javax.swing.JPanel bg;
     private javax.swing.ButtonGroup botonesAgregar;
     private javax.swing.JRadioButton cAdministrador;
@@ -1690,12 +1747,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField idni;
     private javax.swing.JLabel imgpersona;
     private javax.swing.JTextField inombre;
+    private javax.swing.JTextField inombreC;
     private javax.swing.JTextField iuser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1726,6 +1785,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lminus;
     private javax.swing.JLabel lnombre;
+    private javax.swing.JLabel lnombre1;
     private javax.swing.JLabel lpEmpleados;
     private javax.swing.JLabel lpHabitaciones;
     private javax.swing.JLabel lpReportes;
@@ -1760,6 +1820,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel mpModificarH;
     private javax.swing.JPanel mpModificarS;
     private javax.swing.JPanel pAgregar;
+    private javax.swing.JPanel pEliminar;
     private javax.swing.JPanel panelPEmpleados;
     private javax.swing.JPanel panelPHabitaciones;
     private javax.swing.JPanel panelPReportes;

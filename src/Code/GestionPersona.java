@@ -1,5 +1,7 @@
 package Code;
 
+import javax.swing.JOptionPane;
+
 public class GestionPersona {
 
     private Empleado[] arregloPersona;
@@ -16,9 +18,32 @@ public class GestionPersona {
         if (conta < arregloPersona.length) {
             arregloPersona[conta] = ref;
             conta++;
-        } else {System.out.println("No hay espacio");}
+        } else {
+            System.out.println("No hay espacio");
+        }
     }
-    
+
+    public void EliminarE(String nom) {
+        boolean encontro = false;
+        for (int i = 0; i < conta; i++) {
+            if (nom.equalsIgnoreCase(arregloPersona[i].getNombre())) {
+                for (int j = i; j < conta - 1; j++) {
+                    arregloPersona[j] = arregloPersona[j + 1];
+                }
+                arregloPersona[conta - 1] = null;
+                conta--;
+                encontro = false;
+                break;
+                
+            } else {
+                encontro = true;
+            }
+        }
+        if (encontro == true) {
+            JOptionPane.showMessageDialog(null, "Empleado no encontrado"); 
+        }
+    }
+
     public void ModificarE(String ref) {
         for (int i = 0; i < conta; i++) {
             if (arregloPersona[i].getNombre().equals(ref)) {

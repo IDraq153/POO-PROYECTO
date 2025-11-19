@@ -18,8 +18,8 @@ public class LogIn extends javax.swing.JFrame {
     //CONSTRUCTOR
     public LogIn() {
         initComponents();
-        Administrador adm = new Administrador("Dario", "Rua", "ADMIN", "60789650", "Dar123", "123");
-        Recepcionista rec = new Recepcionista("Maria", "Menda", "REC", "8313912", "Mar12", "153");
+        Administrador adm = new Administrador("DARIO", "RUA", "ADMIN", "60789650", "Dar123", "123");
+        Recepcionista rec = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
         GP.IngresarE(adm);
         GP.IngresarE(rec);
         arreglo = GP.getArregloPersona();
@@ -258,13 +258,13 @@ public class LogIn extends javax.swing.JFrame {
             for (int i = 0; i < GP.getConta(); i++) {
                 if (user.equals(arreglo[i].getUser()) && contra.equals(arreglo[i].getContra())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido");
-                    if (arreglo[i].getRol().equalsIgnoreCase("Administrador")) {
+                    if (arreglo[i].getRol().equalsIgnoreCase("ADMIN")) {
                         Menu m2 = new Menu(arreglo[i]);
                         m2.setVisible(true);
                         mal = false;    
                         this.dispose();
                         break;
-                    } else if (arreglo[i].getRol().equalsIgnoreCase("Recepcionista")) {
+                    } else if (arreglo[i].getRol().equalsIgnoreCase("REC")) {
                         MenuR m3 = new MenuR(arreglo[i]);
                         m3.setVisible(true);
                         mal = false;
