@@ -10,6 +10,5 @@ public class Prueba {
         
         g1.IngresarE(a1);
         g1.IngresarE(r1);
-        g1.ModificarE("Manolo");
     }
 }

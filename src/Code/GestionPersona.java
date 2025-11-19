@@ -34,21 +34,13 @@ public class GestionPersona {
                 conta--;
                 encontro = false;
                 break;
-                
+
             } else {
                 encontro = true;
             }
         }
         if (encontro == true) {
-            JOptionPane.showMessageDialog(null, "Empleado no encontrado"); 
-        }
-    }
-
-    public void ModificarE(String ref) {
-        for (int i = 0; i < conta; i++) {
-            if (arregloPersona[i].getNombre().equals(ref)) {
-                System.out.println("Cambio");
-            }
+            JOptionPane.showMessageDialog(null, "Empleado no encontrado");
         }
     }
 
