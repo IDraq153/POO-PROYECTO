@@ -12,17 +12,14 @@ public class LogIn extends javax.swing.JFrame {
 
     int mousepX;
     int mousepY;
-    private Administrador adm;
-    private Recepcionista rec;
     private Empleado[] arreglo;
     GestionPersona GP = new GestionPersona();
 
     //CONSTRUCTOR
     public LogIn() {
         initComponents();
-
-        Administrador adm = new Administrador("Dario", "Rua", "Administrador", "60789650", "Dar123", "123");
-        Recepcionista rec = new Recepcionista("Maria", "Menda", "Recepcionista", "8313912", "Mar12", "153");
+        Administrador adm = new Administrador("Dario", "Rua", "ADMIN", "60789650", "Dar123", "123");
+        Recepcionista rec = new Recepcionista("Maria", "Menda", "REC", "8313912", "Mar12", "153");
         GP.IngresarE(adm);
         GP.IngresarE(rec);
         arreglo = GP.getArregloPersona();
@@ -275,7 +272,6 @@ public class LogIn extends javax.swing.JFrame {
                         break;
                     }
                     
-
                 } else {
                     iuser.setText("");
                     icontra.setText("");

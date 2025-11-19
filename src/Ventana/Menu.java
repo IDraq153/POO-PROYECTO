@@ -1,20 +1,43 @@
 package Ventana;
 
+import Code.Administrador;
 import Code.Empleado;
+import Code.GestionPersona;
+import Code.Recepcionista;
 import java.awt.Color;
 import static java.lang.System.exit;
+import javax.swing.table.DefaultTableModel;
 
 public class Menu extends javax.swing.JFrame {
-
+    
+    //VARIABLES
+    private DefaultTableModel modelo;
+    private GestionPersona GP;
     int mousepX;
     int mousepY;
 
     //CONSTRUCTOR
     public Menu(Empleado ref) {
         initComponents();
+        modelo = new DefaultTableModel();
+        GP = new GestionPersona();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Rol");
+        modelo.addColumn("Dni");
+        modelo.addColumn("User");
+        modelo.addColumn("Contra");
+        this.jtableagregarem.setModel(modelo); 
+        this.jtableEliminarEmp.setModel(modelo); 
+        jtableagregarem.getTableHeader().setResizingAllowed(false);
+        jtableEliminarEmp.getTableHeader().setResizingAllowed(false);
+        jtableagregarem.getTableHeader().setReorderingAllowed(false);
+        jtableEliminarEmp.getTableHeader().setReorderingAllowed(false);
         String userPr = ref.getNombre() + " " + ref.getApellido();
         luserprofile.setText(userPr.toUpperCase());
         lrolprofile.setText(ref.getRol());
+        GP.IngresarE(ref);
+        CargarTabla(); 
         setLocationRelativeTo(null);
     }
 
@@ -80,15 +103,23 @@ public class Menu extends javax.swing.JFrame {
         lnombre = new javax.swing.JLabel();
         inombre = new javax.swing.JTextField();
         bagregar = new javax.swing.JButton();
-        inombre1 = new javax.swing.JTextField();
-        lnombre1 = new javax.swing.JLabel();
-        cAdmin = new javax.swing.JRadioButton();
-        cAdmin1 = new javax.swing.JRadioButton();
-        lnombre2 = new javax.swing.JLabel();
+        iapellido = new javax.swing.JTextField();
+        lpuestotrabajo = new javax.swing.JLabel();
+        cRecepcionita = new javax.swing.JRadioButton();
+        cAdministrador = new javax.swing.JRadioButton();
+        lapellido = new javax.swing.JLabel();
+        idni = new javax.swing.JTextField();
+        ldni = new javax.swing.JLabel();
+        luser = new javax.swing.JLabel();
+        iuser = new javax.swing.JTextField();
+        lcontra = new javax.swing.JLabel();
+        icontra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtableagregarem = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
         jPanelEliminarEmp = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtableEliminarEmp = new javax.swing.JTable();
         jPanelModificarEmp = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanelAgregarHab = new javax.swing.JPanel();
@@ -857,88 +888,134 @@ public class Menu extends javax.swing.JFrame {
         jPanelAgregarEmp.setBackground(new java.awt.Color(255, 255, 255));
         jPanelAgregarEmp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pAgregar.setBackground(new java.awt.Color(204, 204, 204));
+        pAgregar.setBackground(new java.awt.Color(233, 230, 230));
         pAgregar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lnombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lnombre.setForeground(new java.awt.Color(51, 51, 51));
         lnombre.setText("NOMBRE");
-        pAgregar.add(lnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        pAgregar.add(lnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         inombre.setBackground(new java.awt.Color(153, 153, 153));
         inombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inombre.setForeground(new java.awt.Color(255, 255, 255));
-        inombre.setText("  ");
         inombre.setBorder(null);
         inombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inombreActionPerformed(evt);
             }
         });
-        pAgregar.add(inombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 150, 25));
+        pAgregar.add(inombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
 
         bagregar.setBackground(new java.awt.Color(102, 102, 102));
         bagregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         bagregar.setForeground(new java.awt.Color(255, 255, 255));
         bagregar.setText("AGREGAR");
-        bagregar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        bagregar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         bagregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bagregarActionPerformed(evt);
             }
         });
-        pAgregar.add(bagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 120, 30));
+        pAgregar.add(bagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 120, 30));
 
-        inombre1.setBackground(new java.awt.Color(153, 153, 153));
-        inombre1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        inombre1.setForeground(new java.awt.Color(255, 255, 255));
-        inombre1.setText("  ");
-        inombre1.setBorder(null);
-        inombre1.addActionListener(new java.awt.event.ActionListener() {
+        iapellido.setBackground(new java.awt.Color(153, 153, 153));
+        iapellido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iapellido.setForeground(new java.awt.Color(255, 255, 255));
+        iapellido.setBorder(null);
+        iapellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inombre1ActionPerformed(evt);
+                iapellidoActionPerformed(evt);
             }
         });
-        pAgregar.add(inombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 150, 25));
+        pAgregar.add(iapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 150, 25));
 
-        lnombre1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lnombre1.setForeground(new java.awt.Color(51, 51, 51));
-        lnombre1.setText("PUESTO DE TRABAJO");
-        pAgregar.add(lnombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 89, -1, -1));
+        lpuestotrabajo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lpuestotrabajo.setForeground(new java.awt.Color(51, 51, 51));
+        lpuestotrabajo.setText("PUESTO DE TRABAJO");
+        pAgregar.add(lpuestotrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
-        botonesAgregar.add(cAdmin);
-        cAdmin.setForeground(new java.awt.Color(51, 51, 51));
-        cAdmin.setText("RECEPCIONISTA");
-        cAdmin.addActionListener(new java.awt.event.ActionListener() {
+        botonesAgregar.add(cRecepcionita);
+        cRecepcionita.setForeground(new java.awt.Color(51, 51, 51));
+        cRecepcionita.setText("RECEPCIONISTA");
+        cRecepcionita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cAdminActionPerformed(evt);
+                cRecepcionitaActionPerformed(evt);
             }
         });
-        pAgregar.add(cAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        pAgregar.add(cRecepcionita, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        botonesAgregar.add(cAdmin1);
-        cAdmin1.setForeground(new java.awt.Color(51, 51, 51));
-        cAdmin1.setText("ADMINISTRADOR");
-        cAdmin1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        cAdmin1.addActionListener(new java.awt.event.ActionListener() {
+        botonesAgregar.add(cAdministrador);
+        cAdministrador.setForeground(new java.awt.Color(51, 51, 51));
+        cAdministrador.setText("ADMINISTRADOR");
+        cAdministrador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cAdmin1ActionPerformed(evt);
+                cAdministradorActionPerformed(evt);
             }
         });
-        pAgregar.add(cAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        pAgregar.add(cAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        lnombre2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lnombre2.setForeground(new java.awt.Color(51, 51, 51));
-        lnombre2.setText("APELLIDOS");
-        pAgregar.add(lnombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        lapellido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lapellido.setForeground(new java.awt.Color(51, 51, 51));
+        lapellido.setText("APELLIDOS");
+        pAgregar.add(lapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        jPanelAgregarEmp.add(pAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 280, 500));
+        idni.setBackground(new java.awt.Color(153, 153, 153));
+        idni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        idni.setForeground(new java.awt.Color(255, 255, 255));
+        idni.setBorder(null);
+        idni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idniActionPerformed(evt);
+            }
+        });
+        pAgregar.add(idni, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 150, 25));
+
+        ldni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ldni.setForeground(new java.awt.Color(51, 51, 51));
+        ldni.setText("DNI");
+        pAgregar.add(ldni, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+
+        luser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        luser.setForeground(new java.awt.Color(51, 51, 51));
+        luser.setText("USUARIO");
+        pAgregar.add(luser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        iuser.setBackground(new java.awt.Color(153, 153, 153));
+        iuser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iuser.setForeground(new java.awt.Color(255, 255, 255));
+        iuser.setBorder(null);
+        iuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iuserActionPerformed(evt);
+            }
+        });
+        pAgregar.add(iuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 150, 25));
+
+        lcontra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lcontra.setForeground(new java.awt.Color(51, 51, 51));
+        lcontra.setText("CONTRASEÑA");
+        pAgregar.add(lcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        icontra.setBackground(new java.awt.Color(153, 153, 153));
+        icontra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        icontra.setForeground(new java.awt.Color(255, 255, 255));
+        icontra.setBorder(null);
+        icontra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                icontraActionPerformed(evt);
+            }
+        });
+        pAgregar.add(icontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 150, 25));
+
+        jPanelAgregarEmp.add(pAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 280, 290));
 
         jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtableagregarem.setBackground(new java.awt.Color(204, 204, 204));
+        jtableagregarem.setForeground(new java.awt.Color(0, 0, 0));
+        jtableagregarem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -949,34 +1026,41 @@ public class Menu extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jtableagregarem.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableagregarem.setFocusable(false);
+        jScrollPane1.setViewportView(jtableagregarem);
 
-        jPanelAgregarEmp.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 380, 500));
+        jPanelAgregarEmp.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 400, 500));
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nuevoempleado.png"))); // NOI18N
+        jPanelAgregarEmp.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, 200));
 
         jMenu.addTab("tab1", jPanelAgregarEmp);
 
         jPanelEliminarEmp.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelEliminarEmp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("ELIMINAR EMPLEADOS");
+        jScrollPane2.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout jPanelEliminarEmpLayout = new javax.swing.GroupLayout(jPanelEliminarEmp);
-        jPanelEliminarEmp.setLayout(jPanelEliminarEmpLayout);
-        jPanelEliminarEmpLayout.setHorizontalGroup(
-            jPanelEliminarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEliminarEmpLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel3)
-                .addContainerGap(276, Short.MAX_VALUE))
-        );
-        jPanelEliminarEmpLayout.setVerticalGroup(
-            jPanelEliminarEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEliminarEmpLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel3)
-                .addContainerGap(448, Short.MAX_VALUE))
-        );
+        jtableEliminarEmp.setBackground(new java.awt.Color(204, 204, 204));
+        jtableEliminarEmp.setForeground(new java.awt.Color(0, 0, 0));
+        jtableEliminarEmp.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableEliminarEmp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableEliminarEmp.setFocusable(false);
+        jScrollPane2.setViewportView(jtableEliminarEmp);
+
+        jPanelEliminarEmp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 400, 500));
 
         jMenu.addTab("tab3", jPanelEliminarEmp);
 
@@ -1295,20 +1379,57 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_inombreActionPerformed
 
     private void bagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarActionPerformed
-
+        String nom = this.inombre.getText().toUpperCase();
+        String apell = this.iapellido.getText().toUpperCase();
+        String dni = this.idni.getText();
+        String user = this.iuser.getText();
+        String password = this.icontra.getText();
+        if (this.cAdministrador.isSelected()) {
+            Administrador ref = new Administrador(nom, apell, "ADMIN", dni, user, password);
+            GP.IngresarE(ref);
+        } else if (this.cRecepcionita.isSelected()) {
+            Recepcionista refE = new Recepcionista(nom, apell, "REC", dni, user, password);
+            GP.IngresarE(refE);
+        }
+        this.inombre.setText("");
+        this.iapellido.setText("");
+        this.idni.setText("");
+        this.iuser.setText("");
+        this.icontra.setText("");
+        botonesAgregar.clearSelection();
+        CargarTabla();
     }//GEN-LAST:event_bagregarActionPerformed
 
-    private void inombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombre1ActionPerformed
+    public void CargarTabla() {
+        int fila = this.jtableagregarem.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            modelo.removeRow(0);
+        }
+        Empleado[] arreglo = GP.getArregloPersona();
+        String[] datos = new String[6];
+        for (int i = 0; i < GP.getConta(); i++) {
+            datos[0] = arreglo[i].getNombre();
+            datos[1] = arreglo[i].getApellido();
+            datos[2] = arreglo[i].getRol();
+            datos[3] = arreglo[i].getDni();
+            datos[4] = arreglo[i].getUser();
+            datos[5] = arreglo[i].getContra();
+            
+            modelo.addRow(datos); 
+        }
+    }
+    
+    private void iapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inombre1ActionPerformed
+    }//GEN-LAST:event_iapellidoActionPerformed
 
-    private void cAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdminActionPerformed
+    private void cRecepcionitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cRecepcionitaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cAdminActionPerformed
+    }//GEN-LAST:event_cRecepcionitaActionPerformed
 
-    private void cAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdmin1ActionPerformed
+    private void cAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdministradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cAdmin1ActionPerformed
+    }//GEN-LAST:event_cAdministradorActionPerformed
 
     private void mlEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseExited
         mpEliminar.setBackground(new Color(121, 180, 239));
@@ -1502,6 +1623,18 @@ public class Menu extends javax.swing.JFrame {
         mpMenu.setBackground(new Color(66,126,187));
     }//GEN-LAST:event_mlMenuMouseMoved
 
+    private void idniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idniActionPerformed
+
+    private void iuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iuserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iuserActionPerformed
+
+    private void icontraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icontraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icontraActionPerformed
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1549,17 +1682,20 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton bagregar;
     private javax.swing.JPanel bg;
     private javax.swing.ButtonGroup botonesAgregar;
-    private javax.swing.JRadioButton cAdmin;
-    private javax.swing.JRadioButton cAdmin1;
+    private javax.swing.JRadioButton cAdministrador;
+    private javax.swing.JRadioButton cRecepcionita;
     private javax.swing.JPanel dashboard;
+    private javax.swing.JTextField iapellido;
+    private javax.swing.JTextField icontra;
+    private javax.swing.JTextField idni;
     private javax.swing.JLabel imgpersona;
     private javax.swing.JTextField inombre;
-    private javax.swing.JTextField inombre1;
+    private javax.swing.JTextField iuser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1581,17 +1717,22 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelModificarSer;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jtableEliminarEmp;
+    private javax.swing.JTable jtableagregarem;
+    private javax.swing.JLabel lapellido;
+    private javax.swing.JLabel lcontra;
+    private javax.swing.JLabel ldni;
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lminus;
     private javax.swing.JLabel lnombre;
-    private javax.swing.JLabel lnombre1;
-    private javax.swing.JLabel lnombre2;
     private javax.swing.JLabel lpEmpleados;
     private javax.swing.JLabel lpHabitaciones;
     private javax.swing.JLabel lpReportes;
     private javax.swing.JLabel lpServicios;
+    private javax.swing.JLabel lpuestotrabajo;
     private javax.swing.JLabel lrolprofile;
+    private javax.swing.JLabel luser;
     private javax.swing.JLabel luserprofile;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel mlAgregar;
