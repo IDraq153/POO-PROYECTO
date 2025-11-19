@@ -254,16 +254,27 @@ public class LogIn extends javax.swing.JFrame {
         boolean mal = false;
         String user = iuser.getText();
         String contra = icontra.getText();
+        
         if (user.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
         } else {
             for (int i = 0; i < GP.getConta(); i++) {
                 if (user.equals(arreglo[i].getUser()) && contra.equals(arreglo[i].getContra())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido");
-                    Menu m2 = new Menu(arreglo[i]);
-                    m2.setVisible(true);
-                    this.dispose();
-                    break;
+                    if (arreglo[i].getRol().equalsIgnoreCase("Administrador")) {
+                        Menu m2 = new Menu(arreglo[i]);
+                        m2.setVisible(true);
+                        mal = false;
+                        this.dispose();
+                        break;
+                    } else if (arreglo[i].getRol().equalsIgnoreCase("Recepcionista")) {
+                        MenuR m3 = new MenuR(arreglo[i]);
+                        m3.setVisible(true);
+                        mal = false;
+                        this.dispose();
+                        break;
+                    }
+                    
 
                 } else {
                     iuser.setText("");
