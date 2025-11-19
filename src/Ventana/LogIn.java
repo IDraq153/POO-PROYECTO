@@ -264,7 +264,7 @@ public class LogIn extends javax.swing.JFrame {
                     if (arreglo[i].getRol().equalsIgnoreCase("Administrador")) {
                         Menu m2 = new Menu(arreglo[i]);
                         m2.setVisible(true);
-                        mal = false;
+                        mal = false;    
                         this.dispose();
                         break;
                     } else if (arreglo[i].getRol().equalsIgnoreCase("Recepcionista")) {

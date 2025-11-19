@@ -94,7 +94,19 @@ public class Menu extends javax.swing.JFrame {
         jPanelAgregarHab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanelEliminarHab = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanelModificarHab = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanelAgregarSer = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanelEliminarSer = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanelModificarSer = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanelInforH = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanelInfoIng = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -144,7 +156,7 @@ public class Menu extends javax.swing.JFrame {
 
         mpMenu.setBackground(new java.awt.Color(72, 147, 223));
 
-        mlMenu.setBackground(new java.awt.Color(43, 137, 230));
+        mlMenu.setBackground(new java.awt.Color(25, 106, 187));
         mlMenu.setFont(new java.awt.Font("Segoe UI Emoji", 1, 17)); // NOI18N
         mlMenu.setForeground(new java.awt.Color(255, 255, 255));
         mlMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1020,33 +1032,198 @@ public class Menu extends javax.swing.JFrame {
 
         jPanelEliminarHab.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("ELIMINAR HABITACION");
+
         javax.swing.GroupLayout jPanelEliminarHabLayout = new javax.swing.GroupLayout(jPanelEliminarHab);
         jPanelEliminarHab.setLayout(jPanelEliminarHabLayout);
         jPanelEliminarHabLayout.setHorizontalGroup(
             jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelEliminarHabLayout.createSequentialGroup()
+                    .addGap(172, 172, 172)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(172, Short.MAX_VALUE)))
         );
         jPanelEliminarHabLayout.setVerticalGroup(
             jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelEliminarHabLayout.createSequentialGroup()
+                    .addGap(246, 246, 246)
+                    .addComponent(jLabel5)
+                    .addContainerGap(247, Short.MAX_VALUE)))
         );
 
         jMenu.addTab("tab6", jPanelEliminarHab);
 
         jPanelModificarHab.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("MODIFICAR HABITACION");
+
         javax.swing.GroupLayout jPanelModificarHabLayout = new javax.swing.GroupLayout(jPanelModificarHab);
         jPanelModificarHab.setLayout(jPanelModificarHabLayout);
         jPanelModificarHabLayout.setHorizontalGroup(
             jPanelModificarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanelModificarHabLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         jPanelModificarHabLayout.setVerticalGroup(
             jPanelModificarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(jPanelModificarHabLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jLabel6)
+                .addContainerGap(430, Short.MAX_VALUE))
         );
 
         jMenu.addTab("tab7", jPanelModificarHab);
+
+        jPanelAgregarSer.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("REGISTRAR SERVICIO");
+
+        javax.swing.GroupLayout jPanelAgregarSerLayout = new javax.swing.GroupLayout(jPanelAgregarSer);
+        jPanelAgregarSer.setLayout(jPanelAgregarSerLayout);
+        jPanelAgregarSerLayout.setHorizontalGroup(
+            jPanelAgregarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAgregarSerLayout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
+        jPanelAgregarSerLayout.setVerticalGroup(
+            jPanelAgregarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAgregarSerLayout.createSequentialGroup()
+                .addGap(246, 246, 246)
+                .addComponent(jLabel7)
+                .addContainerGap(247, Short.MAX_VALUE))
+        );
+
+        jMenu.addTab("tab8", jPanelAgregarSer);
+
+        jPanelEliminarSer.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("MODIFICAR SERVICIO");
+
+        javax.swing.GroupLayout jPanelEliminarSerLayout = new javax.swing.GroupLayout(jPanelEliminarSer);
+        jPanelEliminarSer.setLayout(jPanelEliminarSerLayout);
+        jPanelEliminarSerLayout.setHorizontalGroup(
+            jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelEliminarSerLayout.createSequentialGroup()
+                    .addGap(172, 172, 172)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(172, Short.MAX_VALUE)))
+        );
+        jPanelEliminarSerLayout.setVerticalGroup(
+            jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelEliminarSerLayout.createSequentialGroup()
+                    .addGap(246, 246, 246)
+                    .addComponent(jLabel8)
+                    .addContainerGap(247, Short.MAX_VALUE)))
+        );
+
+        jMenu.addTab("tab9", jPanelEliminarSer);
+
+        jPanelModificarSer.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("ELIMINAR SERVICIO");
+
+        javax.swing.GroupLayout jPanelModificarSerLayout = new javax.swing.GroupLayout(jPanelModificarSer);
+        jPanelModificarSer.setLayout(jPanelModificarSerLayout);
+        jPanelModificarSerLayout.setHorizontalGroup(
+            jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelModificarSerLayout.createSequentialGroup()
+                    .addGap(172, 172, 172)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(172, Short.MAX_VALUE)))
+        );
+        jPanelModificarSerLayout.setVerticalGroup(
+            jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelModificarSerLayout.createSequentialGroup()
+                    .addGap(246, 246, 246)
+                    .addComponent(jLabel9)
+                    .addContainerGap(247, Short.MAX_VALUE)))
+        );
+
+        jMenu.addTab("tab10", jPanelModificarSer);
+
+        jPanelInforH.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("INFORME HABITACIONES");
+
+        javax.swing.GroupLayout jPanelInforHLayout = new javax.swing.GroupLayout(jPanelInforH);
+        jPanelInforH.setLayout(jPanelInforHLayout);
+        jPanelInforHLayout.setHorizontalGroup(
+            jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelInforHLayout.createSequentialGroup()
+                    .addGap(172, 172, 172)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(172, Short.MAX_VALUE)))
+        );
+        jPanelInforHLayout.setVerticalGroup(
+            jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelInforHLayout.createSequentialGroup()
+                    .addGap(246, 246, 246)
+                    .addComponent(jLabel10)
+                    .addContainerGap(247, Short.MAX_VALUE)))
+        );
+
+        jMenu.addTab("tab11", jPanelInforH);
+
+        jPanelInfoIng.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("INFORME INGRESOS");
+
+        javax.swing.GroupLayout jPanelInfoIngLayout = new javax.swing.GroupLayout(jPanelInfoIng);
+        jPanelInfoIng.setLayout(jPanelInfoIngLayout);
+        jPanelInfoIngLayout.setHorizontalGroup(
+            jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelInfoIngLayout.createSequentialGroup()
+                    .addGap(172, 172, 172)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(172, Short.MAX_VALUE)))
+        );
+        jPanelInfoIngLayout.setVerticalGroup(
+            jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 525, Short.MAX_VALUE)
+            .addGroup(jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelInfoIngLayout.createSequentialGroup()
+                    .addGap(246, 246, 246)
+                    .addComponent(jLabel11)
+                    .addContainerGap(247, Short.MAX_VALUE)))
+        );
+
+        jMenu.addTab("tab12", jPanelInfoIng);
 
         bg.add(jMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 710, 560));
 
@@ -1242,39 +1419,39 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_lpServiciosMouseExited
 
     private void mlAgregarSMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarSMouseMoved
-        // TODO add your handling code here:
+        mpAgregarS.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlAgregarSMouseMoved
 
     private void mlAgregarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarSMouseClicked
-        // TODO add your handling code here:
+        jMenu.setSelectedIndex(7);
     }//GEN-LAST:event_mlAgregarSMouseClicked
 
     private void mlAgregarSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarSMouseExited
-        // TODO add your handling code here:
+        mpAgregarS.setBackground(new Color(121, 180, 239));
     }//GEN-LAST:event_mlAgregarSMouseExited
 
     private void mlEliminarSMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarSMouseMoved
-        // TODO add your handling code here:
+        mpEliminarS.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlEliminarSMouseMoved
 
     private void mlEliminarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarSMouseClicked
-        // TODO add your handling code here:
+        jMenu.setSelectedIndex(8);
     }//GEN-LAST:event_mlEliminarSMouseClicked
 
     private void mlEliminarSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarSMouseExited
-        // TODO add your handling code here:
+        mpEliminarS.setBackground(new Color(121, 180, 239));
     }//GEN-LAST:event_mlEliminarSMouseExited
 
     private void mlModificarSMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarSMouseMoved
-        // TODO add your handling code here:
+        mpModificarS.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlModificarSMouseMoved
 
     private void mlModificarSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarSMouseClicked
-        // TODO add your handling code here:
+        jMenu.setSelectedIndex(9);
     }//GEN-LAST:event_mlModificarSMouseClicked
 
     private void mlModificarSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarSMouseExited
-        // TODO add your handling code here:
+        mpModificarS.setBackground(new Color(121, 180, 239));
     }//GEN-LAST:event_mlModificarSMouseExited
 
     private void lpReportesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpReportesMouseMoved
@@ -1290,31 +1467,31 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_lpReportesMouseExited
 
     private void mlGenInfoHMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoHMouseMoved
-        // TODO add your handling code here:
+        mpGenInfoH.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlGenInfoHMouseMoved
 
     private void mlGenInfoHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoHMouseClicked
-        // TODO add your handling code here:
+        jMenu.setSelectedIndex(10);
     }//GEN-LAST:event_mlGenInfoHMouseClicked
 
     private void mlGenInfoHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoHMouseExited
-        // TODO add your handling code here:
+        mpGenInfoH.setBackground(new Color(121, 180, 239));
     }//GEN-LAST:event_mlGenInfoHMouseExited
 
     private void mlGenInfoIngMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoIngMouseMoved
-        // TODO add your handling code here:
+        mpGenInfoIng.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlGenInfoIngMouseMoved
 
     private void mlGenInfoIngMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoIngMouseClicked
-        // TODO add your handling code here:
+        jMenu.setSelectedIndex(11);
     }//GEN-LAST:event_mlGenInfoIngMouseClicked
 
     private void mlGenInfoIngMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoIngMouseExited
-        // TODO add your handling code here:
+        mpGenInfoIng.setBackground(new Color(121, 180, 239));
     }//GEN-LAST:event_mlGenInfoIngMouseExited
 
     private void mlMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlMenuMouseExited
-        // TODO add your handling code here:
+        mpMenu.setBackground(new Color(72,147,223));
     }//GEN-LAST:event_mlMenuMouseExited
 
     private void mlMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlMenuMouseClicked
@@ -1322,7 +1499,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mlMenuMouseClicked
 
     private void mlMenuMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlMenuMouseMoved
-        // TODO add your handling code here:
+        mpMenu.setBackground(new Color(66,126,187));
     }//GEN-LAST:event_mlMenuMouseMoved
 
     /**
@@ -1379,17 +1556,29 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField inombre;
     private javax.swing.JTextField inombre1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTabbedPane jMenu;
     private javax.swing.JPanel jPanelAgregarEmp;
     private javax.swing.JPanel jPanelAgregarHab;
+    private javax.swing.JPanel jPanelAgregarSer;
     private javax.swing.JPanel jPanelEliminarEmp;
     private javax.swing.JPanel jPanelEliminarHab;
+    private javax.swing.JPanel jPanelEliminarSer;
+    private javax.swing.JPanel jPanelInfoIng;
+    private javax.swing.JPanel jPanelInforH;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelModificarEmp;
     private javax.swing.JPanel jPanelModificarHab;
+    private javax.swing.JPanel jPanelModificarSer;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
