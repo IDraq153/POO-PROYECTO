@@ -19,12 +19,12 @@ public class GestionPersona {
             arregloPersona[conta] = ref;
             conta++;
         } else {
-            System.out.println("No hay espacio");
+            JOptionPane.showMessageDialog(null, "Numero de Empleados maximo alcanzado");
         }
     }
 
     public void EliminarE(String nom) {
-        boolean encontro = false;
+        boolean Noencontro = false;
         for (int i = 0; i < conta; i++) {
             if (nom.equalsIgnoreCase(arregloPersona[i].getNombre())) {
                 for (int j = i; j < conta - 1; j++) {
@@ -32,14 +32,14 @@ public class GestionPersona {
                 }
                 arregloPersona[conta - 1] = null;
                 conta--;
-                encontro = false;
+                Noencontro = false;
                 break;
 
             } else {
-                encontro = true;
+                Noencontro = true;
             }
         }
-        if (encontro == true) {
+        if (Noencontro == true) {
             JOptionPane.showMessageDialog(null, "Empleado no encontrado");
         }
     }

@@ -14,7 +14,7 @@ public class MenuR extends javax.swing.JFrame {
         initComponents();
         String userPr = ref.getNombre() + " " + ref.getApellido();
         luserprofile.setText(userPr.toUpperCase());
-        lrolprofile.setText(ref.getRol());
+        lrolprofile.setText("RECEPCIONISTA");
         setLocationRelativeTo(null);
     }
 

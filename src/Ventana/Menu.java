@@ -2,7 +2,9 @@ package Ventana;
 
 import Code.Administrador;
 import Code.Empleado;
+import Code.GestionHabitacion;
 import Code.GestionPersona;
+import Code.Habitacion;
 import Code.Recepcionista;
 import java.awt.Color;
 import static java.lang.System.exit;
@@ -10,10 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Menu extends javax.swing.JFrame {
-    
+
     //VARIABLES
     private DefaultTableModel modelo;
+    private DefaultTableModel modeloH;
     private GestionPersona GP;
+    private GestionHabitacion GH;
+    private Habitacion[] arregloH;
     private Empleado[] arreglo;
     int mousepX;
     int mousepY;
@@ -21,41 +26,56 @@ public class Menu extends javax.swing.JFrame {
     //CONSTRUCTOR
     public Menu(Empleado ref) {
         initComponents();
-        
-        //TABLA
-        modelo = new DefaultTableModel();
+        GH = new GestionHabitacion();
         GP = new GestionPersona();
+
+        //TABLAS EMPLEADOS
+        modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Rol");
         modelo.addColumn("Dni");
         modelo.addColumn("User");
         modelo.addColumn("Contra");
-        this.jtableagregarem.setModel(modelo); 
-        this.jtableEliminarEmp.setModel(modelo); 
+        this.jtableagregarem.setModel(modelo);
+        this.jtableEliminarEmp.setModel(modelo);
         jtableagregarem.getTableHeader().setResizingAllowed(false);
         jtableEliminarEmp.getTableHeader().setResizingAllowed(false);
         jtableagregarem.getTableHeader().setReorderingAllowed(false);
         jtableEliminarEmp.getTableHeader().setReorderingAllowed(false);
-        
+
+        //TABLAS HABITACIONES
+        modeloH = new DefaultTableModel();
+        modeloH.addColumn("Num");
+        modeloH.addColumn("Capacidad");
+        modeloH.addColumn("Precio");
+        modeloH.addColumn("Tipo");
+        modeloH.addColumn("Estado");
+        this.jtableaAgregarHab.setModel(modeloH);
+        this.jtableaEliminarHab.setModel(modeloH);
+        jtableaAgregarHab.getTableHeader().setResizingAllowed(false);
+        jtableaEliminarHab.getTableHeader().setResizingAllowed(false);
+        jtableaAgregarHab.getTableHeader().setReorderingAllowed(false);
+        jtableaEliminarHab.getTableHeader().setReorderingAllowed(false);
+
         //PERFIL
         String userPr = ref.getNombre() + " " + ref.getApellido();
         luserprofile.setText(userPr.toUpperCase());
-        lrolprofile.setText(ref.getRol().toUpperCase());
-        
+        lrolprofile.setText("ADMINISTRADOR");
+
         //ARREGLO
         Recepcionista refR = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
         GP.IngresarE(ref);
-        GP.IngresarE(refR); 
+        GP.IngresarE(refR);
         arreglo = GP.getArregloPersona();
-        CargarTabla(); 
-        
+        CargarTabla();
+
         //CENTRAR
         setLocationRelativeTo(null);
     }
 
     private Menu() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +85,8 @@ public class Menu extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         botonesAgregarEmp = new javax.swing.ButtonGroup();
         botonesModificarEmp = new javax.swing.ButtonGroup();
+        botonesAgregarHab = new javax.swing.ButtonGroup();
+        botonesAgregEstado = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
         arrastar = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
@@ -162,11 +184,54 @@ public class Menu extends javax.swing.JFrame {
         lcontraM = new javax.swing.JLabel();
         icontraM = new javax.swing.JTextField();
         jPanelAgregarHab = new javax.swing.JPanel();
+        pAgregarHab = new javax.swing.JPanel();
+        lnombre2 = new javax.swing.JLabel();
+        inumeroH = new javax.swing.JTextField();
+        bagregar1 = new javax.swing.JButton();
+        icapacidadH = new javax.swing.JTextField();
+        lpuestotrabajo1 = new javax.swing.JLabel();
+        csuiteH = new javax.swing.JRadioButton();
+        cEstandarH = new javax.swing.JRadioButton();
+        lcapacidadH = new javax.swing.JLabel();
+        iprecioH = new javax.swing.JTextField();
+        lprecioH = new javax.swing.JLabel();
+        lestadoH = new javax.swing.JLabel();
+        cdeluxeH = new javax.swing.JRadioButton();
+        cdisponibleH = new javax.swing.JRadioButton();
+        creservadoH = new javax.swing.JRadioButton();
+        cocupadoH = new javax.swing.JRadioButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtableaAgregarHab = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanelEliminarHab = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        pEliminarH = new javax.swing.JPanel();
+        lnumeroeEH = new javax.swing.JLabel();
+        inumeroEH = new javax.swing.JTextField();
+        beliminarHab = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtableaEliminarHab = new javax.swing.JTable();
+        imagenAgregarHab = new javax.swing.JLabel();
         jPanelModificarHab = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        pEliminarH1 = new javax.swing.JPanel();
+        lnumeroHM = new javax.swing.JLabel();
+        inumeroHM = new javax.swing.JTextField();
+        bModificarHab = new javax.swing.JButton();
+        pModificarHab = new javax.swing.JPanel();
+        lnombreHM = new javax.swing.JLabel();
+        inombreMH = new javax.swing.JTextField();
+        bmodificarHab = new javax.swing.JButton();
+        iapellidoMH = new javax.swing.JTextField();
+        ltipodehabitacion = new javax.swing.JLabel();
+        cSuiteMH = new javax.swing.JRadioButton();
+        cEstandarMH = new javax.swing.JRadioButton();
+        lapellidoMH = new javax.swing.JLabel();
+        iprecioMH = new javax.swing.JTextField();
+        lprecioMH = new javax.swing.JLabel();
+        lestadoMH = new javax.swing.JLabel();
+        iestadoMH = new javax.swing.JTextField();
+        cDeluxeMH = new javax.swing.JRadioButton();
+        jimagenModificarHab = new javax.swing.JLabel();
+        jimagenModHab = new javax.swing.JLabel();
         jPanelAgregarSer = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanelEliminarSer = new javax.swing.JPanel();
@@ -938,6 +1003,7 @@ public class Menu extends javax.swing.JFrame {
         inombre.setBackground(new java.awt.Color(153, 153, 153));
         inombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inombre.setForeground(new java.awt.Color(255, 255, 255));
+        inombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inombre.setBorder(null);
         inombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -961,6 +1027,7 @@ public class Menu extends javax.swing.JFrame {
         iapellido.setBackground(new java.awt.Color(153, 153, 153));
         iapellido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iapellido.setForeground(new java.awt.Color(255, 255, 255));
+        iapellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iapellido.setBorder(null);
         iapellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1003,6 +1070,7 @@ public class Menu extends javax.swing.JFrame {
         idni.setBackground(new java.awt.Color(153, 153, 153));
         idni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         idni.setForeground(new java.awt.Color(255, 255, 255));
+        idni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idni.setBorder(null);
         idni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1024,6 +1092,7 @@ public class Menu extends javax.swing.JFrame {
         iuser.setBackground(new java.awt.Color(153, 153, 153));
         iuser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iuser.setForeground(new java.awt.Color(255, 255, 255));
+        iuser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iuser.setBorder(null);
         iuser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1040,6 +1109,7 @@ public class Menu extends javax.swing.JFrame {
         icontra.setBackground(new java.awt.Color(153, 153, 153));
         icontra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         icontra.setForeground(new java.awt.Color(255, 255, 255));
+        icontra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         icontra.setBorder(null);
         icontra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1112,6 +1182,7 @@ public class Menu extends javax.swing.JFrame {
         inombreC.setBackground(new java.awt.Color(153, 153, 153));
         inombreC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inombreC.setForeground(new java.awt.Color(255, 255, 255));
+        inombreC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inombreC.setBorder(null);
         inombreC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1156,6 +1227,7 @@ public class Menu extends javax.swing.JFrame {
         inombreModiE.setBackground(new java.awt.Color(153, 153, 153));
         inombreModiE.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inombreModiE.setForeground(new java.awt.Color(255, 255, 255));
+        inombreModiE.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inombreModiE.setBorder(null);
         inombreModiE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1190,6 +1262,7 @@ public class Menu extends javax.swing.JFrame {
         inombreM.setBackground(new java.awt.Color(153, 153, 153));
         inombreM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inombreM.setForeground(new java.awt.Color(255, 255, 255));
+        inombreM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inombreM.setBorder(null);
         inombreM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1213,6 +1286,7 @@ public class Menu extends javax.swing.JFrame {
         iapellidoM.setBackground(new java.awt.Color(153, 153, 153));
         iapellidoM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iapellidoM.setForeground(new java.awt.Color(255, 255, 255));
+        iapellidoM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iapellidoM.setBorder(null);
         iapellidoM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1255,6 +1329,7 @@ public class Menu extends javax.swing.JFrame {
         idniM.setBackground(new java.awt.Color(153, 153, 153));
         idniM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         idniM.setForeground(new java.awt.Color(255, 255, 255));
+        idniM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         idniM.setBorder(null);
         idniM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1276,6 +1351,7 @@ public class Menu extends javax.swing.JFrame {
         iuserM.setBackground(new java.awt.Color(153, 153, 153));
         iuserM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iuserM.setForeground(new java.awt.Color(255, 255, 255));
+        iuserM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iuserM.setBorder(null);
         iuserM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1292,6 +1368,7 @@ public class Menu extends javax.swing.JFrame {
         icontraM.setBackground(new java.awt.Color(153, 153, 153));
         icontraM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         icontraM.setForeground(new java.awt.Color(255, 255, 255));
+        icontraM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         icontraM.setBorder(null);
         icontraM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1334,81 +1411,404 @@ public class Menu extends javax.swing.JFrame {
         jMenu.addTab("tab4", jPanelModificarEmp);
 
         jPanelAgregarHab.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelAgregarHab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("REGISTRAR HABITACION");
+        pAgregarHab.setBackground(new java.awt.Color(233, 230, 230));
+        pAgregarHab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelAgregarHabLayout = new javax.swing.GroupLayout(jPanelAgregarHab);
-        jPanelAgregarHab.setLayout(jPanelAgregarHabLayout);
-        jPanelAgregarHabLayout.setHorizontalGroup(
-            jPanelAgregarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAgregarHabLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
-        jPanelAgregarHabLayout.setVerticalGroup(
-            jPanelAgregarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAgregarHabLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addContainerGap(457, Short.MAX_VALUE))
-        );
+        lnombre2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombre2.setForeground(new java.awt.Color(51, 51, 51));
+        lnombre2.setText("NUMERO");
+        pAgregarHab.add(lnombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 15, -1, -1));
+
+        inumeroH.setBackground(new java.awt.Color(153, 153, 153));
+        inumeroH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inumeroH.setForeground(new java.awt.Color(255, 255, 255));
+        inumeroH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inumeroH.setBorder(null);
+        inumeroH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inumeroHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(inumeroH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
+
+        bagregar1.setBackground(new java.awt.Color(102, 102, 102));
+        bagregar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bagregar1.setForeground(new java.awt.Color(255, 255, 255));
+        bagregar1.setText("AGREGAR");
+        bagregar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bagregar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bagregar1ActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(bagregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 120, 30));
+
+        icapacidadH.setBackground(new java.awt.Color(153, 153, 153));
+        icapacidadH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        icapacidadH.setForeground(new java.awt.Color(255, 255, 255));
+        icapacidadH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        icapacidadH.setBorder(null);
+        icapacidadH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                icapacidadHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(icapacidadH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 150, 25));
+
+        lpuestotrabajo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lpuestotrabajo1.setForeground(new java.awt.Color(51, 51, 51));
+        lpuestotrabajo1.setText("TIPO DE HABITACION");
+        pAgregarHab.add(lpuestotrabajo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+
+        botonesAgregarHab.add(csuiteH);
+        csuiteH.setForeground(new java.awt.Color(51, 51, 51));
+        csuiteH.setText("SUITE");
+        csuiteH.setActionCommand("DOUBLE");
+        csuiteH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                csuiteHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(csuiteH, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+
+        botonesAgregarHab.add(cEstandarH);
+        cEstandarH.setForeground(new java.awt.Color(51, 51, 51));
+        cEstandarH.setText("STANDAR");
+        cEstandarH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cEstandarH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cEstandarHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(cEstandarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        lcapacidadH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lcapacidadH.setForeground(new java.awt.Color(51, 51, 51));
+        lcapacidadH.setText("CAPACDAD");
+        pAgregarHab.add(lcapacidadH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 43, -1, -1));
+
+        iprecioH.setBackground(new java.awt.Color(153, 153, 153));
+        iprecioH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iprecioH.setForeground(new java.awt.Color(255, 255, 255));
+        iprecioH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iprecioH.setBorder(null);
+        iprecioH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iprecioHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(iprecioH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 150, 25));
+
+        lprecioH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lprecioH.setForeground(new java.awt.Color(51, 51, 51));
+        lprecioH.setText("PRECIO ");
+        pAgregarHab.add(lprecioH, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 72, -1, -1));
+
+        lestadoH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lestadoH.setForeground(new java.awt.Color(51, 51, 51));
+        lestadoH.setText("ESTADO");
+        pAgregarHab.add(lestadoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
+
+        botonesAgregarHab.add(cdeluxeH);
+        cdeluxeH.setForeground(new java.awt.Color(51, 51, 51));
+        cdeluxeH.setText("DELUXE");
+        cdeluxeH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cdeluxeH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cdeluxeHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(cdeluxeH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+
+        botonesAgregEstado.add(cdisponibleH);
+        cdisponibleH.setForeground(new java.awt.Color(51, 51, 51));
+        cdisponibleH.setText("DISPONIBLE");
+        cdisponibleH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cdisponibleH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cdisponibleHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(cdisponibleH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
+        botonesAgregEstado.add(creservadoH);
+        creservadoH.setForeground(new java.awt.Color(51, 51, 51));
+        creservadoH.setText("RESERVADO");
+        creservadoH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        creservadoH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creservadoHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(creservadoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+
+        botonesAgregEstado.add(cocupadoH);
+        cocupadoH.setForeground(new java.awt.Color(51, 51, 51));
+        cocupadoH.setText("OCUPADO");
+        cocupadoH.setActionCommand("DOUBLE");
+        cocupadoH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cocupadoHActionPerformed(evt);
+            }
+        });
+        pAgregarHab.add(cocupadoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 198, -1, -1));
+
+        jPanelAgregarHab.add(pAgregarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 300, 290));
+
+        jScrollPane3.setBackground(new java.awt.Color(204, 204, 204));
+
+        jtableaAgregarHab.setBackground(new java.awt.Color(204, 204, 204));
+        jtableaAgregarHab.setForeground(new java.awt.Color(0, 0, 0));
+        jtableaAgregarHab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableaAgregarHab.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableaAgregarHab.setFocusable(false);
+        jScrollPane3.setViewportView(jtableaAgregarHab);
+
+        jPanelAgregarHab.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 380, 500));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregarHab.png"))); // NOI18N
+        jPanelAgregarHab.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 280, 150));
 
         jMenu.addTab("tab5", jPanelAgregarHab);
 
         jPanelEliminarHab.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelEliminarHab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("ELIMINAR HABITACION");
+        pEliminarH.setBackground(new java.awt.Color(233, 230, 230));
+        pEliminarH.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelEliminarHabLayout = new javax.swing.GroupLayout(jPanelEliminarHab);
-        jPanelEliminarHab.setLayout(jPanelEliminarHabLayout);
-        jPanelEliminarHabLayout.setHorizontalGroup(
-            jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-            .addGroup(jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelEliminarHabLayout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(172, Short.MAX_VALUE)))
-        );
-        jPanelEliminarHabLayout.setVerticalGroup(
-            jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-            .addGroup(jPanelEliminarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelEliminarHabLayout.createSequentialGroup()
-                    .addGap(246, 246, 246)
-                    .addComponent(jLabel5)
-                    .addContainerGap(247, Short.MAX_VALUE)))
-        );
+        lnumeroeEH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnumeroeEH.setForeground(new java.awt.Color(51, 51, 51));
+        lnumeroeEH.setText("NUMERO");
+        pEliminarH.add(lnumeroeEH, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 13, -1, -1));
+
+        inumeroEH.setBackground(new java.awt.Color(153, 153, 153));
+        inumeroEH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inumeroEH.setForeground(new java.awt.Color(255, 255, 255));
+        inumeroEH.setBorder(null);
+        inumeroEH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inumeroEHActionPerformed(evt);
+            }
+        });
+        pEliminarH.add(inumeroEH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
+
+        beliminarHab.setBackground(new java.awt.Color(102, 102, 102));
+        beliminarHab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        beliminarHab.setForeground(new java.awt.Color(255, 255, 255));
+        beliminarHab.setText("ELIMINAR");
+        beliminarHab.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        beliminarHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beliminarHabActionPerformed(evt);
+            }
+        });
+        pEliminarH.add(beliminarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 30));
+
+        jPanelEliminarHab.add(pEliminarH, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 280, 100));
+
+        jScrollPane4.setBackground(new java.awt.Color(204, 204, 204));
+
+        jtableaEliminarHab.setBackground(new java.awt.Color(204, 204, 204));
+        jtableaEliminarHab.setForeground(new java.awt.Color(0, 0, 0));
+        jtableaEliminarHab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableaEliminarHab.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableaEliminarHab.setFocusable(false);
+        jScrollPane4.setViewportView(jtableaEliminarHab);
+
+        jPanelEliminarHab.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 400, 500));
+
+        imagenAgregarHab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagenAgregarHab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitacionEliminarr.png"))); // NOI18N
+        jPanelEliminarHab.add(imagenAgregarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 170));
 
         jMenu.addTab("tab6", jPanelEliminarHab);
 
         jPanelModificarHab.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelModificarHab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("MODIFICAR HABITACION");
+        pEliminarH1.setBackground(new java.awt.Color(233, 230, 230));
+        pEliminarH1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelModificarHabLayout = new javax.swing.GroupLayout(jPanelModificarHab);
-        jPanelModificarHab.setLayout(jPanelModificarHabLayout);
-        jPanelModificarHabLayout.setHorizontalGroup(
-            jPanelModificarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelModificarHabLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
-        );
-        jPanelModificarHabLayout.setVerticalGroup(
-            jPanelModificarHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelModificarHabLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel6)
-                .addContainerGap(430, Short.MAX_VALUE))
-        );
+        lnumeroHM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnumeroHM.setForeground(new java.awt.Color(51, 51, 51));
+        lnumeroHM.setText("NUMERO");
+        pEliminarH1.add(lnumeroHM, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 13, -1, -1));
+
+        inumeroHM.setBackground(new java.awt.Color(153, 153, 153));
+        inumeroHM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inumeroHM.setForeground(new java.awt.Color(255, 255, 255));
+        inumeroHM.setBorder(null);
+        inumeroHM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inumeroHMActionPerformed(evt);
+            }
+        });
+        pEliminarH1.add(inumeroHM, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
+
+        bModificarHab.setBackground(new java.awt.Color(102, 102, 102));
+        bModificarHab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bModificarHab.setForeground(new java.awt.Color(255, 255, 255));
+        bModificarHab.setText("BUSCAR");
+        bModificarHab.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bModificarHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bModificarHabActionPerformed(evt);
+            }
+        });
+        pEliminarH1.add(bModificarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 30));
+
+        jPanelModificarHab.add(pEliminarH1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 290, 100));
+
+        pModificarHab.setBackground(new java.awt.Color(233, 230, 230));
+        pModificarHab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lnombreHM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombreHM.setForeground(new java.awt.Color(51, 51, 51));
+        lnombreHM.setText("NUMERO");
+        pModificarHab.add(lnombreHM, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 15, -1, -1));
+
+        inombreMH.setBackground(new java.awt.Color(153, 153, 153));
+        inombreMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombreMH.setForeground(new java.awt.Color(255, 255, 255));
+        inombreMH.setBorder(null);
+        inombreMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombreMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(inombreMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
+
+        bmodificarHab.setBackground(new java.awt.Color(102, 102, 102));
+        bmodificarHab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bmodificarHab.setForeground(new java.awt.Color(255, 255, 255));
+        bmodificarHab.setText("MODIFICAR");
+        bmodificarHab.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bmodificarHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmodificarHabActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(bmodificarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 120, 30));
+
+        iapellidoMH.setBackground(new java.awt.Color(153, 153, 153));
+        iapellidoMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iapellidoMH.setForeground(new java.awt.Color(255, 255, 255));
+        iapellidoMH.setBorder(null);
+        iapellidoMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iapellidoMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(iapellidoMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 150, 25));
+
+        ltipodehabitacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ltipodehabitacion.setForeground(new java.awt.Color(51, 51, 51));
+        ltipodehabitacion.setText("TIPO DE HABITACION");
+        pModificarHab.add(ltipodehabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+
+        botonesAgregarHab.add(cSuiteMH);
+        cSuiteMH.setForeground(new java.awt.Color(51, 51, 51));
+        cSuiteMH.setText("SUITE");
+        cSuiteMH.setActionCommand("DOUBLE");
+        cSuiteMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cSuiteMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(cSuiteMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+
+        botonesAgregarHab.add(cEstandarMH);
+        cEstandarMH.setForeground(new java.awt.Color(51, 51, 51));
+        cEstandarMH.setText("STANDAR");
+        cEstandarMH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cEstandarMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cEstandarMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(cEstandarMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        lapellidoMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lapellidoMH.setForeground(new java.awt.Color(51, 51, 51));
+        lapellidoMH.setText("CAPACDAD");
+        pModificarHab.add(lapellidoMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 43, -1, -1));
+
+        iprecioMH.setBackground(new java.awt.Color(153, 153, 153));
+        iprecioMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iprecioMH.setForeground(new java.awt.Color(255, 255, 255));
+        iprecioMH.setBorder(null);
+        iprecioMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iprecioMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(iprecioMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 150, 25));
+
+        lprecioMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lprecioMH.setForeground(new java.awt.Color(51, 51, 51));
+        lprecioMH.setText("PRECIO ");
+        pModificarHab.add(lprecioMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 72, -1, -1));
+
+        lestadoMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lestadoMH.setForeground(new java.awt.Color(51, 51, 51));
+        lestadoMH.setText("ESTADO");
+        pModificarHab.add(lestadoMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        iestadoMH.setBackground(new java.awt.Color(153, 153, 153));
+        iestadoMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iestadoMH.setForeground(new java.awt.Color(255, 255, 255));
+        iestadoMH.setBorder(null);
+        iestadoMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iestadoMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(iestadoMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 150, 25));
+
+        botonesAgregarHab.add(cDeluxeMH);
+        cDeluxeMH.setForeground(new java.awt.Color(51, 51, 51));
+        cDeluxeMH.setText("DELUXE");
+        cDeluxeMH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cDeluxeMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cDeluxeMHActionPerformed(evt);
+            }
+        });
+        pModificarHab.add(cDeluxeMH, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+
+        jPanelModificarHab.add(pModificarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 300, 260));
+
+        jimagenModificarHab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jimagenModificarHab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modificarEmpleado.png"))); // NOI18N
+        jPanelModificarHab.add(jimagenModificarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 290, -1));
+
+        jimagenModHab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jimagenModHab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/habitacionModi.png"))); // NOI18N
+        jPanelModificarHab.add(jimagenModHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 300, 160));
 
         jMenu.addTab("tab7", jPanelModificarHab);
 
@@ -1658,11 +2058,11 @@ public class Menu extends javax.swing.JFrame {
             datos[3] = arreglo[i].getDni();
             datos[4] = arreglo[i].getUser();
             datos[5] = arreglo[i].getContra();
-            
-            modelo.addRow(datos); 
+
+            modelo.addRow(datos);
         }
     }
-    
+
     private void iapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_iapellidoActionPerformed
@@ -1716,7 +2116,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mlModificarMouseMoved
 
     private void mlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseClicked
-        jMenu.setSelectedIndex(3); 
+        jMenu.setSelectedIndex(3);
     }//GEN-LAST:event_mlModificarMouseClicked
 
     private void mlModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseExited
@@ -1740,7 +2140,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mlAgregarHMouseMoved
 
     private void mlAgregarHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarHMouseClicked
-        jMenu.setSelectedIndex(4); 
+        jMenu.setSelectedIndex(4);
     }//GEN-LAST:event_mlAgregarHMouseClicked
 
     private void mlAgregarHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarHMouseExited
@@ -1752,7 +2152,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mlEliminarHMouseMoved
 
     private void mlEliminarHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarHMouseClicked
-        jMenu.setSelectedIndex(5); 
+        jMenu.setSelectedIndex(5);
     }//GEN-LAST:event_mlEliminarHMouseClicked
 
     private void mlEliminarHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarHMouseExited
@@ -1856,7 +2256,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mlGenInfoIngMouseExited
 
     private void mlMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlMenuMouseExited
-        mpMenu.setBackground(new Color(72,147,223));
+        mpMenu.setBackground(new Color(72, 147, 223));
     }//GEN-LAST:event_mlMenuMouseExited
 
     private void mlMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlMenuMouseClicked
@@ -1864,7 +2264,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mlMenuMouseClicked
 
     private void mlMenuMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlMenuMouseMoved
-        mpMenu.setBackground(new Color(66,126,187));
+        mpMenu.setBackground(new Color(66, 126, 187));
     }//GEN-LAST:event_mlMenuMouseMoved
 
     private void idniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idniActionPerformed
@@ -1908,7 +2308,7 @@ public class Menu extends javax.swing.JFrame {
                 if (arreglo[i].getRol().equalsIgnoreCase("Admin")) {
                     cAdministradorM.setSelected(true);
                 } else if (arreglo[i].getRol().equalsIgnoreCase("Rec")) {
-                    cRecepcionitaM.setSelected(true); 
+                    cRecepcionitaM.setSelected(true);
                 }
                 Noencontro = false;
                 break;
@@ -1917,9 +2317,9 @@ public class Menu extends javax.swing.JFrame {
             }
         }
         if (Noencontro == true) {
-            JOptionPane.showMessageDialog(null, "No se encontro el empleado"); 
+            JOptionPane.showMessageDialog(null, "No se encontro el empleado");
         }
-        
+
     }//GEN-LAST:event_bBuscarModificarEActionPerformed
 
     private void inombreMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreMActionPerformed
@@ -1950,7 +2350,7 @@ public class Menu extends javax.swing.JFrame {
         idniM.setText("");
         iuserM.setText("");
         icontraM.setText("");
-        inombreModiE.setText(""); 
+        inombreModiE.setText("");
     }//GEN-LAST:event_bmodificarEmpActionPerformed
 
     private void iapellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoMActionPerformed
@@ -1976,6 +2376,142 @@ public class Menu extends javax.swing.JFrame {
     private void icontraMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icontraMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_icontraMActionPerformed
+
+    private void inumeroHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inumeroHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inumeroHActionPerformed
+
+    private void bagregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregar1ActionPerformed
+        //AGREGAR HABITACION A LA LISTA
+        int numH = Integer.parseInt(this.inumeroH.getText());
+        int capMax = Integer.parseInt(this.icapacidadH.getText());
+        float precio = Float.parseFloat(this.iprecioH.getText());
+        String estado = "";
+        if (cdisponibleH.isSelected()) {
+            estado = "DISPONIBLE";
+        } else if (creservadoH.isSelected()) {
+            estado = "RESERVADO";
+        } else if (cocupadoH.isSelected()) {
+            estado = "OCUPADO";
+        }
+        if (cEstandarH.isSelected()) {
+            Habitacion ref = new Habitacion(numH, capMax, precio, "S", estado);
+            GH.IngresarHab(ref);
+        } else if (cdeluxeH.isSelected()) {
+            Habitacion ref = new Habitacion(numH, capMax, precio, "D", estado);
+            GH.IngresarHab(ref);
+        } else if (csuiteH.isSelected()) {
+            Habitacion ref = new Habitacion(numH, capMax, precio, "Z" , estado);
+            GH.IngresarHab(ref);
+        }
+        CargarTablaH();
+        this.inumeroH.setText("");
+        this.icapacidadH.setText("");
+        this.iprecioH.setText("");
+        botonesAgregarHab.clearSelection();
+        botonesAgregEstado.clearSelection();
+    }//GEN-LAST:event_bagregar1ActionPerformed
+
+    public void CargarTablaH() {
+        int fila = this.jtableaAgregarHab.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            modeloH.removeRow(0);
+        }
+        Habitacion[] arregloH = GH.getArregloHab();
+        String[] datos = new String[6];
+        for (int i = 0; i < GH.getContaH(); i++) {
+            datos[0] = String.valueOf(arregloH[i].getNum());
+            datos[1] = String.valueOf(arregloH[i].getCapMax());
+            datos[2] = String.valueOf(arregloH[i].getPrecNoche());
+            datos[3] = arregloH[i].getTipoHabi();
+            datos[4] = arregloH[i].getEstado();
+
+            modeloH.addRow(datos);
+        }       
+    }
+    
+    private void icapacidadHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icapacidadHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icapacidadHActionPerformed
+
+    private void csuiteHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_csuiteHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_csuiteHActionPerformed
+
+    private void cEstandarHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cEstandarHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cEstandarHActionPerformed
+
+    private void iprecioHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iprecioHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iprecioHActionPerformed
+
+    private void cdeluxeHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cdeluxeHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cdeluxeHActionPerformed
+
+    private void inumeroEHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inumeroEHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inumeroEHActionPerformed
+
+    private void beliminarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarHabActionPerformed
+        int num = Integer.parseInt(inumeroEH.getText());
+        GH.EliminarHab(num);
+        inumeroEH.setText("");
+        CargarTablaH();
+    }//GEN-LAST:event_beliminarHabActionPerformed
+
+    private void inumeroHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inumeroHMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inumeroHMActionPerformed
+
+    private void bModificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarHabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bModificarHabActionPerformed
+
+    private void inombreMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreMHActionPerformed
+
+    private void bmodificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarHabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bmodificarHabActionPerformed
+
+    private void iapellidoMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iapellidoMHActionPerformed
+
+    private void cSuiteMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cSuiteMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cSuiteMHActionPerformed
+
+    private void cEstandarMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cEstandarMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cEstandarMHActionPerformed
+
+    private void iprecioMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iprecioMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iprecioMHActionPerformed
+
+    private void iestadoMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iestadoMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iestadoMHActionPerformed
+
+    private void cDeluxeMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cDeluxeMHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cDeluxeMHActionPerformed
+
+    private void cdisponibleHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cdisponibleHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cdisponibleHActionPerformed
+
+    private void creservadoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creservadoHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creservadoHActionPerformed
+
+    private void cocupadoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocupadoHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cocupadoHActionPerformed
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -2022,28 +2558,53 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arrastar;
     private javax.swing.JButton bBuscarModificarE;
+    private javax.swing.JButton bModificarHab;
     private javax.swing.JButton bagregar;
+    private javax.swing.JButton bagregar1;
     private javax.swing.JButton beliminarEmp;
+    private javax.swing.JButton beliminarHab;
     private javax.swing.JPanel bg;
     private javax.swing.JButton bmodificarEmp;
+    private javax.swing.JButton bmodificarHab;
+    private javax.swing.ButtonGroup botonesAgregEstado;
     private javax.swing.ButtonGroup botonesAgregarEmp;
+    private javax.swing.ButtonGroup botonesAgregarHab;
     private javax.swing.ButtonGroup botonesModificarEmp;
     private javax.swing.JRadioButton cAdministrador;
     private javax.swing.JRadioButton cAdministradorM;
+    private javax.swing.JRadioButton cDeluxeMH;
+    private javax.swing.JRadioButton cEstandarH;
+    private javax.swing.JRadioButton cEstandarMH;
     private javax.swing.JRadioButton cRecepcionita;
     private javax.swing.JRadioButton cRecepcionitaM;
+    private javax.swing.JRadioButton cSuiteMH;
+    private javax.swing.JRadioButton cdeluxeH;
+    private javax.swing.JRadioButton cdisponibleH;
+    private javax.swing.JRadioButton cocupadoH;
+    private javax.swing.JRadioButton creservadoH;
+    private javax.swing.JRadioButton csuiteH;
     private javax.swing.JPanel dashboard;
     private javax.swing.JTextField iapellido;
     private javax.swing.JTextField iapellidoM;
+    private javax.swing.JTextField iapellidoMH;
+    private javax.swing.JTextField icapacidadH;
     private javax.swing.JTextField icontra;
     private javax.swing.JTextField icontraM;
     private javax.swing.JTextField idni;
     private javax.swing.JTextField idniM;
+    private javax.swing.JTextField iestadoMH;
+    private javax.swing.JLabel imagenAgregarHab;
     private javax.swing.JLabel imgpersona;
     private javax.swing.JTextField inombre;
     private javax.swing.JTextField inombreC;
     private javax.swing.JTextField inombreM;
+    private javax.swing.JTextField inombreMH;
     private javax.swing.JTextField inombreModiE;
+    private javax.swing.JTextField inumeroEH;
+    private javax.swing.JTextField inumeroH;
+    private javax.swing.JTextField inumeroHM;
+    private javax.swing.JTextField iprecioH;
+    private javax.swing.JTextField iprecioMH;
     private javax.swing.JTextField iuser;
     private javax.swing.JTextField iuserM;
     private javax.swing.JLabel jLabel1;
@@ -2053,8 +2614,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2074,28 +2633,46 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel jimagenModHab;
     private javax.swing.JLabel jimagenModiEmp;
+    private javax.swing.JLabel jimagenModificarHab;
     private javax.swing.JTable jtableEliminarEmp;
+    private javax.swing.JTable jtableaAgregarHab;
+    private javax.swing.JTable jtableaEliminarHab;
     private javax.swing.JTable jtableagregarem;
     private javax.swing.JLabel lapellido;
     private javax.swing.JLabel lapellidoM;
+    private javax.swing.JLabel lapellidoMH;
+    private javax.swing.JLabel lcapacidadH;
     private javax.swing.JLabel lcontra;
     private javax.swing.JLabel lcontraM;
     private javax.swing.JLabel ldni;
     private javax.swing.JLabel ldniM;
+    private javax.swing.JLabel lestadoH;
+    private javax.swing.JLabel lestadoMH;
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lminus;
     private javax.swing.JLabel lnombre;
     private javax.swing.JLabel lnombre1;
+    private javax.swing.JLabel lnombre2;
+    private javax.swing.JLabel lnombreHM;
     private javax.swing.JLabel lnombreM;
     private javax.swing.JLabel lnombreModiE;
+    private javax.swing.JLabel lnumeroHM;
+    private javax.swing.JLabel lnumeroeEH;
     private javax.swing.JLabel lpEmpleados;
     private javax.swing.JLabel lpHabitaciones;
     private javax.swing.JLabel lpReportes;
     private javax.swing.JLabel lpServicios;
+    private javax.swing.JLabel lprecioH;
+    private javax.swing.JLabel lprecioMH;
     private javax.swing.JLabel lpuestotrabajo;
+    private javax.swing.JLabel lpuestotrabajo1;
     private javax.swing.JLabel lpuestotrabajoM;
     private javax.swing.JLabel lrolprofile;
+    private javax.swing.JLabel ltipodehabitacion;
     private javax.swing.JLabel luser;
     private javax.swing.JLabel luserM;
     private javax.swing.JLabel luserprofile;
@@ -2125,9 +2702,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel mpModificarH;
     private javax.swing.JPanel mpModificarS;
     private javax.swing.JPanel pAgregar;
+    private javax.swing.JPanel pAgregarHab;
     private javax.swing.JPanel pEliminar;
+    private javax.swing.JPanel pEliminarH;
+    private javax.swing.JPanel pEliminarH1;
     private javax.swing.JPanel pModificarE;
     private javax.swing.JPanel pModificarEmp;
+    private javax.swing.JPanel pModificarHab;
     private javax.swing.JPanel panelPEmpleados;
     private javax.swing.JPanel panelPHabitaciones;
     private javax.swing.JPanel panelPReportes;
