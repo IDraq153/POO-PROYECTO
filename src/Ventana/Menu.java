@@ -20,6 +20,7 @@ public class Menu extends javax.swing.JFrame {
     private GestionHabitacion GH;
     private Habitacion[] arregloH;
     private Empleado[] arreglo;
+    private Empleado menuE;
     int mousepX;
     int mousepY;
 
@@ -68,6 +69,7 @@ public class Menu extends javax.swing.JFrame {
         GP.IngresarE(ref);
         GP.IngresarE(refR);
         arreglo = GP.getArregloPersona();
+        menuE = ref;
         CargarTabla();
 
         //CENTRAR
@@ -131,6 +133,7 @@ public class Menu extends javax.swing.JFrame {
         lexit = new javax.swing.JLabel();
         pminus = new javax.swing.JPanel();
         lminus = new javax.swing.JLabel();
+        menuimagen = new javax.swing.JLabel();
         jMenu = new javax.swing.JTabbedPane();
         jPanelMenu = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -960,6 +963,9 @@ public class Menu extends javax.swing.JFrame {
 
         dashboard.add(pminus, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, -1, -1));
 
+        menuimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconomenu.png"))); // NOI18N
+        dashboard.add(menuimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 1, 230, -1));
+
         bg.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 710, 70));
 
         jMenu.setBackground(new java.awt.Color(255, 255, 255));
@@ -1598,6 +1604,7 @@ public class Menu extends javax.swing.JFrame {
         inumeroEH.setBackground(new java.awt.Color(153, 153, 153));
         inumeroEH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inumeroEH.setForeground(new java.awt.Color(255, 255, 255));
+        inumeroEH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inumeroEH.setBorder(null);
         inumeroEH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1661,6 +1668,7 @@ public class Menu extends javax.swing.JFrame {
         inumeroHM.setBackground(new java.awt.Color(153, 153, 153));
         inumeroHM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inumeroHM.setForeground(new java.awt.Color(255, 255, 255));
+        inumeroHM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inumeroHM.setBorder(null);
         inumeroHM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1694,6 +1702,7 @@ public class Menu extends javax.swing.JFrame {
         inombreMH.setBackground(new java.awt.Color(153, 153, 153));
         inombreMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inombreMH.setForeground(new java.awt.Color(255, 255, 255));
+        inombreMH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inombreMH.setBorder(null);
         inombreMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1717,6 +1726,7 @@ public class Menu extends javax.swing.JFrame {
         iapellidoMH.setBackground(new java.awt.Color(153, 153, 153));
         iapellidoMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iapellidoMH.setForeground(new java.awt.Color(255, 255, 255));
+        iapellidoMH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iapellidoMH.setBorder(null);
         iapellidoMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1760,6 +1770,7 @@ public class Menu extends javax.swing.JFrame {
         iprecioMH.setBackground(new java.awt.Color(153, 153, 153));
         iprecioMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iprecioMH.setForeground(new java.awt.Color(255, 255, 255));
+        iprecioMH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iprecioMH.setBorder(null);
         iprecioMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1781,6 +1792,7 @@ public class Menu extends javax.swing.JFrame {
         iestadoMH.setBackground(new java.awt.Color(153, 153, 153));
         iestadoMH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         iestadoMH.setForeground(new java.awt.Color(255, 255, 255));
+        iestadoMH.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         iestadoMH.setBorder(null);
         iestadoMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2285,9 +2297,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void beliminarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarEmpActionPerformed
         String nom = inombreC.getText();
-        GP.EliminarE(nom);
+        if (nom.equalsIgnoreCase(menuE.getNombre())) {
+            JOptionPane.showMessageDialog(null, "No te puedes eliminar a ti mismo");
+        } else {
+            GP.EliminarE(nom);
+            CargarTabla();
+        }
         inombreC.setText("");
-        CargarTabla();
     }//GEN-LAST:event_beliminarEmpActionPerformed
 
     private void inombreModiEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreModiEActionPerformed
@@ -2329,19 +2345,24 @@ public class Menu extends javax.swing.JFrame {
     private void bmodificarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarEmpActionPerformed
         //REALIZA LOS CAMBIOS AL EMPLEADO
         String nom = inombreModiE.getText();
-        for (int i = 0; i < GP.getConta(); i++) {
-            if (arreglo[i].getNombre().equalsIgnoreCase(nom)) {
-                arreglo[i].setNombre(inombreM.getText());
-                arreglo[i].setApellido(iapellidoM.getText());
-                arreglo[i].setDni(idniM.getText());
-                arreglo[i].setUser(iuserM.getText());
-                arreglo[i].setContra(icontraM.getText());
-                if (cAdministradorM.isSelected()) {
-                    arreglo[i].setRol("ADMIN");
-                } else if (cRecepcionitaM.isSelected()) {
-                    arreglo[i].setRol("REC");
+        String persN = inombreModiE.getText();
+        if (menuE.getNombre().equalsIgnoreCase(persN)) {
+            JOptionPane.showMessageDialog(null, "No puedes modificarte a ti mismo"); 
+        } else {
+            for (int i = 0; i < GP.getConta(); i++) {
+                if (arreglo[i].getNombre().equalsIgnoreCase(nom)) {
+                    arreglo[i].setNombre(inombreM.getText());
+                    arreglo[i].setApellido(iapellidoM.getText());
+                    arreglo[i].setDni(idniM.getText());
+                    arreglo[i].setUser(iuserM.getText());
+                    arreglo[i].setContra(icontraM.getText());
+                    if (cAdministradorM.isSelected()) {
+                        arreglo[i].setRol("ADMIN");
+                    } else if (cRecepcionitaM.isSelected()) {
+                        arreglo[i].setRol("REC");
+                    }
                 }
-            }
+            }            
         }
         //VACIA LOS TEXTFIELDS
         CargarTabla();
@@ -2677,6 +2698,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel luserM;
     private javax.swing.JLabel luserprofile;
     private javax.swing.JPanel menu;
+    private javax.swing.JLabel menuimagen;
     private javax.swing.JLabel mlAgregar;
     private javax.swing.JLabel mlAgregarH;
     private javax.swing.JLabel mlAgregarS;

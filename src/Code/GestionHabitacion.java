@@ -17,14 +17,12 @@ public class GestionHabitacion {
     public void IngresarHab(Habitacion ref) {
         if (contaH < arregloHab.length) {
             if (ref.getCapMax() > 0) {
-                arregloHab[contaH] = ref;
-                contaH++;
-            } else {
-                JOptionPane.showMessageDialog(null, "No numeros negativos");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Maximo de habitaciones registradas");
-        }
+                if (ref.getCapMax() <= 5) {
+                    arregloHab[contaH] = ref;
+                    contaH++;
+                } else {JOptionPane.showMessageDialog(null, "Numero de personas demasiado alto");}
+            } else {JOptionPane.showMessageDialog(null, "No numeros negativos");}
+        } else {JOptionPane.showMessageDialog(null, "Maximo de habitaciones registradas");}
     }
 
     public void EliminarHab(int num) {
@@ -38,9 +36,7 @@ public class GestionHabitacion {
                 contaH--;
                 Noencontro = false;
                 break;
-            } else {
-                Noencontro = true;
-            }
+            } else {Noencontro = true;}
         }
         if (Noencontro == true) {
             JOptionPane.showMessageDialog(null, "Habitacion no encontrada");

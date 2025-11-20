@@ -48,6 +48,7 @@ public class LogIn extends javax.swing.JFrame {
         pminus = new javax.swing.JPanel();
         lminus = new javax.swing.JLabel();
         pimglogin = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         decologin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +79,7 @@ public class LogIn extends javax.swing.JFrame {
 
         licono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         licono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconlog.png"))); // NOI18N
-        plogin.add(licono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 530, 200));
+        plogin.add(licono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 530, 200));
 
         ltitlelog.setBackground(new java.awt.Color(102, 102, 102));
         ltitlelog.setFont(new java.awt.Font("Tw Cen MT", 1, 55)); // NOI18N
@@ -86,7 +87,7 @@ public class LogIn extends javax.swing.JFrame {
         ltitlelog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ltitlelog.setText("LOGIN");
         ltitlelog.setToolTipText("");
-        plogin.add(ltitlelog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 530, 60));
+        plogin.add(ltitlelog, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 530, 60));
 
         icontra.setBackground(new java.awt.Color(255, 255, 255));
         icontra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -96,7 +97,7 @@ public class LogIn extends javax.swing.JFrame {
                 icontraActionPerformed(evt);
             }
         });
-        plogin.add(icontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 240, 20));
+        plogin.add(icontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 240, 20));
 
         iuser.setBackground(new java.awt.Color(255, 255, 255));
         iuser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -106,15 +107,15 @@ public class LogIn extends javax.swing.JFrame {
                 iuserActionPerformed(evt);
             }
         });
-        plogin.add(iuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 240, 20));
+        plogin.add(iuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 240, 20));
 
         jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
-        plogin.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 240, -1));
+        plogin.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 240, -1));
 
         jSeparator2.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
-        plogin.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 240, -1));
+        plogin.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 240, -1));
 
         botonIngresar.setBackground(new java.awt.Color(60, 117, 232));
         botonIngresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -126,17 +127,17 @@ public class LogIn extends javax.swing.JFrame {
                 botonIngresarActionPerformed(evt);
             }
         });
-        plogin.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 120, 40));
+        plogin.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 510, 120, 40));
 
         lcontra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lcontra.setForeground(new java.awt.Color(102, 102, 102));
         lcontra.setText("CONTRASEÑA");
-        plogin.add(lcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, -1, 20));
+        plogin.add(lcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, -1, 20));
 
         luser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         luser.setForeground(new java.awt.Color(102, 102, 102));
         luser.setText("USUARIO");
-        plogin.add(luser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, 20));
+        plogin.add(luser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, 20));
 
         pexit.setBackground(new java.awt.Color(255, 255, 255));
         pexit.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -222,6 +223,10 @@ public class LogIn extends javax.swing.JFrame {
 
         pimglogin.setBackground(new java.awt.Color(153, 204, 255));
         pimglogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconomenu.png"))); // NOI18N
+        pimglogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 400, 120));
 
         decologin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/city.png"))); // NOI18N
         pimglogin.add(decologin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 630));
@@ -380,6 +385,7 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField icontra;
     private javax.swing.JTextField iuser;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lcontra;
