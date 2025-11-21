@@ -19,6 +19,7 @@ public class Menu extends javax.swing.JFrame {
     //VARIABLES
     private DefaultTableModel modelo;
     private DefaultTableModel modeloH;
+    private DefaultTableModel modeloS;
     private GestionPersona GP;
     private GestionHabitacion GH;
     private Habitacion[] arregloH;
@@ -61,6 +62,19 @@ public class Menu extends javax.swing.JFrame {
         jtableaEliminarHab.getTableHeader().setResizingAllowed(false);
         jtableaAgregarHab.getTableHeader().setReorderingAllowed(false);
         jtableaEliminarHab.getTableHeader().setReorderingAllowed(false);
+        
+        //TABLAS SERVICIOS
+        modeloS = new DefaultTableModel();
+        modeloS.addColumn("Servicio");
+        modeloS.addColumn("Precio S/.");
+        modeloS.addColumn("Cant Disponible");
+        modeloS.addColumn("Tipo");
+        this.jtableagregarSer.setModel(modeloS);
+        this.jtableEliminarSer.setModel(modeloS);
+        jtableagregarSer.getTableHeader().setResizingAllowed(false);
+        jtableEliminarSer.getTableHeader().setResizingAllowed(false);
+        jtableagregarSer.getTableHeader().setReorderingAllowed(false);
+        jtableEliminarSer.getTableHeader().setReorderingAllowed(false);
 
         //PERFIL
         String userPr = ref.getNombre() + " " + ref.getApellido();
@@ -69,11 +83,21 @@ public class Menu extends javax.swing.JFrame {
 
         //ARREGLO
         Recepcionista refR = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
+        Estandar ref1 = new Estandar(2, "EST", "DISPONIBLE", 40);
+        ref1.setNum(1);
+        Deluxe ref2 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
+        ref2.setNum(2);
+        Suite ref3 = new Suite(5, "SUI", "DISPONIBLE", 100);
+        ref3.setNum(3);
+        GH.IngresarHab(ref1);
+        GH.IngresarHab(ref2);
+        GH.IngresarHab(ref3);
         GP.IngresarE(ref);
         GP.IngresarE(refR);
         arreglo = GP.getArregloPersona();
         arregloH = GH.getArregloHab();
         menuE = ref;
+        CargarTablaH();
         CargarTabla();
 
         //CENTRAR
@@ -95,6 +119,9 @@ public class Menu extends javax.swing.JFrame {
         botonesAgregEstado = new javax.swing.ButtonGroup();
         botonesModiHab = new javax.swing.ButtonGroup();
         botonesModiEst = new javax.swing.ButtonGroup();
+        botonesAgregarServ = new javax.swing.ButtonGroup();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        botonesModiSer = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
         arrastar = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
@@ -142,7 +169,7 @@ public class Menu extends javax.swing.JFrame {
         menuimagen = new javax.swing.JLabel();
         jMenu = new javax.swing.JTabbedPane();
         jPanelMenu = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanelAgregarEmp = new javax.swing.JPanel();
         pAgregar = new javax.swing.JPanel();
         lnombre = new javax.swing.JLabel();
@@ -240,11 +267,48 @@ public class Menu extends javax.swing.JFrame {
         jimagenModificarHab = new javax.swing.JLabel();
         jimagenModHab = new javax.swing.JLabel();
         jPanelAgregarSer = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        pAgregarHab1 = new javax.swing.JPanel();
+        bagregarAS = new javax.swing.JButton();
+        ltipodeservicioAS = new javax.swing.JLabel();
+        cLavanderiaAS = new javax.swing.JRadioButton();
+        cMasajeAS = new javax.swing.JRadioButton();
+        iprecioAS = new javax.swing.JTextField();
+        lprecioAS = new javax.swing.JLabel();
+        cTourAS = new javax.swing.JRadioButton();
+        lcantDisAS = new javax.swing.JLabel();
+        iCantDisAS = new javax.swing.JTextField();
+        lnombreAS = new javax.swing.JLabel();
+        inombreAS = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtableagregarSer = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
         jPanelEliminarSer = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        pAgregarHab2 = new javax.swing.JPanel();
+        beliminarAE = new javax.swing.JButton();
+        lnombreAE = new javax.swing.JLabel();
+        inombreAE = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jtableEliminarSer = new javax.swing.JTable();
         jPanelModificarSer = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        pMSer = new javax.swing.JPanel();
+        bBuscarS = new javax.swing.JButton();
+        lnombreMS = new javax.swing.JLabel();
+        inombreMS = new javax.swing.JTextField();
+        pmsservv = new javax.swing.JPanel();
+        bModificarMS = new javax.swing.JButton();
+        ltipodeservicioms = new javax.swing.JLabel();
+        cLavanderiaMS = new javax.swing.JRadioButton();
+        cMasajeMS = new javax.swing.JRadioButton();
+        iprecioMS = new javax.swing.JTextField();
+        lprecioMS = new javax.swing.JLabel();
+        cTourMS = new javax.swing.JRadioButton();
+        lcantDisMS = new javax.swing.JLabel();
+        iCantDisMS = new javax.swing.JTextField();
+        lnombresMS = new javax.swing.JLabel();
+        inombresMS = new javax.swing.JTextField();
+        imgMS = new javax.swing.JLabel();
+        imgMSX = new javax.swing.JLabel();
         jPanelInforH = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanelInfoIng = new javax.swing.JPanel();
@@ -975,27 +1039,10 @@ public class Menu extends javax.swing.JFrame {
         jMenu.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelMenu.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("MENU PRINCIPAL");
-
-        javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
-        jPanelMenu.setLayout(jPanelMenuLayout);
-        jPanelMenuLayout.setHorizontalGroup(
-            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel2)
-                .addContainerGap(373, Short.MAX_VALUE))
-        );
-        jPanelMenuLayout.setVerticalGroup(
-            jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel2)
-                .addContainerGap(447, Short.MAX_VALUE))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IMGMENU.png"))); // NOI18N
+        jPanelMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 700, 500));
 
         jMenu.addTab("tab2", jPanelMenu);
 
@@ -1816,85 +1863,354 @@ public class Menu extends javax.swing.JFrame {
         jMenu.addTab("tab7", jPanelModificarHab);
 
         jPanelAgregarSer.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelAgregarSer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("REGISTRAR SERVICIO");
+        pAgregarHab1.setBackground(new java.awt.Color(233, 230, 230));
+        pAgregarHab1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelAgregarSerLayout = new javax.swing.GroupLayout(jPanelAgregarSer);
-        jPanelAgregarSer.setLayout(jPanelAgregarSerLayout);
-        jPanelAgregarSerLayout.setHorizontalGroup(
-            jPanelAgregarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAgregarSerLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
-        );
-        jPanelAgregarSerLayout.setVerticalGroup(
-            jPanelAgregarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAgregarSerLayout.createSequentialGroup()
-                .addGap(246, 246, 246)
-                .addComponent(jLabel7)
-                .addContainerGap(247, Short.MAX_VALUE))
-        );
+        bagregarAS.setBackground(new java.awt.Color(102, 102, 102));
+        bagregarAS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bagregarAS.setForeground(new java.awt.Color(255, 255, 255));
+        bagregarAS.setText("AGREGAR");
+        bagregarAS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bagregarAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bagregarASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(bagregarAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 120, 30));
+
+        ltipodeservicioAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ltipodeservicioAS.setForeground(new java.awt.Color(51, 51, 51));
+        ltipodeservicioAS.setText("TIPO DE SERVICIO");
+        pAgregarHab1.add(ltipodeservicioAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
+
+        botonesAgregarServ.add(cLavanderiaAS);
+        cLavanderiaAS.setForeground(new java.awt.Color(51, 51, 51));
+        cLavanderiaAS.setText("LIMPIEZA");
+        cLavanderiaAS.setActionCommand("DOUBLE");
+        cLavanderiaAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cLavanderiaASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(cLavanderiaAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 109, -1, -1));
+
+        botonesAgregarServ.add(cMasajeAS);
+        cMasajeAS.setForeground(new java.awt.Color(51, 51, 51));
+        cMasajeAS.setText("RELAX");
+        cMasajeAS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cMasajeAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cMasajeASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(cMasajeAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        iprecioAS.setBackground(new java.awt.Color(153, 153, 153));
+        iprecioAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iprecioAS.setForeground(new java.awt.Color(255, 255, 255));
+        iprecioAS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iprecioAS.setBorder(null);
+        iprecioAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iprecioASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(iprecioAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 150, 25));
+
+        lprecioAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lprecioAS.setForeground(new java.awt.Color(51, 51, 51));
+        lprecioAS.setText("PRECIO ");
+        pAgregarHab1.add(lprecioAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+
+        botonesAgregarServ.add(cTourAS);
+        cTourAS.setForeground(new java.awt.Color(51, 51, 51));
+        cTourAS.setText("TOUR");
+        cTourAS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cTourAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cTourASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(cTourAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+
+        lcantDisAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lcantDisAS.setForeground(new java.awt.Color(51, 51, 51));
+        lcantDisAS.setText("CANT DISPONIBLE");
+        pAgregarHab1.add(lcantDisAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        iCantDisAS.setBackground(new java.awt.Color(153, 153, 153));
+        iCantDisAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iCantDisAS.setForeground(new java.awt.Color(255, 255, 255));
+        iCantDisAS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iCantDisAS.setBorder(null);
+        iCantDisAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iCantDisASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(iCantDisAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 150, 25));
+
+        lnombreAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombreAS.setForeground(new java.awt.Color(51, 51, 51));
+        lnombreAS.setText("NOMBRE SERVICIO");
+        pAgregarHab1.add(lnombreAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        inombreAS.setBackground(new java.awt.Color(153, 153, 153));
+        inombreAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombreAS.setForeground(new java.awt.Color(255, 255, 255));
+        inombreAS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inombreAS.setBorder(null);
+        inombreAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombreASActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(inombreAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 25));
+
+        jPanelAgregarSer.add(pAgregarHab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 350, 270));
+
+        jScrollPane5.setBackground(new java.awt.Color(204, 204, 204));
+
+        jtableagregarSer.setBackground(new java.awt.Color(204, 204, 204));
+        jtableagregarSer.setForeground(new java.awt.Color(0, 0, 0));
+        jtableagregarSer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableagregarSer.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableagregarSer.setFocusable(false);
+        jScrollPane5.setViewportView(jtableagregarSer);
+
+        jPanelAgregarSer.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 320, 500));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregarSer.png"))); // NOI18N
+        jPanelAgregarSer.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 270, 150));
 
         jMenu.addTab("tab8", jPanelAgregarSer);
 
         jPanelEliminarSer.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelEliminarSer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("MODIFICAR SERVICIO");
+        pAgregarHab2.setBackground(new java.awt.Color(233, 230, 230));
+        pAgregarHab2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelEliminarSerLayout = new javax.swing.GroupLayout(jPanelEliminarSer);
-        jPanelEliminarSer.setLayout(jPanelEliminarSerLayout);
-        jPanelEliminarSerLayout.setHorizontalGroup(
-            jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-            .addGroup(jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelEliminarSerLayout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(172, Short.MAX_VALUE)))
-        );
-        jPanelEliminarSerLayout.setVerticalGroup(
-            jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-            .addGroup(jPanelEliminarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelEliminarSerLayout.createSequentialGroup()
-                    .addGap(246, 246, 246)
-                    .addComponent(jLabel8)
-                    .addContainerGap(247, Short.MAX_VALUE)))
-        );
+        beliminarAE.setBackground(new java.awt.Color(102, 102, 102));
+        beliminarAE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        beliminarAE.setForeground(new java.awt.Color(255, 255, 255));
+        beliminarAE.setText("ELIMINAR");
+        beliminarAE.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        beliminarAE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beliminarAEActionPerformed(evt);
+            }
+        });
+        pAgregarHab2.add(beliminarAE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 120, 30));
+
+        lnombreAE.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombreAE.setForeground(new java.awt.Color(51, 51, 51));
+        lnombreAE.setText("NOMBRE SERVICIO");
+        pAgregarHab2.add(lnombreAE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        inombreAE.setBackground(new java.awt.Color(153, 153, 153));
+        inombreAE.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombreAE.setForeground(new java.awt.Color(255, 255, 255));
+        inombreAE.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inombreAE.setBorder(null);
+        inombreAE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombreAEActionPerformed(evt);
+            }
+        });
+        pAgregarHab2.add(inombreAE, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 150, 25));
+
+        jPanelEliminarSer.add(pAgregarHab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 350, 110));
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminarSer.png"))); // NOI18N
+        jPanelEliminarSer.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 200, 140));
+
+        jScrollPane6.setBackground(new java.awt.Color(204, 204, 204));
+
+        jtableEliminarSer.setBackground(new java.awt.Color(204, 204, 204));
+        jtableEliminarSer.setForeground(new java.awt.Color(0, 0, 0));
+        jtableEliminarSer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableEliminarSer.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableEliminarSer.setFocusable(false);
+        jScrollPane6.setViewportView(jtableEliminarSer);
+
+        jPanelEliminarSer.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 320, 500));
 
         jMenu.addTab("tab9", jPanelEliminarSer);
 
         jPanelModificarSer.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelModificarSer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("ELIMINAR SERVICIO");
+        pMSer.setBackground(new java.awt.Color(233, 230, 230));
+        pMSer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanelModificarSerLayout = new javax.swing.GroupLayout(jPanelModificarSer);
-        jPanelModificarSer.setLayout(jPanelModificarSerLayout);
-        jPanelModificarSerLayout.setHorizontalGroup(
-            jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-            .addGroup(jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelModificarSerLayout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(172, Short.MAX_VALUE)))
-        );
-        jPanelModificarSerLayout.setVerticalGroup(
-            jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-            .addGroup(jPanelModificarSerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelModificarSerLayout.createSequentialGroup()
-                    .addGap(246, 246, 246)
-                    .addComponent(jLabel9)
-                    .addContainerGap(247, Short.MAX_VALUE)))
-        );
+        bBuscarS.setBackground(new java.awt.Color(102, 102, 102));
+        bBuscarS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bBuscarS.setForeground(new java.awt.Color(255, 255, 255));
+        bBuscarS.setText("BUSCAR");
+        bBuscarS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bBuscarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarSActionPerformed(evt);
+            }
+        });
+        pMSer.add(bBuscarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 120, 30));
+
+        lnombreMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombreMS.setForeground(new java.awt.Color(51, 51, 51));
+        lnombreMS.setText("NOMBRE SERVICIO");
+        pMSer.add(lnombreMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        inombreMS.setBackground(new java.awt.Color(153, 153, 153));
+        inombreMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombreMS.setForeground(new java.awt.Color(255, 255, 255));
+        inombreMS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inombreMS.setBorder(null);
+        inombreMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombreMSActionPerformed(evt);
+            }
+        });
+        pMSer.add(inombreMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 150, 25));
+
+        jPanelModificarSer.add(pMSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 300, 110));
+
+        pmsservv.setBackground(new java.awt.Color(233, 230, 230));
+        pmsservv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bModificarMS.setBackground(new java.awt.Color(102, 102, 102));
+        bModificarMS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bModificarMS.setForeground(new java.awt.Color(255, 255, 255));
+        bModificarMS.setText("MODIFICAR");
+        bModificarMS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bModificarMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bModificarMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(bModificarMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 120, 30));
+
+        ltipodeservicioms.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ltipodeservicioms.setForeground(new java.awt.Color(51, 51, 51));
+        ltipodeservicioms.setText("TIPO DE SERVICIO");
+        pmsservv.add(ltipodeservicioms, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
+
+        botonesModiSer.add(cLavanderiaMS);
+        cLavanderiaMS.setForeground(new java.awt.Color(51, 51, 51));
+        cLavanderiaMS.setText("LIMPIEZA");
+        cLavanderiaMS.setActionCommand("DOUBLE");
+        cLavanderiaMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cLavanderiaMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(cLavanderiaMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 109, -1, -1));
+
+        botonesModiSer.add(cMasajeMS);
+        cMasajeMS.setForeground(new java.awt.Color(51, 51, 51));
+        cMasajeMS.setText("RELAX");
+        cMasajeMS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cMasajeMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cMasajeMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(cMasajeMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        iprecioMS.setBackground(new java.awt.Color(153, 153, 153));
+        iprecioMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iprecioMS.setForeground(new java.awt.Color(255, 255, 255));
+        iprecioMS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iprecioMS.setBorder(null);
+        iprecioMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iprecioMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(iprecioMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 150, 25));
+
+        lprecioMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lprecioMS.setForeground(new java.awt.Color(51, 51, 51));
+        lprecioMS.setText("PRECIO ");
+        pmsservv.add(lprecioMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+
+        botonesModiSer.add(cTourMS);
+        cTourMS.setForeground(new java.awt.Color(51, 51, 51));
+        cTourMS.setText("TOUR");
+        cTourMS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cTourMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cTourMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(cTourMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+
+        lcantDisMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lcantDisMS.setForeground(new java.awt.Color(51, 51, 51));
+        lcantDisMS.setText("CANT DISPONIBLE");
+        pmsservv.add(lcantDisMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        iCantDisMS.setBackground(new java.awt.Color(153, 153, 153));
+        iCantDisMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iCantDisMS.setForeground(new java.awt.Color(255, 255, 255));
+        iCantDisMS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iCantDisMS.setBorder(null);
+        iCantDisMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iCantDisMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(iCantDisMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 150, 25));
+
+        lnombresMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombresMS.setForeground(new java.awt.Color(51, 51, 51));
+        lnombresMS.setText("NOMBRE SERVICIO");
+        pmsservv.add(lnombresMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        inombresMS.setBackground(new java.awt.Color(153, 153, 153));
+        inombresMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombresMS.setForeground(new java.awt.Color(255, 255, 255));
+        inombresMS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inombresMS.setBorder(null);
+        inombresMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombresMSActionPerformed(evt);
+            }
+        });
+        pmsservv.add(inombresMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 25));
+
+        jPanelModificarSer.add(pmsservv, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 350, 270));
+
+        imgMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modificarserv.png"))); // NOI18N
+        jPanelModificarSer.add(imgMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 200, 160));
+
+        imgMSX.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgMSX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modifserac.png"))); // NOI18N
+        jPanelModificarSer.add(imgMSX, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 350, 190));
 
         jMenu.addTab("tab10", jPanelModificarSer);
 
@@ -2441,7 +2757,7 @@ public class Menu extends javax.swing.JFrame {
             datos[4] = String.valueOf("S/. "+arregloH[i].getPrecNoche());
 
             modeloH.addRow(datos);
-        }       
+        }     
     }
     
     private void icapacidadHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icapacidadHActionPerformed
@@ -2583,6 +2899,78 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cocupadoMHActionPerformed
 
+    private void bagregarASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarASActionPerformed
+        //XD
+    }//GEN-LAST:event_bagregarASActionPerformed
+
+    private void cLavanderiaASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cLavanderiaASActionPerformed
+
+    private void cMasajeASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMasajeASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cMasajeASActionPerformed
+
+    private void iprecioASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iprecioASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iprecioASActionPerformed
+
+    private void cTourASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTourASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cTourASActionPerformed
+
+    private void iCantDisASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iCantDisASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iCantDisASActionPerformed
+
+    private void inombreASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreASActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreASActionPerformed
+
+    private void beliminarAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarAEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_beliminarAEActionPerformed
+
+    private void inombreAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreAEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreAEActionPerformed
+
+    private void bBuscarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bBuscarSActionPerformed
+
+    private void inombreMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreMSActionPerformed
+
+    private void bModificarMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bModificarMSActionPerformed
+
+    private void cLavanderiaMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cLavanderiaMSActionPerformed
+
+    private void cMasajeMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMasajeMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cMasajeMSActionPerformed
+
+    private void iprecioMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iprecioMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iprecioMSActionPerformed
+
+    private void cTourMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTourMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cTourMSActionPerformed
+
+    private void iCantDisMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iCantDisMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iCantDisMSActionPerformed
+
+    private void inombresMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombresMSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombresMSActionPerformed
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -2628,9 +3016,13 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arrastar;
     private javax.swing.JButton bBuscarModificarE;
+    private javax.swing.JButton bBuscarS;
     private javax.swing.JButton bModificarHab;
+    private javax.swing.JButton bModificarMS;
     private javax.swing.JButton bagregar;
     private javax.swing.JButton bagregar1;
+    private javax.swing.JButton bagregarAS;
+    private javax.swing.JButton beliminarAE;
     private javax.swing.JButton beliminarEmp;
     private javax.swing.JButton beliminarHab;
     private javax.swing.JPanel bg;
@@ -2639,17 +3031,25 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.ButtonGroup botonesAgregEstado;
     private javax.swing.ButtonGroup botonesAgregarEmp;
     private javax.swing.ButtonGroup botonesAgregarHab;
+    private javax.swing.ButtonGroup botonesAgregarServ;
     private javax.swing.ButtonGroup botonesModiEst;
     private javax.swing.ButtonGroup botonesModiHab;
+    private javax.swing.ButtonGroup botonesModiSer;
     private javax.swing.ButtonGroup botonesModificarEmp;
     private javax.swing.JRadioButton cAdministrador;
     private javax.swing.JRadioButton cAdministradorM;
     private javax.swing.JRadioButton cDeluxeMH;
     private javax.swing.JRadioButton cEstandarH;
     private javax.swing.JRadioButton cEstandarMH;
+    private javax.swing.JRadioButton cLavanderiaAS;
+    private javax.swing.JRadioButton cLavanderiaMS;
+    private javax.swing.JRadioButton cMasajeAS;
+    private javax.swing.JRadioButton cMasajeMS;
     private javax.swing.JRadioButton cRecepcionita;
     private javax.swing.JRadioButton cRecepcionitaM;
     private javax.swing.JRadioButton cSuiteMH;
+    private javax.swing.JRadioButton cTourAS;
+    private javax.swing.JRadioButton cTourMS;
     private javax.swing.JRadioButton cdeluxeH;
     private javax.swing.JRadioButton cdisponibleH;
     private javax.swing.JRadioButton cdisponibleMH;
@@ -2659,6 +3059,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JRadioButton creservadoMH;
     private javax.swing.JRadioButton csuiteH;
     private javax.swing.JPanel dashboard;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JTextField iCantDisAS;
+    private javax.swing.JTextField iCantDisMS;
     private javax.swing.JTextField iapellido;
     private javax.swing.JTextField iapellidoM;
     private javax.swing.JTextField icapacidadH;
@@ -2670,13 +3073,21 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField idniM;
     private javax.swing.JTextField idniModiE;
     private javax.swing.JLabel imagenAgregarHab;
+    private javax.swing.JLabel imgMS;
+    private javax.swing.JLabel imgMSX;
     private javax.swing.JLabel imgpersona;
     private javax.swing.JTextField inombre;
+    private javax.swing.JTextField inombreAE;
+    private javax.swing.JTextField inombreAS;
     private javax.swing.JTextField inombreM;
+    private javax.swing.JTextField inombreMS;
+    private javax.swing.JTextField inombresMS;
     private javax.swing.JTextField inumeroEH;
     private javax.swing.JTextField inumeroHM;
+    private javax.swing.JTextField iprecioAS;
     private javax.swing.JTextField iprecioH;
     private javax.swing.JTextField iprecioMH;
+    private javax.swing.JTextField iprecioMS;
     private javax.swing.JTextField iuser;
     private javax.swing.JTextField iuserM;
     private javax.swing.JLabel jLabel1;
@@ -2684,11 +3095,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTabbedPane jMenu;
     private javax.swing.JPanel jPanelAgregarEmp;
     private javax.swing.JPanel jPanelAgregarHab;
@@ -2707,16 +3117,22 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel jimagenModHab;
     private javax.swing.JLabel jimagenModiEmp;
     private javax.swing.JLabel jimagenModificarHab;
     private javax.swing.JTable jtableEliminarEmp;
+    private javax.swing.JTable jtableEliminarSer;
     private javax.swing.JTable jtableaAgregarHab;
     private javax.swing.JTable jtableaEliminarHab;
+    private javax.swing.JTable jtableagregarSer;
     private javax.swing.JTable jtableagregarem;
     private javax.swing.JLabel lapellido;
     private javax.swing.JLabel lapellidoM;
     private javax.swing.JLabel lapellidoMH;
+    private javax.swing.JLabel lcantDisAS;
+    private javax.swing.JLabel lcantDisMS;
     private javax.swing.JLabel lcapacidadH;
     private javax.swing.JLabel lcontra;
     private javax.swing.JLabel lcontraM;
@@ -2729,20 +3145,28 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lminus;
     private javax.swing.JLabel lnombre;
+    private javax.swing.JLabel lnombreAE;
+    private javax.swing.JLabel lnombreAS;
     private javax.swing.JLabel lnombreM;
+    private javax.swing.JLabel lnombreMS;
+    private javax.swing.JLabel lnombresMS;
     private javax.swing.JLabel lnumeroHM;
     private javax.swing.JLabel lnumeroeEH;
     private javax.swing.JLabel lpEmpleados;
     private javax.swing.JLabel lpHabitaciones;
     private javax.swing.JLabel lpReportes;
     private javax.swing.JLabel lpServicios;
+    private javax.swing.JLabel lprecioAS;
     private javax.swing.JLabel lprecioH;
     private javax.swing.JLabel lprecioMH;
+    private javax.swing.JLabel lprecioMS;
     private javax.swing.JLabel lpuestotrabajo;
     private javax.swing.JLabel lpuestotrabajo1;
     private javax.swing.JLabel lpuestotrabajoM;
     private javax.swing.JLabel lrolprofile;
     private javax.swing.JLabel ltipodehabitacion;
+    private javax.swing.JLabel ltipodeservicioAS;
+    private javax.swing.JLabel ltipodeservicioms;
     private javax.swing.JLabel luser;
     private javax.swing.JLabel luserM;
     private javax.swing.JLabel luserprofile;
@@ -2774,9 +3198,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel mpModificarS;
     private javax.swing.JPanel pAgregar;
     private javax.swing.JPanel pAgregarHab;
+    private javax.swing.JPanel pAgregarHab1;
+    private javax.swing.JPanel pAgregarHab2;
     private javax.swing.JPanel pEliminar;
     private javax.swing.JPanel pEliminarH;
     private javax.swing.JPanel pEliminarH1;
+    private javax.swing.JPanel pMSer;
     private javax.swing.JPanel pModificarE;
     private javax.swing.JPanel pModificarEmp;
     private javax.swing.JPanel pModificarHab;
@@ -2787,5 +3214,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel perfilmenu;
     private javax.swing.JPanel pexit;
     private javax.swing.JPanel pminus;
+    private javax.swing.JPanel pmsservv;
     // End of variables declaration//GEN-END:variables
 }
