@@ -24,6 +24,17 @@ public class GestionHabitacion {
             } else {JOptionPane.showMessageDialog(null, "No numeros negativos");}
         } else {JOptionPane.showMessageDialog(null, "Maximo de habitaciones registradas");}
     }
+    
+    public boolean BuscarHab(int num) {
+        boolean encontro = false;
+        for (int i = 0; i < contaH; i++) {
+            if (num == arregloHab[i].getNum()) {
+                encontro = true;
+                break;
+            }
+        }
+        return encontro;
+    }
 
     public void EliminarHab(int num) {
         boolean Noencontro = false;
