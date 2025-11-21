@@ -23,10 +23,10 @@ public class GestionPersona {
         }
     }
 
-    public void EliminarE(String nom) {
+    public void EliminarE(String dni) {
         boolean Noencontro = false;
         for (int i = 0; i < conta; i++) {
-            if (nom.equalsIgnoreCase(arregloPersona[i].getNombre())) {
+            if (dni.equalsIgnoreCase(arregloPersona[i].getDni())) {
                 for (int j = i; j < conta - 1; j++) {
                     arregloPersona[j] = arregloPersona[j + 1];
                 }
