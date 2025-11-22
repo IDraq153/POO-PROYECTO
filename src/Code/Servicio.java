@@ -2,7 +2,7 @@ package Code;
 
 public abstract class Servicio {
 
-    protected String nomServicio;
+    protected String nomServicio, tipo;
     protected float precServicio;
     protected int cantSerDisponibles;
 
@@ -11,11 +11,12 @@ public abstract class Servicio {
         this.nomServicio = nomServicio;
         this.precServicio = precServicio;
         this.cantSerDisponibles = cantSerDisponibles;
+        this.tipo = "";
     }
-    
+
     //METODOS
     public abstract float CalcularPrecioFinal();
-    
+
     //GETTERS AND SETTERS
     public String getNomServicio() {
         return nomServicio;
@@ -31,7 +32,7 @@ public abstract class Servicio {
 
     public void setPrecServicio(float precServicio) {
         this.precServicio = precServicio;
-    }   
+    }
 
     public int getCantSerDisponibles() {
         return cantSerDisponibles;
@@ -39,5 +40,13 @@ public abstract class Servicio {
 
     public void setCantSerDisponibles(int cantSerDisponibles) {
         this.cantSerDisponibles = cantSerDisponibles;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

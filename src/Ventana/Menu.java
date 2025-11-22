@@ -6,9 +6,14 @@ import Code.Empleado;
 import Code.Estandar;
 import Code.GestionHabitacion;
 import Code.GestionPersona;
+import Code.GestionServicio;
 import Code.Habitacion;
+import Code.Limpieza;
 import Code.Recepcionista;
+import Code.Relax;
+import Code.Servicio;
 import Code.Suite;
+import Code.Tour;
 import java.awt.Color;
 import static java.lang.System.exit;
 import javax.swing.JOptionPane;
@@ -22,8 +27,10 @@ public class Menu extends javax.swing.JFrame {
     private DefaultTableModel modeloS;
     private GestionPersona GP;
     private GestionHabitacion GH;
+    private GestionServicio GS;
     private Habitacion[] arregloH;
     private Empleado[] arreglo;
+    private Servicio[] arregloS;
     private Empleado menuE;
     int mousepX;
     int mousepY;
@@ -33,6 +40,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         GH = new GestionHabitacion();
         GP = new GestionPersona();
+        GS = new GestionServicio();
 
         //TABLAS EMPLEADOS
         modelo = new DefaultTableModel();
@@ -66,9 +74,9 @@ public class Menu extends javax.swing.JFrame {
         //TABLAS SERVICIOS
         modeloS = new DefaultTableModel();
         modeloS.addColumn("Servicio");
-        modeloS.addColumn("Precio S/.");
-        modeloS.addColumn("Cant Disponible");
         modeloS.addColumn("Tipo");
+        modeloS.addColumn("Precio S/.");
+        modeloS.addColumn("Disponible");
         this.jtableagregarSer.setModel(modeloS);
         this.jtableEliminarSer.setModel(modeloS);
         jtableagregarSer.getTableHeader().setResizingAllowed(false);
@@ -96,9 +104,11 @@ public class Menu extends javax.swing.JFrame {
         GP.IngresarE(refR);
         arreglo = GP.getArregloPersona();
         arregloH = GH.getArregloHab();
+        arregloS = GS.getArregloS();
         menuE = ref;
         CargarTablaH();
         CargarTabla();
+        CargarTablaS();
 
         //CENTRAR
         setLocationRelativeTo(null);
@@ -2095,9 +2105,9 @@ public class Menu extends javax.swing.JFrame {
                 inombreMSActionPerformed(evt);
             }
         });
-        pMSer.add(inombreMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 150, 25));
+        pMSer.add(inombreMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 150, 25));
 
-        jPanelModificarSer.add(pMSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 300, 110));
+        jPanelModificarSer.add(pMSer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 310, 110));
 
         pmsservv.setBackground(new java.awt.Color(233, 230, 230));
         pmsservv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2823,6 +2833,9 @@ public class Menu extends javax.swing.JFrame {
                 noencontro = true;
             }
         }
+        if (noencontro == true) {
+            JOptionPane.showMessageDialog(null, "Habitacion no encontrada");
+        }
     }//GEN-LAST:event_bModificarHabActionPerformed
 
     private void bmodificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarHabActionPerformed
@@ -2900,9 +2913,48 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cocupadoMHActionPerformed
 
     private void bagregarASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarASActionPerformed
-        //XD
+        String nom = inombreAS.getText();
+        float prec = Float.parseFloat(iprecioAS.getText());
+        int cant = Integer.parseInt(iCantDisAS.getText());
+        if (cMasajeAS.isSelected()) {
+            Relax ref = new Relax(nom, prec, cant);
+            ref.setTipo("RELAX");
+            GS.IngresarServicio(ref);
+        } else if (cTourAS.isSelected()) {
+            Tour ref = new Tour(nom, prec, cant);
+            ref.setTipo("TOUR");
+            GS.IngresarServicio(ref);
+        } else if (cLavanderiaAS.isSelected()) {
+            Limpieza ref = new Limpieza(nom, prec, cant);
+            ref.setTipo("LIMPIEZA");
+            GS.IngresarServicio(ref);
+        }
+        
+        CargarTablaS(); 
+        this.inombreAS.setText("");
+        this.iprecioAS.setText("");
+        this.iCantDisAS.setText("");
+        botonesAgregarServ.clearSelection();
     }//GEN-LAST:event_bagregarASActionPerformed
-
+    
+    public void CargarTablaS(){
+        int fila = this.jtableagregarSer.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            modeloS.removeRow(0);
+        }
+        
+        Servicio[] arregloS = GS.getArregloS();
+        String[] datos = new String[4];
+        for (int i = 0; i < GS.getContaS(); i++) {
+            datos[0] = arregloS[i].getNomServicio();
+            datos[1] = arregloS[i].getTipo();
+            datos[2] = String.valueOf("S/. "+arregloS[i].getPrecServicio());
+            datos[3] = String.valueOf(arregloS[i].getCantSerDisponibles()+" reserv");
+            
+            modeloS.addRow(datos);
+        }
+    }
+    
     private void cLavanderiaASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaASActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cLavanderiaASActionPerformed
@@ -2928,7 +2980,10 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_inombreASActionPerformed
 
     private void beliminarAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarAEActionPerformed
-        // TODO add your handling code here:
+        String nom = inombreAE.getText();
+        GS.EliminarServicio(nom);
+        inombreAE.setText("");
+        CargarTablaS();
     }//GEN-LAST:event_beliminarAEActionPerformed
 
     private void inombreAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreAEActionPerformed
@@ -2936,7 +2991,30 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_inombreAEActionPerformed
 
     private void bBuscarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarSActionPerformed
-        // TODO add your handling code here:
+        boolean noencontro = false;
+        String nom = inombreMS.getText();
+        for (int i = 0; i < GS.getContaS(); i++) {
+            if (arregloS[i].getNomServicio().equalsIgnoreCase(nom)) {
+                inombresMS.setText(arregloS[i].getNomServicio());
+                iprecioMS.setText(String.valueOf(arregloS[i].getPrecServicio()));
+                iCantDisMS.setText(String.valueOf(arregloS[i].getCantSerDisponibles()));
+                if (arregloS[i].getTipo().equalsIgnoreCase("RELAX")) {
+                    cMasajeMS.setSelected(true);
+                } else  if (arregloS[i].getTipo().equalsIgnoreCase("TOUR")) {
+                    cTourMS.setSelected(true);
+                } else if (arregloS[i].getTipo().equalsIgnoreCase("LIMPIEZA")) {
+                    cLavanderiaMS.setSelected(true);
+                }
+                noencontro = false;
+                break;
+            } 
+            else {
+                noencontro = true;
+            }
+        }
+        if (noencontro == true) {
+            JOptionPane.showMessageDialog(null, "Servicio no encontrado");
+        }
     }//GEN-LAST:event_bBuscarSActionPerformed
 
     private void inombreMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreMSActionPerformed
@@ -2944,7 +3022,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_inombreMSActionPerformed
 
     private void bModificarMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarMSActionPerformed
-        // TODO add your handling code here:
+        String nom = inombreMS.getText();
+        for (int i = 0; i < GS.getContaS(); i++) {
+            if (arregloS[i].getNomServicio().equalsIgnoreCase(nom)) {
+                arregloS[i].setNomServicio(inombresMS.getText());
+                arregloS[i].setPrecServicio(Float.parseFloat(iprecioMS.getText()));
+                arregloS[i].setCantSerDisponibles(Integer.parseInt(iCantDisMS.getText())); 
+                if (cMasajeMS.isSelected()) {
+                    arregloS[i].setTipo("RELAX");
+                } else if (cTourMS.isSelected()) {
+                    arregloS[i].setTipo("TOUR");
+                } else if (cLavanderiaMS.isSelected()) {
+                    arregloS[i].setTipo("LIMPIEZA");
+                }
+            }
+        }
+        CargarTablaS();
+        inombreMS.setText("");
+        inombresMS.setText("");
+        iCantDisMS.setText("");
+        iprecioMS.setText("");
+        botonesModiSer.clearSelection();
     }//GEN-LAST:event_bModificarMSActionPerformed
 
     private void cLavanderiaMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaMSActionPerformed
