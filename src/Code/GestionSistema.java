@@ -5,11 +5,13 @@ public class GestionSistema {
     private GestionHabitacion GH;
     private GestionServicio GS;
     private GestionPersona GP;
+    private GestionHuesped GC;
 
     public GestionSistema() {
         GH = new GestionHabitacion();
         GS = new GestionServicio();
         GP = new GestionPersona();
+        GC = new GestionHuesped();
         
         CargarDatosIniciales();
     }
@@ -55,5 +57,13 @@ public class GestionSistema {
 
     public void setGP(GestionPersona GP) {
         this.GP = GP;
+    }
+
+    public GestionHuesped getGC() {
+        return GC;
+    }
+
+    public void setGC(GestionHuesped GC) {
+        this.GC = GC;
     }
 }

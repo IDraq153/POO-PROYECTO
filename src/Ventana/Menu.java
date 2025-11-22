@@ -2493,7 +2493,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_lpHabitacionesMouseExited
 
     private void mlAgregarHMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarHMouseMoved
-        mpAgregarH.setBackground(new Color(121,180,239));
+        mpAgregarH.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlAgregarHMouseMoved
 
     private void mlAgregarHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarHMouseClicked
