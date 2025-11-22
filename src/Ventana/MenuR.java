@@ -641,145 +641,145 @@ public class MenuR extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void arrastarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrastarMouseDragged
-        int cordsX = evt.getXOnScreen();
-        int cordsY = evt.getYOnScreen();
+    private void cAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdmin1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cAdmin1ActionPerformed
 
-        this.setLocation(cordsX - mousepX, cordsY - mousepY);
-    }//GEN-LAST:event_arrastarMouseDragged
+    private void cAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cAdminActionPerformed
+
+    private void inombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombre1ActionPerformed
+
+    private void bagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarActionPerformed
+
+    }//GEN-LAST:event_bagregarActionPerformed
+
+    private void inombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreActionPerformed
+
+    private void lminusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseExited
+        pminus.setBackground(new Color(43, 137, 230));
+    }//GEN-LAST:event_lminusMouseExited
+
+    private void lminusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseClicked
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_lminusMouseClicked
+
+    private void lminusMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseMoved
+        pminus.setBackground(new Color(227, 81, 54));
+    }//GEN-LAST:event_lminusMouseMoved
+
+    private void pexitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseExited
+        pexit.setBackground(new Color(43, 137, 230));
+    }//GEN-LAST:event_pexitMouseExited
+
+    private void pexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseClicked
+        exit(0);
+    }//GEN-LAST:event_pexitMouseClicked
+
+    private void pexitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseMoved
+        pexit.setBackground(new Color(227, 81, 54));
+    }//GEN-LAST:event_pexitMouseMoved
+
+    private void lexitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseExited
+        pexit.setBackground(new Color(43, 137, 230));
+    }//GEN-LAST:event_lexitMouseExited
+
+    private void lexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseClicked
+        exit(0);
+    }//GEN-LAST:event_lexitMouseClicked
+
+    private void lexitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseMoved
+        pexit.setBackground(new Color(227, 81, 54));
+    }//GEN-LAST:event_lexitMouseMoved
+
+    private void lpHabitacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpHabitacionesMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lpHabitacionesMouseExited
+
+    private void lpHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpHabitacionesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lpHabitacionesMouseClicked
+
+    private void lpHabitacionesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpHabitacionesMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lpHabitacionesMouseMoved
+
+    private void lejem4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejem4MouseExited
+        jPanel4.setBackground(new Color(121, 180, 239));
+    }//GEN-LAST:event_lejem4MouseExited
+
+    private void lejem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejem4MouseClicked
+        jMenu.setSelectedIndex(4);
+    }//GEN-LAST:event_lejem4MouseClicked
+
+    private void lejem4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejem4MouseMoved
+        jPanel4.setBackground(new Color(86, 136, 187));
+    }//GEN-LAST:event_lejem4MouseMoved
+
+    private void mlModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseExited
+        mpModificar.setBackground(new Color(121, 180, 239));
+    }//GEN-LAST:event_mlModificarMouseExited
+
+    private void mlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseClicked
+        jMenu.setSelectedIndex(3);
+    }//GEN-LAST:event_mlModificarMouseClicked
+
+    private void mlModificarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseMoved
+        mpModificar.setBackground(new Color(86, 136, 187));
+    }//GEN-LAST:event_mlModificarMouseMoved
+
+    private void mlEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseExited
+        mpEliminar.setBackground(new Color(121, 180, 239));
+    }//GEN-LAST:event_mlEliminarMouseExited
+
+    private void mlEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseClicked
+        jMenu.setSelectedIndex(2);
+    }//GEN-LAST:event_mlEliminarMouseClicked
+
+    private void mlEliminarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseMoved
+        mpEliminar.setBackground(new Color(86, 136, 187));
+    }//GEN-LAST:event_mlEliminarMouseMoved
+
+    private void mlAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarMouseExited
+        mpAgregar.setBackground(new Color(121, 180, 239));
+    }//GEN-LAST:event_mlAgregarMouseExited
+
+    private void mlAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarMouseClicked
+        jMenu.setSelectedIndex(1);
+    }//GEN-LAST:event_mlAgregarMouseClicked
+
+    private void mlAgregarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarMouseMoved
+        mpAgregar.setBackground(new Color(86, 136, 187));
+    }//GEN-LAST:event_mlAgregarMouseMoved
+
+    private void lpEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpEmpleadosMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lpEmpleadosMouseExited
+
+    private void lpEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpEmpleadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lpEmpleadosMouseClicked
+
+    private void lpEmpleadosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpEmpleadosMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lpEmpleadosMouseMoved
 
     private void arrastarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrastarMousePressed
         mousepX = evt.getX();
         mousepY = evt.getY();
     }//GEN-LAST:event_arrastarMousePressed
 
-    private void lpEmpleadosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpEmpleadosMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lpEmpleadosMouseMoved
+    private void arrastarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrastarMouseDragged
+        int cordsX = evt.getXOnScreen();
+        int cordsY = evt.getYOnScreen();
 
-    private void lpEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpEmpleadosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lpEmpleadosMouseClicked
-
-    private void lpEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpEmpleadosMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lpEmpleadosMouseExited
-
-    private void mlAgregarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarMouseMoved
-        mpAgregar.setBackground(new Color(86, 136, 187));
-    }//GEN-LAST:event_mlAgregarMouseMoved
-
-    private void mlAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarMouseClicked
-        jMenu.setSelectedIndex(1);
-    }//GEN-LAST:event_mlAgregarMouseClicked
-
-    private void mlAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarMouseExited
-        mpAgregar.setBackground(new Color(121, 180, 239));
-    }//GEN-LAST:event_mlAgregarMouseExited
-
-    private void mlEliminarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseMoved
-        mpEliminar.setBackground(new Color(86, 136, 187));
-    }//GEN-LAST:event_mlEliminarMouseMoved
-
-    private void mlEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseClicked
-        jMenu.setSelectedIndex(2);
-    }//GEN-LAST:event_mlEliminarMouseClicked
-
-    private void mlEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlEliminarMouseExited
-        mpEliminar.setBackground(new Color(121, 180, 239));
-    }//GEN-LAST:event_mlEliminarMouseExited
-
-    private void mlModificarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseMoved
-        mpModificar.setBackground(new Color(86, 136, 187));
-    }//GEN-LAST:event_mlModificarMouseMoved
-
-    private void mlModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseClicked
-        jMenu.setSelectedIndex(3);
-    }//GEN-LAST:event_mlModificarMouseClicked
-
-    private void mlModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlModificarMouseExited
-        mpModificar.setBackground(new Color(121, 180, 239));
-    }//GEN-LAST:event_mlModificarMouseExited
-
-    private void lejem4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejem4MouseMoved
-        jPanel4.setBackground(new Color(86, 136, 187));
-    }//GEN-LAST:event_lejem4MouseMoved
-
-    private void lejem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejem4MouseClicked
-        jMenu.setSelectedIndex(4);
-    }//GEN-LAST:event_lejem4MouseClicked
-
-    private void lejem4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lejem4MouseExited
-        jPanel4.setBackground(new Color(121, 180, 239));
-    }//GEN-LAST:event_lejem4MouseExited
-
-    private void lpHabitacionesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpHabitacionesMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lpHabitacionesMouseMoved
-
-    private void lpHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpHabitacionesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lpHabitacionesMouseClicked
-
-    private void lpHabitacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lpHabitacionesMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lpHabitacionesMouseExited
-
-    private void lexitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseMoved
-        pexit.setBackground(new Color(227, 81, 54));
-    }//GEN-LAST:event_lexitMouseMoved
-
-    private void lexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseClicked
-        exit(0);
-    }//GEN-LAST:event_lexitMouseClicked
-
-    private void lexitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lexitMouseExited
-        pexit.setBackground(new Color(43, 137, 230));
-    }//GEN-LAST:event_lexitMouseExited
-
-    private void pexitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseMoved
-        pexit.setBackground(new Color(227, 81, 54));
-    }//GEN-LAST:event_pexitMouseMoved
-
-    private void pexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseClicked
-        exit(0);
-    }//GEN-LAST:event_pexitMouseClicked
-
-    private void pexitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pexitMouseExited
-        pexit.setBackground(new Color(43, 137, 230));
-    }//GEN-LAST:event_pexitMouseExited
-
-    private void lminusMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseMoved
-        pminus.setBackground(new Color(227, 81, 54));
-    }//GEN-LAST:event_lminusMouseMoved
-
-    private void lminusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseClicked
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_lminusMouseClicked
-
-    private void lminusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseExited
-        pminus.setBackground(new Color(43, 137, 230));
-    }//GEN-LAST:event_lminusMouseExited
-
-    private void inombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inombreActionPerformed
-
-    private void bagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarActionPerformed
-
-    }//GEN-LAST:event_bagregarActionPerformed
-
-    private void inombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombre1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inombre1ActionPerformed
-
-    private void cAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cAdminActionPerformed
-
-    private void cAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdmin1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cAdmin1ActionPerformed
+        this.setLocation(cordsX - mousepX, cordsY - mousepY);
+    }//GEN-LAST:event_arrastarMouseDragged
 
     /**
      * @param args the command line arguments

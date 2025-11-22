@@ -133,6 +133,8 @@ public class Menu extends javax.swing.JFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         botonesModiSer = new javax.swing.ButtonGroup();
         bg = new javax.swing.JPanel();
+        cerrarses = new javax.swing.JPanel();
+        flecha = new javax.swing.JLabel();
         arrastar = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
         perfilmenu = new javax.swing.JPanel();
@@ -333,6 +335,39 @@ public class Menu extends javax.swing.JFrame {
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cerrarses.setBackground(new java.awt.Color(43, 137, 230));
+
+        flecha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        flecha.setForeground(new java.awt.Color(255, 255, 255));
+        flecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        flecha.setText("<");
+        flecha.setToolTipText("");
+        flecha.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        flecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                flechaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                flechaMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cerrarsesLayout = new javax.swing.GroupLayout(cerrarses);
+        cerrarses.setLayout(cerrarsesLayout);
+        cerrarsesLayout.setHorizontalGroup(
+            cerrarsesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(flecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+        cerrarsesLayout.setVerticalGroup(
+            cerrarsesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(flecha, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        bg.add(cerrarses, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 30));
 
         arrastar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -3069,6 +3104,20 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inombresMSActionPerformed
 
+    private void flechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaMouseEntered
+        cerrarses.setBackground(new Color(51,153,255));
+    }//GEN-LAST:event_flechaMouseEntered
+
+    private void flechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaMouseExited
+        cerrarses.setBackground(new Color(43,137,230));
+    }//GEN-LAST:event_flechaMouseExited
+
+    private void flechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaMouseClicked
+        this.setVisible(false);
+        LogIn m1 = new LogIn();
+        m1.setVisible(true);
+    }//GEN-LAST:event_flechaMouseClicked
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -3151,6 +3200,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JRadioButton cdeluxeH;
     private javax.swing.JRadioButton cdisponibleH;
     private javax.swing.JRadioButton cdisponibleMH;
+    private javax.swing.JPanel cerrarses;
     private javax.swing.JRadioButton cocupadoH;
     private javax.swing.JRadioButton cocupadoMH;
     private javax.swing.JRadioButton creservadoH;
@@ -3158,6 +3208,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JRadioButton csuiteH;
     private javax.swing.JPanel dashboard;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel flecha;
     private javax.swing.JTextField iCantDisAS;
     private javax.swing.JTextField iCantDisMS;
     private javax.swing.JTextField iapellido;

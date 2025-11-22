@@ -267,13 +267,13 @@ public class LogIn extends javax.swing.JFrame {
                         Menu m2 = new Menu(arreglo[i]);
                         m2.setVisible(true);
                         mal = false;    
-                        this.dispose();
+                        this.setVisible(false);
                         break;
                     } else if (arreglo[i].getRol().equalsIgnoreCase("REC")) {
                         MenuR m3 = new MenuR(arreglo[i]);
                         m3.setVisible(true);
                         mal = false;
-                        this.dispose();
+                        this.setVisible(false);
                         break;
                     }
                     
