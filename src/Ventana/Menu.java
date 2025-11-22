@@ -7,6 +7,7 @@ import Code.Estandar;
 import Code.GestionHabitacion;
 import Code.GestionPersona;
 import Code.GestionServicio;
+import Code.GestionSistema;
 import Code.Habitacion;
 import Code.Limpieza;
 import Code.Recepcionista;
@@ -32,15 +33,19 @@ public class Menu extends javax.swing.JFrame {
     private Empleado[] arreglo;
     private Servicio[] arregloS;
     private Empleado menuE;
+    GestionSistema sis;
+    Empleado personActual;
     int mousepX;
     int mousepY;
 
     //CONSTRUCTOR
-    public Menu(Empleado ref) {
+    public Menu(Empleado ref, GestionSistema sis) {
         initComponents();
-        GH = new GestionHabitacion();
-        GP = new GestionPersona();
-        GS = new GestionServicio();
+        this.sis = sis;
+        this.personActual = ref;
+        this.GH = sis.getGH();
+        this.GP = sis.getGP();
+        this.GS = sis.getGS();
 
         //TABLAS EMPLEADOS
         modelo = new DefaultTableModel();
@@ -90,22 +95,10 @@ public class Menu extends javax.swing.JFrame {
         lrolprofile.setText("ADMINISTRADOR");
 
         //ARREGLO
-        Recepcionista refR = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
-        Estandar ref1 = new Estandar(2, "EST", "DISPONIBLE", 40);
-        ref1.setNum(1);
-        Deluxe ref2 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
-        ref2.setNum(2);
-        Suite ref3 = new Suite(5, "SUI", "DISPONIBLE", 100);
-        ref3.setNum(3);
-        GH.IngresarHab(ref1);
-        GH.IngresarHab(ref2);
-        GH.IngresarHab(ref3);
-        GP.IngresarE(ref);
-        GP.IngresarE(refR);
-        arreglo = GP.getArregloPersona();
-        arregloH = GH.getArregloHab();
-        arregloS = GS.getArregloS();
-        menuE = ref;
+        this.arreglo = GP.getArregloPersona();
+        this.arregloH = GH.getArregloHab();
+        this.arregloS = GS.getArregloS();
+        this.menuE = ref;
         CargarTablaH();
         CargarTabla();
         CargarTablaS();
@@ -3113,9 +3106,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_flechaMouseExited
 
     private void flechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaMouseClicked
-        this.setVisible(false);
-        LogIn m1 = new LogIn();
+        LogIn m1 = new LogIn(this.sis);
         m1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_flechaMouseClicked
 
     /**

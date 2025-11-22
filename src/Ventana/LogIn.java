@@ -3,6 +3,7 @@ package Ventana;
 import Code.Administrador;
 import Code.Empleado;
 import Code.GestionPersona;
+import Code.GestionSistema;
 import Code.Recepcionista;
 import java.awt.Color;
 import static java.lang.System.exit;
@@ -12,18 +13,19 @@ public class LogIn extends javax.swing.JFrame {
 
     int mousepX;
     int mousepY;
+    GestionSistema sis;
     private Empleado[] arreglo;
-    GestionPersona GP = new GestionPersona();
-
     //CONSTRUCTOR
     public LogIn() {
         initComponents();
-        Administrador adm = new Administrador("DARIO", "RUA", "ADMIN", "60789650", "Dar123", "123");
-        Recepcionista rec = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
-        GP.IngresarE(adm);
-        GP.IngresarE(rec);
-        arreglo = GP.getArregloPersona();
-
+        sis = new GestionSistema();
+        arreglo = sis.getGP().getArregloPersona();
+        setLocationRelativeTo(null);
+    }
+    public LogIn(GestionSistema sisExis) {
+        initComponents();
+        this.sis = sisExis;
+        this.arreglo = sis.getGP().getArregloPersona();
         setLocationRelativeTo(null);
     }
 
@@ -260,20 +262,20 @@ public class LogIn extends javax.swing.JFrame {
         if (user.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Algun campo esta vacio");
         } else {
-            for (int i = 0; i < GP.getConta(); i++) {
+            for (int i = 0; i < sis.getGP().getConta(); i++) {
                 if (user.equals(arreglo[i].getUser()) && contra.equals(arreglo[i].getContra())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido");
                     if (arreglo[i].getRol().equalsIgnoreCase("ADMIN")) {
-                        Menu m2 = new Menu(arreglo[i]);
+                        Menu m2 = new Menu(arreglo[i],sis);
                         m2.setVisible(true);
                         mal = false;    
-                        this.setVisible(false);
+                        this.dispose();
                         break;
                     } else if (arreglo[i].getRol().equalsIgnoreCase("REC")) {
-                        MenuR m3 = new MenuR(arreglo[i]);
+                        MenuR m3 = new MenuR(arreglo[i],sis);
                         m3.setVisible(true);
                         mal = false;
-                        this.setVisible(false);
+                        this.dispose();
                         break;
                     }
                     

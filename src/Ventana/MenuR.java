@@ -1,6 +1,7 @@
 package Ventana;
 
 import Code.Empleado;
+import Code.GestionSistema;
 import java.awt.Color;
 import static java.lang.System.exit;
 
@@ -10,7 +11,7 @@ public class MenuR extends javax.swing.JFrame {
     int mousepY;
     
     //CONSTRUCTOR
-    public MenuR(Empleado ref) {
+    public MenuR(Empleado ref, GestionSistema sis) {
         initComponents();
         String userPr = ref.getNombre() + " " + ref.getApellido();
         luserprofile.setText(userPr.toUpperCase());
@@ -53,17 +54,6 @@ public class MenuR extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         pEmpleado = new javax.swing.JPanel();
-        pAgregar = new javax.swing.JPanel();
-        lnombre = new javax.swing.JLabel();
-        inombre = new javax.swing.JTextField();
-        bagregar = new javax.swing.JButton();
-        inombre1 = new javax.swing.JTextField();
-        lnombre1 = new javax.swing.JLabel();
-        cAdmin = new javax.swing.JRadioButton();
-        cAdmin1 = new javax.swing.JRadioButton();
-        lnombre2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -453,101 +443,6 @@ public class MenuR extends javax.swing.JFrame {
 
         pEmpleado.setBackground(new java.awt.Color(255, 255, 255));
         pEmpleado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        pAgregar.setBackground(new java.awt.Color(204, 204, 204));
-        pAgregar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lnombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lnombre.setForeground(new java.awt.Color(51, 51, 51));
-        lnombre.setText("NOMBRE");
-        pAgregar.add(lnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        inombre.setBackground(new java.awt.Color(153, 153, 153));
-        inombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        inombre.setForeground(new java.awt.Color(255, 255, 255));
-        inombre.setText("  ");
-        inombre.setBorder(null);
-        inombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inombreActionPerformed(evt);
-            }
-        });
-        pAgregar.add(inombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 150, 25));
-
-        bagregar.setBackground(new java.awt.Color(102, 102, 102));
-        bagregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bagregar.setForeground(new java.awt.Color(255, 255, 255));
-        bagregar.setText("AGREGAR");
-        bagregar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        bagregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bagregarActionPerformed(evt);
-            }
-        });
-        pAgregar.add(bagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 120, 30));
-
-        inombre1.setBackground(new java.awt.Color(153, 153, 153));
-        inombre1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        inombre1.setForeground(new java.awt.Color(255, 255, 255));
-        inombre1.setText("  ");
-        inombre1.setBorder(null);
-        inombre1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inombre1ActionPerformed(evt);
-            }
-        });
-        pAgregar.add(inombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 150, 25));
-
-        lnombre1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lnombre1.setForeground(new java.awt.Color(51, 51, 51));
-        lnombre1.setText("PUESTO DE TRABAJO");
-        pAgregar.add(lnombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 89, -1, -1));
-
-        cAdmin.setForeground(new java.awt.Color(51, 51, 51));
-        cAdmin.setText("RECEPCIONISTA");
-        cAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cAdminActionPerformed(evt);
-            }
-        });
-        pAgregar.add(cAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
-
-        cAdmin1.setForeground(new java.awt.Color(51, 51, 51));
-        cAdmin1.setText("ADMINISTRADOR");
-        cAdmin1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        cAdmin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cAdmin1ActionPerformed(evt);
-            }
-        });
-        pAgregar.add(cAdmin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-
-        lnombre2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lnombre2.setForeground(new java.awt.Color(51, 51, 51));
-        lnombre2.setText("APELLIDOS");
-        pAgregar.add(lnombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        pEmpleado.add(pAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 280, 500));
-
-        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
-
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        pEmpleado.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 380, 500));
-
         jMenu.addTab("tab1", pEmpleado);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -640,26 +535,6 @@ public class MenuR extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdmin1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cAdmin1ActionPerformed
-
-    private void cAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cAdminActionPerformed
-
-    private void inombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombre1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inombre1ActionPerformed
-
-    private void bagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarActionPerformed
-
-    }//GEN-LAST:event_bagregarActionPerformed
-
-    private void inombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inombreActionPerformed
 
     private void lminusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseExited
         pminus.setBackground(new Color(43, 137, 230));
@@ -818,14 +693,9 @@ public class MenuR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arrastar;
-    private javax.swing.JButton bagregar;
     private javax.swing.JPanel bg;
-    private javax.swing.JRadioButton cAdmin;
-    private javax.swing.JRadioButton cAdmin1;
     private javax.swing.JPanel dashboard;
     private javax.swing.JLabel imgpersona;
-    private javax.swing.JTextField inombre;
-    private javax.swing.JTextField inombre1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -836,14 +706,9 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lejem4;
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lminus;
-    private javax.swing.JLabel lnombre;
-    private javax.swing.JLabel lnombre1;
-    private javax.swing.JLabel lnombre2;
     private javax.swing.JLabel lpEmpleados;
     private javax.swing.JLabel lpHabitaciones;
     private javax.swing.JLabel lrolprofile;
@@ -855,7 +720,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JPanel mpAgregar;
     private javax.swing.JPanel mpEliminar;
     private javax.swing.JPanel mpModificar;
-    private javax.swing.JPanel pAgregar;
     private javax.swing.JPanel pEmpleado;
     private javax.swing.JPanel panelPEmpleados;
     private javax.swing.JPanel panelPHabitaciones;
