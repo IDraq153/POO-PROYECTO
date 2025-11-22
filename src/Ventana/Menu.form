@@ -115,7 +115,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&lt;"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="toolTipText" type="java.lang.String" value="Cerrar sesion"/>
                 <Property name="verticalAlignment" type="int" value="1"/>
               </Properties>
               <Events>

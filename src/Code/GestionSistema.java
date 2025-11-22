@@ -18,6 +18,8 @@ public class GestionSistema {
         Administrador adm = new Administrador("DARIO", "RUA", "ADMIN", "60789650", "Dar123", "123");
         Recepcionista refR = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
         Estandar ref1 = new Estandar(2, "EST", "DISPONIBLE", 40);
+        Relax sref1 = new Relax("IcaTour", 50, 15);
+        sref1.setTipo("RELAX"); 
         ref1.setNum(1);
         Deluxe ref2 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
         ref2.setNum(2);
@@ -28,6 +30,7 @@ public class GestionSistema {
         GH.IngresarHab(ref3);
         GP.IngresarE(adm); 
         GP.IngresarE(refR);
+        GS.IngresarServicio(sref1);
     }
     
     public GestionHabitacion getGH() {

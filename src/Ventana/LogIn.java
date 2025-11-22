@@ -1,10 +1,7 @@
 package Ventana;
 
-import Code.Administrador;
 import Code.Empleado;
-import Code.GestionPersona;
 import Code.GestionSistema;
-import Code.Recepcionista;
 import java.awt.Color;
 import static java.lang.System.exit;
 import javax.swing.JOptionPane;

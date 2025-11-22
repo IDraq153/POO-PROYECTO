@@ -335,7 +335,7 @@ public class Menu extends javax.swing.JFrame {
         flecha.setForeground(new java.awt.Color(255, 255, 255));
         flecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         flecha.setText("<");
-        flecha.setToolTipText("");
+        flecha.setToolTipText("Cerrar sesion");
         flecha.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         flecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2493,7 +2493,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_lpHabitacionesMouseExited
 
     private void mlAgregarHMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarHMouseMoved
-        mpAgregarH.setBackground(new Color(86, 136, 187));
+        mpAgregarH.setBackground(new Color(121,180,239));
     }//GEN-LAST:event_mlAgregarHMouseMoved
 
     private void mlAgregarHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlAgregarHMouseClicked
