@@ -15,6 +15,8 @@ public class GestionHabitacion {
 
     //METODOS
     public void IngresarHab(Habitacion ref) {
+        int nuevoNum = this.contaH + 1;
+        ref.setNum(nuevoNum);
         if (contaH < arregloHab.length) {
             if (ref.getCapMax() > 0) {
                 if (ref.getCapMax() <= 5) {

@@ -48,7 +48,12 @@ public class Menu extends javax.swing.JFrame {
         this.GS = sis.getGS();
 
         //TABLAS EMPLEADOS
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Rol");
@@ -61,6 +66,8 @@ public class Menu extends javax.swing.JFrame {
         jtableEliminarEmp.getTableHeader().setResizingAllowed(false);
         jtableagregarem.getTableHeader().setReorderingAllowed(false);
         jtableEliminarEmp.getTableHeader().setReorderingAllowed(false);
+        jtableagregarem.getColumnModel().getColumn(2).setPreferredWidth(50);
+        jtableEliminarEmp.getColumnModel().getColumn(2).setPreferredWidth(50);
 
         //TABLAS HABITACIONES
         modeloH = new DefaultTableModel();
@@ -75,6 +82,9 @@ public class Menu extends javax.swing.JFrame {
         jtableaEliminarHab.getTableHeader().setResizingAllowed(false);
         jtableaAgregarHab.getTableHeader().setReorderingAllowed(false);
         jtableaEliminarHab.getTableHeader().setReorderingAllowed(false);
+        jtableaAgregarHab.getColumnModel().getColumn(0).setPreferredWidth(30); 
+        jtableaEliminarHab.getColumnModel().getColumn(0).setPreferredWidth(30);
+        
         
         //TABLAS SERVICIOS
         modeloS = new DefaultTableModel();
@@ -106,6 +116,8 @@ public class Menu extends javax.swing.JFrame {
         //CENTRAR
         setLocationRelativeTo(null);
     }
+    
+    
 
     private Menu() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -2748,7 +2760,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void bagregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregar1ActionPerformed
         //AGREGAR HABITACION A LA LISTA
-        int numH = GH.getContaH()+1;
         int capMax = Integer.parseInt(this.icapacidadH.getText());
         float precioF = Float.parseFloat(iprecioH.getText());
         String estado = "";
@@ -2761,15 +2772,12 @@ public class Menu extends javax.swing.JFrame {
         }
         if (cEstandarH.isSelected()) {
             Estandar ref = new Estandar(capMax, "EST", estado, precioF);
-            ref.setNum(numH);
             GH.IngresarHab(ref);
         } else if (cdeluxeH.isSelected()) {
             Deluxe ref = new Deluxe(capMax, "DEL", estado, precioF);
-            ref.setNum(numH);
             GH.IngresarHab(ref);
         } else if (csuiteH.isSelected()) {
             Suite ref = new Suite(capMax, "SUI" , estado, precioF);
-            ref.setNum(numH);
             GH.IngresarHab(ref);
         }
         System.out.println(GH.getContaH());

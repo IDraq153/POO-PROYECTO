@@ -17,21 +17,68 @@ public class GestionSistema {
     }
     
     private void CargarDatosIniciales() {
+        
+        // Más administradores
         Administrador adm = new Administrador("DARIO", "RUA", "ADMIN", "60789650", "Dar123", "123");
+        Administrador adm2 = new Administrador("JOSE", "MORALES", "ADMIN", "70894512", "JoseM", "adm456");
+        Administrador adm3 = new Administrador("LAURA", "SALAS", "ADMIN", "79831245", "LauS", "admin789");
+        // Más recepcionistas
         Recepcionista refR = new Recepcionista("MARIA", "MENDA", "REC", "8313912", "Mar12", "153");
+        Recepcionista rec2 = new Recepcionista("PATRICIA", "GONZALES", "REC", "65123987", "PatG", "rec321");
+        Recepcionista rec3 = new Recepcionista("CARLOS", "DIAZ", "REC", "70981234", "CarlD", "recep987");        
+        
+        //HABITACIONES
+        Estandar est1 = new Estandar(2, "EST", "DISPONIBLE", 40);
+        Estandar est2 = new Estandar(2, "EST", "DISPONIBLE", 40);
+        Estandar est3 = new Estandar(3, "EST", "DISPONIBLE", 45);
+        Estandar est4 = new Estandar(3, "EST", "DISPONIBLE", 45);
+        Estandar est5 = new Estandar(2, "EST", "DISPONIBLE", 40);
+        Estandar est6 = new Estandar(3, "EST", "DISPONIBLE", 45);
         Estandar ref1 = new Estandar(2, "EST", "DISPONIBLE", 40);
-        Relax sref1 = new Relax("IcaTour", 50, 15);
-        sref1.setTipo("RELAX"); 
-        ref1.setNum(1);
+        
+        Deluxe del1 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
+        Deluxe del2 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
+        Deluxe del3 = new Deluxe(4, "DEL", "DISPONIBLE", 70);
+        Deluxe del4 = new Deluxe(4, "DEL", "DISPONIBLE", 70);
+        Deluxe del5 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
+        
+        Suite sui1 = new Suite(5, "SUI", "DISPONIBLE", 100);
+        Suite sui2 = new Suite(5, "SUI", "DISPONIBLE", 100);
+        Suite sui3 = new Suite(5, "SUI", "DISPONIBLE", 120);
+        Suite sui4 = new Suite(5, "SUI", "DISPONIBLE", 120);
+        Suite sui5 = new Suite(5, "SUI", "DISPONIBLE", 100);
+
+        Tour sref1 = new Tour("IcaTour", 50, 15);
+        sref1.setTipo("Tour"); 
         Deluxe ref2 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
-        ref2.setNum(2);
         Suite ref3 = new Suite(5, "SUI", "DISPONIBLE", 100);
-        ref3.setNum(3);
+        GH.IngresarHab(est1);
+        GH.IngresarHab(est2);
+        GH.IngresarHab(est3);
+        GH.IngresarHab(est4);
+        GH.IngresarHab(est5);
+        GH.IngresarHab(est6);
+        GH.IngresarHab(est6);
+        GH.IngresarHab(del1);
+        GH.IngresarHab(del2);
+        GH.IngresarHab(del3);
+        GH.IngresarHab(del4);
+        GH.IngresarHab(del5);
+        GH.IngresarHab(sui1);
+        GH.IngresarHab(sui2);
+        GH.IngresarHab(sui3);
+        GH.IngresarHab(sui4);
+        GH.IngresarHab(sui5);
+        
         GH.IngresarHab(ref1);
         GH.IngresarHab(ref2);
         GH.IngresarHab(ref3);
         GP.IngresarE(adm); 
+        GP.IngresarE(adm2); 
+        GP.IngresarE(adm3); 
         GP.IngresarE(refR);
+        GP.IngresarE(rec2);
+        GP.IngresarE(rec3);
         GS.IngresarServicio(sref1);
     }
     
