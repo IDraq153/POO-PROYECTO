@@ -2,8 +2,8 @@ package Code;
 
 public abstract class Huesped {
 
-    protected String nom, apell, pase, code;
-    protected int dni, numH, diaEnt, diaSal;
+    protected String nom, apell, pase, code, est;
+    protected int dni, numH, diaSal;
     protected float cuentaC;
 
     //CONSTRUCTOR
@@ -15,6 +15,7 @@ public abstract class Huesped {
         this.numH = numH;
         this.cuentaC = 0;
         diaSal = 0;
+        est = "";
     }
 
     //METODOS
@@ -76,4 +77,21 @@ public abstract class Huesped {
     public void setCuentaC(float cuentaC) {
         this.cuentaC = cuentaC;
     }
+
+    public String getEst() {
+        return est;
+    }
+
+    public void setEst(String est) {
+        this.est = est;
+    }
+
+    public int getDiaSal() {
+        return diaSal;
+    }
+
+    public void setDiaSal(int diaSal) {
+        this.diaSal = diaSal;
+    }
+    
 }

@@ -22,6 +22,16 @@ public class GestionPersona {
             JOptionPane.showMessageDialog(null, "Numero de Empleados maximo alcanzado");
         }
     }
+    
+    public int buscarPosicionEmp(String dni) {
+        for (int j = 0; j < conta; j++) {
+            if (arregloPersona[j].getDni().equalsIgnoreCase(dni)) {
+                return j;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Empleado no encontrado");
+        return -1;
+    }
 
     public void EliminarE(String dni) {
         boolean Noencontro = false;

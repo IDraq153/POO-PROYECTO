@@ -76,8 +76,11 @@ public class Menu extends javax.swing.JFrame {
         modeloH.addColumn("Tipo");
         modeloH.addColumn("Estado");
         modeloH.addColumn("Precio S/.");
+        this.jtableHabitaciones.setModel(modeloH);
         this.jtableaAgregarHab.setModel(modeloH);
         this.jtableaEliminarHab.setModel(modeloH);
+        jtableHabitaciones.getTableHeader().setResizingAllowed(false);
+        jtableHabitaciones.getTableHeader().setReorderingAllowed(false);
         jtableaAgregarHab.getTableHeader().setResizingAllowed(false);
         jtableaEliminarHab.getTableHeader().setResizingAllowed(false);
         jtableaAgregarHab.getTableHeader().setReorderingAllowed(false);
@@ -327,7 +330,9 @@ public class Menu extends javax.swing.JFrame {
         imgMS = new javax.swing.JLabel();
         imgMSX = new javax.swing.JLabel();
         jPanelInforH = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jtableHabitaciones = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
         jPanelInfoIng = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
 
@@ -2265,31 +2270,34 @@ public class Menu extends javax.swing.JFrame {
         jMenu.addTab("tab10", jPanelModificarSer);
 
         jPanelInforH.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelInforH.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("INFORME HABITACIONES");
+        jScrollPane7.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout jPanelInforHLayout = new javax.swing.GroupLayout(jPanelInforH);
-        jPanelInforH.setLayout(jPanelInforHLayout);
-        jPanelInforHLayout.setHorizontalGroup(
-            jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-            .addGroup(jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelInforHLayout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(172, Short.MAX_VALUE)))
-        );
-        jPanelInforHLayout.setVerticalGroup(
-            jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-            .addGroup(jPanelInforHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelInforHLayout.createSequentialGroup()
-                    .addGap(246, 246, 246)
-                    .addComponent(jLabel10)
-                    .addContainerGap(247, Short.MAX_VALUE)))
-        );
+        jtableHabitaciones.setBackground(new java.awt.Color(204, 204, 204));
+        jtableHabitaciones.setForeground(new java.awt.Color(0, 0, 0));
+        jtableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableHabitaciones.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableHabitaciones.setFocusable(false);
+        jScrollPane7.setViewportView(jtableHabitaciones);
+
+        jPanelInforH.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 690, 470));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("HABITACIONES");
+        jPanelInforH.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 690, -1));
 
         jMenu.addTab("tab11", jPanelInforH);
 
@@ -2670,29 +2678,19 @@ public class Menu extends javax.swing.JFrame {
     private void bBuscarModificarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarModificarEActionPerformed
         //HACE LA BUSQUEDA DEL EMPLEADO Y TRAE SU INFORMACION AL CAMPO
         String dni = idniModiE.getText();
-        boolean Noencontro = false;
-        for (int i = 0; i < GP.getConta(); i++) {
-            if (arreglo[i].getDni().equalsIgnoreCase(dni)) {
-                inombreM.setText(arreglo[i].getNombre());
-                iapellidoM.setText(arreglo[i].getApellido());
-                idniM.setText(arreglo[i].getDni());
-                iuserM.setText(arreglo[i].getUser());
-                icontraM.setText(arreglo[i].getContra());
-                if (arreglo[i].getRol().equalsIgnoreCase("Admin")) {
-                    cAdministradorM.setSelected(true);
-                } else if (arreglo[i].getRol().equalsIgnoreCase("Rec")) {
-                    cRecepcionitaM.setSelected(true);
-                }
-                Noencontro = false;
-                break;
-            } else {
-                Noencontro = true;
+        int i = GP.buscarPosicionEmp(dni);
+        if (i != -1) {
+            inombreM.setText(arreglo[i].getNombre());
+            iapellidoM.setText(arreglo[i].getApellido());
+            idniM.setText(arreglo[i].getDni());
+            iuserM.setText(arreglo[i].getUser());
+            icontraM.setText(arreglo[i].getContra());
+            if (arreglo[i].getRol().equalsIgnoreCase("Admin")) {
+                cAdministradorM.setSelected(true);
+            } else if (arreglo[i].getRol().equalsIgnoreCase("Rec")) {
+                cRecepcionitaM.setSelected(true);
             }
         }
-        if (Noencontro == true) {
-            JOptionPane.showMessageDialog(null, "No se encontro el empleado");
-        }
-
     }//GEN-LAST:event_bBuscarModificarEActionPerformed
 
     private void inombreMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreMActionPerformed
@@ -2706,21 +2704,20 @@ public class Menu extends javax.swing.JFrame {
         if (menuE.getDni().equalsIgnoreCase(persN)) {
             JOptionPane.showMessageDialog(null, "No puedes modificarte a ti mismo"); 
         } else {
-            for (int i = 0; i < GP.getConta(); i++) {
-                if (arreglo[i].getDni().equalsIgnoreCase(dni)) {
-                    arreglo[i].setNombre(inombreM.getText());
-                    arreglo[i].setApellido(iapellidoM.getText());
-                    arreglo[i].setDni(idniM.getText());
-                    arreglo[i].setUser(iuserM.getText());
-                    arreglo[i].setContra(icontraM.getText());
-                    if (cAdministradorM.isSelected()) {
-                        arreglo[i].setRol("ADMIN");
-                    } else if (cRecepcionitaM.isSelected()) {
-                        arreglo[i].setRol("REC");
-                    }
+            int i = GP.buscarPosicionEmp(dni);
+            if (i != -1) {
+                arreglo[i].setNombre(inombreM.getText());
+                arreglo[i].setApellido(iapellidoM.getText());
+                arreglo[i].setDni(idniM.getText());
+                arreglo[i].setUser(iuserM.getText());
+                arreglo[i].setContra(icontraM.getText());
+                if (cAdministradorM.isSelected()) {
+                    arreglo[i].setRol("ADMIN");
+                } else if (cRecepcionitaM.isSelected()) {
+                    arreglo[i].setRol("REC");
                 }
+                JOptionPane.showMessageDialog(null, "Cambios hechos en empleado");
             }
-            JOptionPane.showMessageDialog(null, "Cambios hechos en empleado"); 
         }
         //VACIA LOS TEXTFIELDS
         CargarTabla();
@@ -2843,58 +2840,48 @@ public class Menu extends javax.swing.JFrame {
 
     private void bModificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarHabActionPerformed
         int num = Integer.parseInt(inumeroHM.getText());
-        boolean noencontro = false;
-        for (int i = 0; i < GH.getContaH(); i++) {
-            if (arregloH[i].getNum()== num) {
-                icapacidadMH.setText(String.valueOf(arregloH[i].getCapMax()));
-                iprecioMH.setText(String.valueOf(arregloH[i].getPrecNoche()));
-                iprecioMH.setText(String.valueOf(arregloH[i].getPrecNoche()));
-                if (arregloH[i].getEstado().equalsIgnoreCase("DISPONIBLE")) {
-                    cdisponibleMH.setSelected(true);
-                } else if (arregloH[i].getEstado().equalsIgnoreCase("RESERVADO")) {
-                    creservadoMH.setSelected(true);
-                } else if (arregloH[i].getEstado().equalsIgnoreCase("OCUPADO")) {
-                    cocupadoMH.setSelected(true); 
-                }
-                if (arregloH[i].getTipoHabi().equalsIgnoreCase("EST")) {
-                    cEstandarMH.setSelected(true);
-                } else if (arregloH[i].getTipoHabi().equalsIgnoreCase("DEL")) {
-                    cDeluxeMH.setSelected(true);
-                } else if (arregloH[i].getTipoHabi().equalsIgnoreCase("SUI")) {
-                    cSuiteMH.setSelected(true);
-                }
-                noencontro = false;
-                break;
-            } else {
-                noencontro = true;
+        int i = GH.BuscarHab(num);
+        if (i != -1) {
+            icapacidadMH.setText(String.valueOf(arregloH[i].getCapMax()));
+            iprecioMH.setText(String.valueOf(arregloH[i].getPrecNoche()));
+            iprecioMH.setText(String.valueOf(arregloH[i].getPrecNoche()));
+            if (arregloH[i].getEstado().equalsIgnoreCase("DISPONIBLE")) {
+                cdisponibleMH.setSelected(true);
+            } else if (arregloH[i].getEstado().equalsIgnoreCase("RESERVADO")) {
+                creservadoMH.setSelected(true);
+            } else if (arregloH[i].getEstado().equalsIgnoreCase("OCUPADO")) {
+                cocupadoMH.setSelected(true); 
             }
-        }
-        if (noencontro == true) {
-            JOptionPane.showMessageDialog(null, "Habitacion no encontrada");
+            if (arregloH[i].getTipoHabi().equalsIgnoreCase("EST")) {
+                cEstandarMH.setSelected(true);
+            } else if (arregloH[i].getTipoHabi().equalsIgnoreCase("DEL")) {
+                cDeluxeMH.setSelected(true);
+            } else if (arregloH[i].getTipoHabi().equalsIgnoreCase("SUI")) {
+                cSuiteMH.setSelected(true);
+            }
         }
     }//GEN-LAST:event_bModificarHabActionPerformed
 
     private void bmodificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarHabActionPerformed
-        int num = Integer.parseInt(inumeroHM.getText());        
-        for (int i = 0; i < GH.getContaH(); i++) {
-            if (arregloH[i].getNum() == num) {
-                arregloH[i].setCapMax(Integer.parseInt(icapacidadMH.getText())); 
-                arregloH[i].setPrecNoche(Float.parseFloat(iprecioMH.getText())); 
-                if (cdisponibleMH.isSelected()) {
-                    arregloH[i].setEstado("DISPONIBLE");
-                } else if (creservadoMH.isSelected()) {
-                    arregloH[i].setEstado("RESERVADO");
-                } else if (cocupadoMH.isSelected()) {
-                    arregloH[i].setEstado("OCUPADO");
-                }
-                if (cEstandarMH.isSelected()) {
-                    arregloH[i].setTipoHabi("EST");
-                } else if (cDeluxeMH.isSelected()) {
-                    arregloH[i].setTipoHabi("DEL");
-                } else if (cSuiteMH.isSelected()) {
-                    arregloH[i].setTipoHabi("SUI");
-                }
+        int num = Integer.parseInt(inumeroHM.getText());     
+        int  i = GH.BuscarHab(num);
+        if (i != -1) {
+            arregloH[i].setCapMax(Integer.parseInt(icapacidadMH.getText())); 
+            arregloH[i].setPrecNoche(Float.parseFloat(iprecioMH.getText())); 
+            if (cdisponibleMH.isSelected()) {
+                arregloH[i].setEstado("DISPONIBLE");
+            } else if (creservadoMH.isSelected()) {
+                arregloH[i].setEstado("RESERVADO");
+            } else if (cocupadoMH.isSelected()) {
+                arregloH[i].setEstado("OCUPADO");
             }
+            if (cEstandarMH.isSelected()) {
+                arregloH[i].setTipoHabi("EST");
+            } else if (cDeluxeMH.isSelected()) {
+                arregloH[i].setTipoHabi("DEL");
+            } else if (cSuiteMH.isSelected()) {
+                arregloH[i].setTipoHabi("SUI");
+        }
         }
         CargarTablaH();
         inumeroHM.setText("");
@@ -3029,27 +3016,18 @@ public class Menu extends javax.swing.JFrame {
     private void bBuscarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarSActionPerformed
         boolean noencontro = false;
         String nom = inombreMS.getText();
-        for (int i = 0; i < GS.getContaS(); i++) {
-            if (arregloS[i].getNomServicio().equalsIgnoreCase(nom)) {
-                inombresMS.setText(arregloS[i].getNomServicio());
-                iprecioMS.setText(String.valueOf(arregloS[i].getPrecServicio()));
-                iCantDisMS.setText(String.valueOf(arregloS[i].getCantSerDisponibles()));
-                if (arregloS[i].getTipo().equalsIgnoreCase("RELAX")) {
-                    cMasajeMS.setSelected(true);
-                } else  if (arregloS[i].getTipo().equalsIgnoreCase("TOUR")) {
-                    cTourMS.setSelected(true);
-                } else if (arregloS[i].getTipo().equalsIgnoreCase("LIMPIEZA")) {
-                    cLavanderiaMS.setSelected(true);
-                }
-                noencontro = false;
-                break;
-            } 
-            else {
-                noencontro = true;
+        int i = GS.buscarPoServicio(nom);
+        if (i != -1) {
+            inombresMS.setText(arregloS[i].getNomServicio());
+            iprecioMS.setText(String.valueOf(arregloS[i].getPrecServicio()));
+            iCantDisMS.setText(String.valueOf(arregloS[i].getCantSerDisponibles()));
+            if (arregloS[i].getTipo().equalsIgnoreCase("RELAX")) {
+                cMasajeMS.setSelected(true);
+            } else  if (arregloS[i].getTipo().equalsIgnoreCase("TOUR")) {
+                cTourMS.setSelected(true);
+            } else if (arregloS[i].getTipo().equalsIgnoreCase("LIMPIEZA")) {
+                cLavanderiaMS.setSelected(true);
             }
-        }
-        if (noencontro == true) {
-            JOptionPane.showMessageDialog(null, "Servicio no encontrado");
         }
     }//GEN-LAST:event_bBuscarSActionPerformed
 
@@ -3059,18 +3037,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void bModificarMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarMSActionPerformed
         String nom = inombreMS.getText();
-        for (int i = 0; i < GS.getContaS(); i++) {
-            if (arregloS[i].getNomServicio().equalsIgnoreCase(nom)) {
-                arregloS[i].setNomServicio(inombresMS.getText());
-                arregloS[i].setPrecServicio(Float.parseFloat(iprecioMS.getText()));
-                arregloS[i].setCantSerDisponibles(Integer.parseInt(iCantDisMS.getText())); 
-                if (cMasajeMS.isSelected()) {
-                    arregloS[i].setTipo("RELAX");
-                } else if (cTourMS.isSelected()) {
-                    arregloS[i].setTipo("TOUR");
-                } else if (cLavanderiaMS.isSelected()) {
-                    arregloS[i].setTipo("LIMPIEZA");
-                }
+        int i = GS.buscarPoServicio(nom);
+        if (i != -1) {
+            arregloS[i].setNomServicio(inombresMS.getText());
+            arregloS[i].setPrecServicio(Float.parseFloat(iprecioMS.getText()));
+            arregloS[i].setCantSerDisponibles(Integer.parseInt(iCantDisMS.getText())); 
+            if (cMasajeMS.isSelected()) {
+                arregloS[i].setTipo("RELAX");
+            } else if (cTourMS.isSelected()) {
+                arregloS[i].setTipo("TOUR");
+            } else if (cLavanderiaMS.isSelected()) {
+                arregloS[i].setTipo("LIMPIEZA");
             }
         }
         CargarTablaS();
@@ -3241,7 +3218,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField iuser;
     private javax.swing.JTextField iuserM;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -3249,6 +3225,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTabbedPane jMenu;
     private javax.swing.JPanel jPanelAgregarEmp;
     private javax.swing.JPanel jPanelAgregarHab;
@@ -3269,11 +3246,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel jimagenModHab;
     private javax.swing.JLabel jimagenModiEmp;
     private javax.swing.JLabel jimagenModificarHab;
     private javax.swing.JTable jtableEliminarEmp;
     private javax.swing.JTable jtableEliminarSer;
+    private javax.swing.JTable jtableHabitaciones;
     private javax.swing.JTable jtableaAgregarHab;
     private javax.swing.JTable jtableaEliminarHab;
     private javax.swing.JTable jtableagregarSer;

@@ -20,6 +20,7 @@ public class MenuR extends javax.swing.JFrame {
     //VARIABLES
     private DefaultTableModel modelo;
     private DefaultTableModel modeloH;
+    private DefaultTableModel modeloS;
     private GestionPersona GP;
     private GestionHabitacion GH;
     private GestionServicio GS;
@@ -48,6 +49,16 @@ public class MenuR extends javax.swing.JFrame {
         luserprofile.setText(userPr.toUpperCase());
         lrolprofile.setText("RECEPCIONISTA");
         
+        //TABLA SERVICIOS
+        modeloS = new DefaultTableModel();
+        modeloS.addColumn("Servicio");
+        modeloS.addColumn("Tipo");
+        modeloS.addColumn("Precio S/.");
+        modeloS.addColumn("Disponible");
+        this.servicios.setModel(modeloS);
+        this.servicios.getTableHeader().setResizingAllowed(false);
+        this.servicios.getTableHeader().setReorderingAllowed(false); 
+        
         //TABLAS HUESPEEDES
         modelo = new DefaultTableModel();
         modelo.addColumn("Code");
@@ -56,6 +67,8 @@ public class MenuR extends javax.swing.JFrame {
         modelo.addColumn("Dni");
         modelo.addColumn("Pase");
         modelo.addColumn("N° Hab");
+        modelo.addColumn("Est");
+        modelo.addColumn("P S/.");
         this.jtableHuespedes.setModel(modelo);
         this.jtableEliminaCliente.setModel(modelo);
         this.jtableEliminaClienteR.setModel(modelo);
@@ -66,6 +79,10 @@ public class MenuR extends javax.swing.JFrame {
         jtableHuespedes.getTableHeader().setReorderingAllowed(false);
         jtableEliminaCliente.getTableHeader().setReorderingAllowed(false);
         jtableEliminaClienteR.getTableHeader().setReorderingAllowed(false);
+        
+        jtableHuespedes.getColumnModel().getColumn(6).setPreferredWidth(40);
+        jtableEliminaCliente.getColumnModel().getColumn(6).setPreferredWidth(40);
+        jtableEliminaClienteR.getColumnModel().getColumn(6).setPreferredWidth(40);
         
         //TABLAS HABITACIONES
         modeloH = new DefaultTableModel();
@@ -85,6 +102,7 @@ public class MenuR extends javax.swing.JFrame {
         this.arregloC = GC.getArregloC();
         CargarTablaH();
         CargarTablaC();
+        CargarTablaS();
         setLocationRelativeTo(null);
     }
 
@@ -131,8 +149,6 @@ public class MenuR extends javax.swing.JFrame {
         lpReportes = new javax.swing.JLabel();
         mpGenInfoH = new javax.swing.JPanel();
         mlGenInfoH = new javax.swing.JLabel();
-        mpRegisConsum1 = new javax.swing.JPanel();
-        mpregisCons1 = new javax.swing.JLabel();
         dashboard = new javax.swing.JPanel();
         pexit = new javax.swing.JPanel();
         lexit = new javax.swing.JLabel();
@@ -168,13 +184,13 @@ public class MenuR extends javax.swing.JFrame {
         pregistrarConsumo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         peliminarC1 = new javax.swing.JPanel();
-        lcodeMC1 = new javax.swing.JLabel();
-        icodeMC1 = new javax.swing.JTextField();
-        bEliminarC1 = new javax.swing.JButton();
-        lcodeMC2 = new javax.swing.JLabel();
-        icodeMC2 = new javax.swing.JTextField();
+        lcodeMS = new javax.swing.JLabel();
+        icodeMS = new javax.swing.JTextField();
+        bRegisS = new javax.swing.JButton();
+        lnomSerS = new javax.swing.JLabel();
+        inomSerS = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jtableEliminaClienteR1 = new javax.swing.JTable();
+        servicios = new javax.swing.JTable();
         peliminarHuesped = new javax.swing.JPanel();
         peliminarC = new javax.swing.JPanel();
         lcodeMC = new javax.swing.JLabel();
@@ -541,7 +557,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(mlEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        menu.add(mpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 230, 20));
+        menu.add(mpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 230, 20));
 
         mpModificar.setBackground(new java.awt.Color(121, 180, 239));
 
@@ -577,7 +593,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(mlModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        menu.add(mpModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 230, 20));
+        menu.add(mpModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 230, 20));
 
         panelPHabitaciones.setBackground(new java.awt.Color(92, 164, 235));
 
@@ -615,7 +631,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(lpHabitaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        menu.add(panelPHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 230, 40));
+        menu.add(panelPHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 230, 40));
 
         mpRegistrarR.setBackground(new java.awt.Color(121, 180, 239));
 
@@ -651,7 +667,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(mlregistrarR, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        menu.add(mpRegistrarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 230, -1));
+        menu.add(mpRegistrarR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 230, -1));
 
         mpEliminar1.setBackground(new java.awt.Color(121, 180, 239));
 
@@ -687,7 +703,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(mlEliminarR, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        menu.add(mpEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 230, 20));
+        menu.add(mpEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 230, 20));
 
         panelPReportes.setBackground(new java.awt.Color(92, 164, 235));
 
@@ -725,7 +741,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(lpReportes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        menu.add(panelPReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 230, -1));
+        menu.add(panelPReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 230, -1));
 
         mpGenInfoH.setBackground(new java.awt.Color(121, 180, 239));
 
@@ -733,7 +749,7 @@ public class MenuR extends javax.swing.JFrame {
         mlGenInfoH.setFont(new java.awt.Font("Segoe UI Emoji", 0, 13)); // NOI18N
         mlGenInfoH.setForeground(new java.awt.Color(255, 255, 255));
         mlGenInfoH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        mlGenInfoH.setText("Generar factura");
+        mlGenInfoH.setText("Generar checkout");
         mlGenInfoH.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 mlGenInfoHMouseMoved(evt);
@@ -761,43 +777,7 @@ public class MenuR extends javax.swing.JFrame {
             .addComponent(mlGenInfoH, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        menu.add(mpGenInfoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 230, -1));
-
-        mpRegisConsum1.setBackground(new java.awt.Color(121, 180, 239));
-
-        mpregisCons1.setBackground(new java.awt.Color(43, 137, 230));
-        mpregisCons1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 13)); // NOI18N
-        mpregisCons1.setForeground(new java.awt.Color(255, 255, 255));
-        mpregisCons1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        mpregisCons1.setText("Registrar Salida");
-        mpregisCons1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                mpregisCons1MouseMoved(evt);
-            }
-        });
-        mpregisCons1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mpregisCons1MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                mpregisCons1MouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout mpRegisConsum1Layout = new javax.swing.GroupLayout(mpRegisConsum1);
-        mpRegisConsum1.setLayout(mpRegisConsum1Layout);
-        mpRegisConsum1Layout.setHorizontalGroup(
-            mpRegisConsum1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mpRegisConsum1Layout.createSequentialGroup()
-                .addComponent(mpregisCons1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        mpRegisConsum1Layout.setVerticalGroup(
-            mpRegisConsum1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mpregisCons1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-        );
-
-        menu.add(mpRegisConsum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 230, -1));
+        menu.add(mpGenInfoH, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 230, -1));
 
         bg.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 610));
 
@@ -924,17 +904,17 @@ public class MenuR extends javax.swing.JFrame {
         jtableHuespedes.setFocusable(false);
         jScrollPane4.setViewportView(jtableHuespedes);
 
-        pmostrarH.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 400, 500));
+        pmostrarH.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 460, 500));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/huesped.png"))); // NOI18N
-        pmostrarH.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 330));
+        pmostrarH.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 240, 330));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("HUESPEDES");
-        pmostrarH.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 310, 40));
+        pmostrarH.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 240, 40));
 
         jMenu.addTab("tab5", pmostrarH);
 
@@ -1094,59 +1074,59 @@ public class MenuR extends javax.swing.JFrame {
         peliminarC1.setBackground(new java.awt.Color(233, 230, 230));
         peliminarC1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lcodeMC1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lcodeMC1.setForeground(new java.awt.Color(51, 51, 51));
-        lcodeMC1.setText("CODIGO");
-        peliminarC1.add(lcodeMC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 12, -1, -1));
+        lcodeMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lcodeMS.setForeground(new java.awt.Color(51, 51, 51));
+        lcodeMS.setText("CODIGO");
+        peliminarC1.add(lcodeMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
-        icodeMC1.setBackground(new java.awt.Color(153, 153, 153));
-        icodeMC1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        icodeMC1.setForeground(new java.awt.Color(255, 255, 255));
-        icodeMC1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        icodeMC1.setBorder(null);
-        icodeMC1.addActionListener(new java.awt.event.ActionListener() {
+        icodeMS.setBackground(new java.awt.Color(153, 153, 153));
+        icodeMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        icodeMS.setForeground(new java.awt.Color(255, 255, 255));
+        icodeMS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        icodeMS.setBorder(null);
+        icodeMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                icodeMC1ActionPerformed(evt);
+                icodeMSActionPerformed(evt);
             }
         });
-        peliminarC1.add(icodeMC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 150, 25));
+        peliminarC1.add(icodeMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 150, 25));
 
-        bEliminarC1.setBackground(new java.awt.Color(102, 102, 102));
-        bEliminarC1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bEliminarC1.setForeground(new java.awt.Color(255, 255, 255));
-        bEliminarC1.setText("AGREGAR");
-        bEliminarC1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        bEliminarC1.addActionListener(new java.awt.event.ActionListener() {
+        bRegisS.setBackground(new java.awt.Color(102, 102, 102));
+        bRegisS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bRegisS.setForeground(new java.awt.Color(255, 255, 255));
+        bRegisS.setText("REGISTRAR");
+        bRegisS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bRegisS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEliminarC1ActionPerformed(evt);
+                bRegisSActionPerformed(evt);
             }
         });
-        peliminarC1.add(bEliminarC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 120, 30));
+        peliminarC1.add(bRegisS, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, 30));
 
-        lcodeMC2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lcodeMC2.setForeground(new java.awt.Color(51, 51, 51));
-        lcodeMC2.setText("IMPORTE S/");
-        peliminarC1.add(lcodeMC2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        lnomSerS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnomSerS.setForeground(new java.awt.Color(51, 51, 51));
+        lnomSerS.setText("SERVICIO");
+        peliminarC1.add(lnomSerS, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        icodeMC2.setBackground(new java.awt.Color(153, 153, 153));
-        icodeMC2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        icodeMC2.setForeground(new java.awt.Color(255, 255, 255));
-        icodeMC2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        icodeMC2.setBorder(null);
-        icodeMC2.addActionListener(new java.awt.event.ActionListener() {
+        inomSerS.setBackground(new java.awt.Color(153, 153, 153));
+        inomSerS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inomSerS.setForeground(new java.awt.Color(255, 255, 255));
+        inomSerS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inomSerS.setBorder(null);
+        inomSerS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                icodeMC2ActionPerformed(evt);
+                inomSerSActionPerformed(evt);
             }
         });
-        peliminarC1.add(icodeMC2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 150, 25));
+        peliminarC1.add(inomSerS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 150, 25));
 
         pregistrarConsumo.add(peliminarC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 320, 130));
 
         jScrollPane7.setBackground(new java.awt.Color(204, 204, 204));
 
-        jtableEliminaClienteR1.setBackground(new java.awt.Color(204, 204, 204));
-        jtableEliminaClienteR1.setForeground(new java.awt.Color(0, 0, 0));
-        jtableEliminaClienteR1.setModel(new javax.swing.table.DefaultTableModel(
+        servicios.setBackground(new java.awt.Color(204, 204, 204));
+        servicios.setForeground(new java.awt.Color(0, 0, 0));
+        servicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -1157,9 +1137,9 @@ public class MenuR extends javax.swing.JFrame {
 
             }
         ));
-        jtableEliminaClienteR1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jtableEliminaClienteR1.setFocusable(false);
-        jScrollPane7.setViewportView(jtableEliminaClienteR1);
+        servicios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        servicios.setFocusable(false);
+        jScrollPane7.setViewportView(servicios);
 
         pregistrarConsumo.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 340, 500));
 
@@ -1805,6 +1785,24 @@ public class MenuR extends javax.swing.JFrame {
         }     
     }
     
+    public void CargarTablaS(){
+        int fila = this.servicios.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            modeloS.removeRow(0);
+        }
+        
+        Servicio[] arregloS = GS.getArregloS();
+        String[] datos = new String[4];
+        for (int i = 0; i < GS.getContaS(); i++) {
+            datos[0] = arregloS[i].getNomServicio();
+            datos[1] = arregloS[i].getTipo();
+            datos[2] = String.valueOf("S/. "+arregloS[i].getPrecServicio());
+            datos[3] = String.valueOf(arregloS[i].getCantSerDisponibles()+" reserv");
+            
+            modeloS.addRow(datos);
+        }
+    }
+    
     private void lminusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lminusMouseExited
         pminus.setBackground(new Color(43, 137, 230));
     }//GEN-LAST:event_lminusMouseExited
@@ -1978,7 +1976,7 @@ public class MenuR extends javax.swing.JFrame {
             modelo.removeRow(0);
         }
         Huesped[] arregloC = GC.getArregloC();
-        String[] datos = new String[6];
+        String[] datos = new String[8];
         for (int i = 0; i < GC.getContaC(); i++) {
             datos[0] = arregloC[i].getCode();
             datos[1] = arregloC[i].getNom().toUpperCase();
@@ -1986,6 +1984,8 @@ public class MenuR extends javax.swing.JFrame {
             datos[3] = String.valueOf(arregloC[i].getDni());
             datos[4] = arregloC[i].getPase().toUpperCase();
             datos[5] = String.valueOf(arregloC[i].getNumH());
+            datos[6] = arregloC[i].getEst();
+            datos[7] = String.valueOf("S/. "+arregloC[i].getCuentaC()); 
             
             modelo.addRow(datos);
         }     
@@ -2017,17 +2017,14 @@ public class MenuR extends javax.swing.JFrame {
 
     private void bEliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarCActionPerformed
         String code = icodeMC.getText();
-        int numH = 0;
-        for (int i = 0; i < GC.getContaC(); i++) {
-            if (arregloC[i].getCode().equalsIgnoreCase(code)) {
-                numH = arregloC[i].getNumH();
-            }
+        int numH = GC.buscarNumHabitacionHuesped(code);
+        if (numH != -1) {
+            arregloH[numH].setEstado("DISPONIBLE");
+            GC.EliminarHuesped(code);
+            CargarTablaC();
+            CargarTablaH();
+            icodeMC.setText("");
         }
-        arregloH[numH-1].setEstado("DISPONIBLE");
-        GC.EliminarHuesped(code);
-        CargarTablaC();
-        CargarTablaH();
-        icodeMC.setText("");
     }//GEN-LAST:event_bEliminarCActionPerformed
 
     private void icodigoMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icodigoMHActionPerformed
@@ -2036,25 +2033,16 @@ public class MenuR extends javax.swing.JFrame {
 
     private void bBuscarMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarMHActionPerformed
         String code = icodigoMH.getText();
-        boolean noencontro = false;
-        for (int i = 0; i < GC.getContaC(); i++) {
-            if (arregloC[i].getCode().equalsIgnoreCase(code)) { 
-                inombreCH.setText(arregloC[i].getNom().toUpperCase());
-                iapellidoCH.setText(arregloC[i].getApell().toUpperCase());
-                idniCH.setText(String.valueOf(arregloC[i].getDni()));
-                if (arregloC[i].getPase().equalsIgnoreCase("base")) {
-                    cBaseCH.setSelected(true);
-                } else if (arregloC[i].getPase().equalsIgnoreCase("Miembro")) {
-                    cMiembroCH.setSelected(true);
-                }
-                noencontro = false;
-                break;
-            } else {
-                noencontro = true;
+        int i = GC.buscarPosHuesped(code);
+        if (i != -1) {
+            inombreCH.setText(arregloC[i].getNom().toUpperCase());
+            iapellidoCH.setText(arregloC[i].getApell().toUpperCase());
+            idniCH.setText(String.valueOf(arregloC[i].getDni()));
+            if (arregloC[i].getPase().equalsIgnoreCase("base")) {
+                cBaseCH.setSelected(true);
+            } else if (arregloC[i].getPase().equalsIgnoreCase("Miembro")) {
+                cMiembroCH.setSelected(true);
             }
-        }
-        if (noencontro == true) {
-            JOptionPane.showMessageDialog(null, "Huesped no encontrado"); 
         }
     }//GEN-LAST:event_bBuscarMHActionPerformed
 
@@ -2064,23 +2052,23 @@ public class MenuR extends javax.swing.JFrame {
 
     private void bmodificarCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarCHActionPerformed
         String code = icodigoMH.getText();
-        for (int i = 0; i < GC.getContaC(); i++) {
-            if (arregloC[i].getCode().equalsIgnoreCase(code)) {
-                arregloC[i].setNom(inombreCH.getText());
-                arregloC[i].setApell(iapellidoCH.getText());
-                arregloC[i].setDni(Integer.parseInt(idniCH.getText()));
-                if (cBaseCH.isSelected()) {
-                    arregloC[i].setPase("Base");
-                } else if (cMiembroCH.isSelected()) {
-                    arregloC[i].setPase("Miembro");
-                }
+        int i = GC.buscarPosHuesped(code);
+        if (i != -1) {
+            arregloC[i].setNom(inombreCH.getText());
+            arregloC[i].setApell(iapellidoCH.getText());
+            arregloC[i].setDni(Integer.parseInt(idniCH.getText()));
+            if (cBaseCH.isSelected()) {
+                arregloC[i].setPase("Base");
+            } else if (cMiembroCH.isSelected()) {
+                arregloC[i].setPase("Miembro");
             }
+            CargarTablaC();
+            inombreCH.setText("");
+            iapellidoCH.setText("");
+            idniCH.setText("");
+            icodigoMH.setText(""); 
+            botonesModiHues.clearSelection();           
         }
-        CargarTablaC();
-        inombreCH.setText("");
-        iapellidoCH.setText("");
-        idniCH.setText("");
-        botonesModiHues.clearSelection();
     }//GEN-LAST:event_bmodificarCHActionPerformed
 
     private void iapellidoCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoCHActionPerformed
@@ -2159,17 +2147,25 @@ public class MenuR extends javax.swing.JFrame {
         mpRegisConsum.setBackground(new Color(121, 180, 239));
     }//GEN-LAST:event_mpregisConsMouseExited
 
-    private void icodeMC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icodeMC1ActionPerformed
+    private void icodeMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icodeMSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_icodeMC1ActionPerformed
+    }//GEN-LAST:event_icodeMSActionPerformed
 
-    private void bEliminarC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarC1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bEliminarC1ActionPerformed
+    private void bRegisSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisSActionPerformed
+        String cod = icodeMS.getText();
+        String serv = inomSerS.getText();
+        float prec = GS.buscarPrecioServicio(serv);
+        GC.registrarConsumo(cod, prec);
+        icodeMS.setText("");
+        inomSerS.setText(""); 
+        CargarTablaC();
+        CargarTablaH();
+        CargarTablaS();
+    }//GEN-LAST:event_bRegisSActionPerformed
 
-    private void icodeMC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icodeMC2ActionPerformed
+    private void inomSerSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inomSerSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_icodeMC2ActionPerformed
+    }//GEN-LAST:event_inomSerSActionPerformed
 
     private void inombreCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreCRActionPerformed
         // TODO add your handling code here:
@@ -2178,7 +2174,7 @@ public class MenuR extends javax.swing.JFrame {
     private void breservarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_breservarCActionPerformed
         int numH = Integer.parseInt(inumHabCR.getText());
         if (arregloH[numH-1].getEstado().equals("DISPONIBLE")) {
-            arregloH[numH-1].setEstado("RESERVADO"); 
+            arregloH[numH-1].setEstado("RESERVADO");
             
             String nom = inombreCR.getText();
             String apell = iapellidoCR.getText();
@@ -2186,10 +2182,12 @@ public class MenuR extends javax.swing.JFrame {
             if (cBaseCR.isSelected()) {
                 Base ref = new Base(nom, apell, "Base", dni, numH);
                 ref.generarCodigo();
+                ref.setEst("R");
                 GC.IngresarHuesped(ref);
             } else if (cMiembroCR.isSelected()) {
                 Miembro ref = new Miembro(nom,apell, "Miembro", dni, numH);
                 ref.generarCodigo();
+                ref.setEst("R");
                 GC.IngresarHuesped(ref);
             }
             CargarTablaH();
@@ -2230,17 +2228,14 @@ public class MenuR extends javax.swing.JFrame {
 
     private void bEliminarCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarCRActionPerformed
         String code = icodeMCR.getText();
-        int numH = 0;
-        for (int i = 0; i < GC.getContaC(); i++) {
-            if (arregloC[i].getCode().equalsIgnoreCase(code)) {
-                numH = arregloC[i].getNumH();
-            }
+        int numH = GC.buscarNumHabitacionHuesped(code);
+        if (numH != -1) {
+            GC.EliminarReservacion(code);
+            arregloH[numH].setEstado("OCUPADO");
+            CargarTablaC();
+            CargarTablaH();
+            icodeMCR.setText("");
         }
-        arregloH[numH-1].setEstado("DISPONIBLE");
-        GC.EliminarHuesped(code);
-        CargarTablaC();
-        CargarTablaH();
-        icodeMCR.setText("");        
     }//GEN-LAST:event_bEliminarCRActionPerformed
 
     private void icodigoMH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icodigoMH1ActionPerformed
@@ -2274,18 +2269,6 @@ public class MenuR extends javax.swing.JFrame {
     private void idniCH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idniCH1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idniCH1ActionPerformed
-
-    private void mpregisCons1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpregisCons1MouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mpregisCons1MouseMoved
-
-    private void mpregisCons1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpregisCons1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mpregisCons1MouseClicked
-
-    private void mpregisCons1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpregisCons1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mpregisCons1MouseExited
 
     private void mlGenInfoHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mlGenInfoHMouseExited
         mpGenInfoH.setBackground(new Color(121, 180, 239));
@@ -2339,8 +2322,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JButton bBuscarMH;
     private javax.swing.JButton bBuscarMH1;
     private javax.swing.JButton bEliminarC;
-    private javax.swing.JButton bEliminarC1;
     private javax.swing.JButton bEliminarCR;
+    private javax.swing.JButton bRegisS;
     private javax.swing.JButton bagregar;
     private javax.swing.JPanel bg;
     private javax.swing.JButton bmodificarCH;
@@ -2368,9 +2351,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JTextField iapellidoCH1;
     private javax.swing.JTextField iapellidoCR;
     private javax.swing.JTextField icodeMC;
-    private javax.swing.JTextField icodeMC1;
-    private javax.swing.JTextField icodeMC2;
     private javax.swing.JTextField icodeMCR;
+    private javax.swing.JTextField icodeMS;
     private javax.swing.JTextField icodigoMH;
     private javax.swing.JTextField icodigoMH1;
     private javax.swing.JTextField idniC;
@@ -2381,6 +2363,7 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel imgpersona;
     private javax.swing.JPanel informeHabi;
     private javax.swing.JPanel informeIng;
+    private javax.swing.JTextField inomSerS;
     private javax.swing.JTextField inombreC;
     private javax.swing.JTextField inombreCH;
     private javax.swing.JTextField inombreCH1;
@@ -2411,7 +2394,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jimagenModificarHab1;
     private javax.swing.JTable jtableEliminaCliente;
     private javax.swing.JTable jtableEliminaClienteR;
-    private javax.swing.JTable jtableEliminaClienteR1;
     private javax.swing.JTable jtableHabitaciones;
     private javax.swing.JTable jtableHabitaciones1;
     private javax.swing.JTable jtableHuespedes;
@@ -2420,9 +2402,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel lapellidoCH;
     private javax.swing.JLabel lapellidoCH1;
     private javax.swing.JLabel lcodeMC;
-    private javax.swing.JLabel lcodeMC1;
-    private javax.swing.JLabel lcodeMC2;
     private javax.swing.JLabel lcodeMCR;
+    private javax.swing.JLabel lcodeMS;
     private javax.swing.JLabel lcodigoMH;
     private javax.swing.JLabel lcodigoMH1;
     private javax.swing.JLabel ldniC;
@@ -2433,6 +2414,7 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel lhabitacionC;
     private javax.swing.JLabel lhabitacionCR;
     private javax.swing.JLabel lminus;
+    private javax.swing.JLabel lnomSerS;
     private javax.swing.JLabel lnombreC;
     private javax.swing.JLabel lnombreCH;
     private javax.swing.JLabel lnombreCH1;
@@ -2465,10 +2447,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JPanel mpModificar;
     private javax.swing.JPanel mpMostrarH;
     private javax.swing.JPanel mpRegisConsum;
-    private javax.swing.JPanel mpRegisConsum1;
     private javax.swing.JPanel mpRegistrarR;
     private javax.swing.JLabel mpregisCons;
-    private javax.swing.JLabel mpregisCons1;
     private javax.swing.JPanel pAgregar;
     private javax.swing.JPanel pBuscarC;
     private javax.swing.JPanel pBuscarC1;
@@ -2489,5 +2469,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JPanel pregistrarConsumo;
     private javax.swing.JPanel pregistratHuesped;
     private javax.swing.JPanel registrarReservacion;
+    private javax.swing.JTable servicios;
     // End of variables declaration//GEN-END:variables
 }

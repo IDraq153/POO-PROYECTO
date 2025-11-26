@@ -22,6 +22,32 @@ public class GestionServicio {
             JOptionPane.showMessageDialog(null, "Maximo de servicios registrados");
         }
     }
+    public float buscarPrecioServicio(String nom){
+        float prec = 0;
+        for (int i = 0; i < contaS; i++) {
+            if (arregloS[i].getNomServicio().equalsIgnoreCase(nom)) {
+                if (arregloS[i].getCantSerDisponibles() <= 0) {
+                    JOptionPane.showMessageDialog(null, "No hay cupos disponibles");
+                } else {
+                    arregloS[i].setCantSerDisponibles(arregloS[i].getCantSerDisponibles()-1);
+                    prec = arregloS[i].getPrecServicio();
+                    JOptionPane.showMessageDialog(null, "Importe actualizado");
+                    break;                    
+                }
+            }
+        }
+        return prec;
+    }
+    
+    public int buscarPoServicio(String nombre) {
+        for (int i = 0; i < contaS; i++) {
+            if (arregloS[i].getNomServicio().equalsIgnoreCase(nombre)) {
+                return i;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Servicio no encontrado");
+        return -1;
+    }
 
     public void EliminarServicio(String nombre) {
         boolean noencontro = false;
