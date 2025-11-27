@@ -5,10 +5,12 @@ import Code.Deluxe;
 import Code.Empleado;
 import Code.Estandar;
 import Code.GestionHabitacion;
+import Code.GestionHuesped;
 import Code.GestionPersona;
 import Code.GestionServicio;
 import Code.GestionSistema;
 import Code.Habitacion;
+import Code.Huesped;
 import Code.Limpieza;
 import Code.Recepcionista;
 import Code.Relax;
@@ -24,11 +26,14 @@ public class Menu extends javax.swing.JFrame {
 
     //VARIABLES
     private DefaultTableModel modelo;
+    private DefaultTableModel modeloC;
     private DefaultTableModel modeloH;
     private DefaultTableModel modeloS;
     private GestionPersona GP;
     private GestionHabitacion GH;
     private GestionServicio GS;
+    private GestionHuesped GC;
+    private Huesped[] arregloC;
     private Habitacion[] arregloH;
     private Empleado[] arreglo;
     private Servicio[] arregloS;
@@ -46,7 +51,22 @@ public class Menu extends javax.swing.JFrame {
         this.GH = sis.getGH();
         this.GP = sis.getGP();
         this.GS = sis.getGS();
-
+        this.GC = sis.getGC();
+        
+        //TABLAS HUESPEEDES
+        modeloC = new DefaultTableModel();
+        modeloC.addColumn("Code");
+        modeloC.addColumn("Nombre");
+        modeloC.addColumn("Apellido");
+        modeloC.addColumn("Dni");
+        modeloC.addColumn("Pase");
+        modeloC.addColumn("N° Hab");
+        modeloC.addColumn("Est");
+        modeloC.addColumn("P S/.");
+        this.jtableHuespedes.setModel(modeloC);
+        jtableHuespedes.getTableHeader().setResizingAllowed(false);
+        jtableHuespedes.getTableHeader().setReorderingAllowed(false);
+        
         //TABLAS EMPLEADOS
         modelo = new DefaultTableModel(){
             @Override
@@ -111,8 +131,10 @@ public class Menu extends javax.swing.JFrame {
         this.arreglo = GP.getArregloPersona();
         this.arregloH = GH.getArregloHab();
         this.arregloS = GS.getArregloS();
+        this.arregloC = GC.getArregloC();
         this.menuE = ref;
         CargarTablaH();
+        CargarTablaC();
         CargarTabla();
         CargarTablaS();
 
@@ -334,7 +356,12 @@ public class Menu extends javax.swing.JFrame {
         jtableHabitaciones = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jPanelInfoIng = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jtableHuespedes = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        iTotal = new javax.swing.JTextField();
+        bTotal = new javax.swing.JButton();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -2302,31 +2329,65 @@ public class Menu extends javax.swing.JFrame {
         jMenu.addTab("tab11", jPanelInforH);
 
         jPanelInfoIng.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelInfoIng.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("INFORME INGRESOS");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("INGRESOS");
+        jPanelInfoIng.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 475, 140, 40));
 
-        javax.swing.GroupLayout jPanelInfoIngLayout = new javax.swing.GroupLayout(jPanelInfoIng);
-        jPanelInfoIng.setLayout(jPanelInfoIngLayout);
-        jPanelInfoIngLayout.setHorizontalGroup(
-            jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
-            .addGroup(jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelInfoIngLayout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(172, Short.MAX_VALUE)))
-        );
-        jPanelInfoIngLayout.setVerticalGroup(
-            jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-            .addGroup(jPanelInfoIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelInfoIngLayout.createSequentialGroup()
-                    .addGap(246, 246, 246)
-                    .addComponent(jLabel11)
-                    .addContainerGap(247, Short.MAX_VALUE)))
-        );
+        jScrollPane8.setBackground(new java.awt.Color(204, 204, 204));
+
+        jtableHuespedes.setBackground(new java.awt.Color(204, 204, 204));
+        jtableHuespedes.setForeground(new java.awt.Color(0, 0, 0));
+        jtableHuespedes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtableHuespedes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtableHuespedes.setFocusable(false);
+        jScrollPane8.setViewportView(jtableHuespedes);
+
+        jPanelInfoIng.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 690, 430));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("HUESPEDES");
+        jPanelInfoIng.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 240, 40));
+
+        iTotal.setEditable(false);
+        iTotal.setBackground(new java.awt.Color(153, 153, 153));
+        iTotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iTotal.setForeground(new java.awt.Color(255, 255, 255));
+        iTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iTotal.setBorder(null);
+        iTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iTotalActionPerformed(evt);
+            }
+        });
+        jPanelInfoIng.add(iTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, 250, 30));
+
+        bTotal.setBackground(new java.awt.Color(102, 102, 102));
+        bTotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bTotal.setForeground(new java.awt.Color(255, 255, 255));
+        bTotal.setText("CALCULAR");
+        bTotal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTotalActionPerformed(evt);
+            }
+        });
+        jPanelInfoIng.add(bTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 150, 30));
 
         jMenu.addTab("tab12", jPanelInfoIng);
 
@@ -2438,6 +2499,27 @@ public class Menu extends javax.swing.JFrame {
 
             modelo.addRow(datos);
         }
+    }
+    
+    public void CargarTablaC() {
+        int fila = this.jtableHuespedes.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            modeloC.removeRow(0);
+        }
+        Huesped[] arregloC = GC.getArregloC();
+        String[] datos = new String[8];
+        for (int i = 0; i < GC.getContaC(); i++) {
+            datos[0] = arregloC[i].getCode();
+            datos[1] = arregloC[i].getNom().toUpperCase();
+            datos[2] = String.valueOf(arregloC[i].getApell()).toUpperCase();
+            datos[3] = String.valueOf(arregloC[i].getDni());
+            datos[4] = arregloC[i].getPase().toUpperCase();
+            datos[5] = String.valueOf(arregloC[i].getNumH());
+            datos[6] = arregloC[i].getEst();
+            datos[7] = String.valueOf("S/. "+arregloC[i].getCuentaC()); 
+            
+            modeloC.addRow(datos);
+        }     
     }
 
     private void iapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoActionPerformed
@@ -3096,6 +3178,15 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_flechaMouseClicked
 
+    private void iTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iTotalActionPerformed
+
+    private void bTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTotalActionPerformed
+        float ingresos = GC.calcularIngresos();
+        iTotal.setText(String.valueOf(ingresos));
+    }//GEN-LAST:event_bTotalActionPerformed
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -3144,6 +3235,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton bBuscarS;
     private javax.swing.JButton bModificarHab;
     private javax.swing.JButton bModificarMS;
+    private javax.swing.JButton bTotal;
     private javax.swing.JButton bagregar;
     private javax.swing.JButton bagregar1;
     private javax.swing.JButton bagregarAS;
@@ -3189,6 +3281,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel flecha;
     private javax.swing.JTextField iCantDisAS;
     private javax.swing.JTextField iCantDisMS;
+    private javax.swing.JTextField iTotal;
     private javax.swing.JTextField iapellido;
     private javax.swing.JTextField iapellidoM;
     private javax.swing.JTextField icapacidadH;
@@ -3218,7 +3311,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField iuser;
     private javax.swing.JTextField iuserM;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
@@ -3226,6 +3318,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTabbedPane jMenu;
     private javax.swing.JPanel jPanelAgregarEmp;
     private javax.swing.JPanel jPanelAgregarHab;
@@ -3247,12 +3341,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JLabel jimagenModHab;
     private javax.swing.JLabel jimagenModiEmp;
     private javax.swing.JLabel jimagenModificarHab;
     private javax.swing.JTable jtableEliminarEmp;
     private javax.swing.JTable jtableEliminarSer;
     private javax.swing.JTable jtableHabitaciones;
+    private javax.swing.JTable jtableHuespedes;
     private javax.swing.JTable jtableaAgregarHab;
     private javax.swing.JTable jtableaEliminarHab;
     private javax.swing.JTable jtableagregarSer;

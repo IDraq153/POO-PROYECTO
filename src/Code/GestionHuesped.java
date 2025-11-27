@@ -60,6 +60,14 @@ public class GestionHuesped {
         }
         return -1;
     }
+    
+    public float calcularIngresos() {
+        float ing = 0;
+        for (int i = 0; i < contaC; i++) {
+            ing += arregloC[i].getCuentaC();
+        }
+        return ing;
+    }
 
     public void EliminarHuesped(String code) {
         boolean noencontro = false;

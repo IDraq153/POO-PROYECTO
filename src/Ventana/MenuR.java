@@ -261,10 +261,25 @@ public class MenuR extends javax.swing.JFrame {
         lapellidoCH1 = new javax.swing.JLabel();
         idniCH1 = new javax.swing.JTextField();
         ldniCH1 = new javax.swing.JLabel();
-        informeHabi = new javax.swing.JPanel();
+        checkout = new javax.swing.JPanel();
+        peliminarC3 = new javax.swing.JPanel();
+        lcodeCheck = new javax.swing.JLabel();
+        icodeCheck = new javax.swing.JTextField();
+        lnumDCheck = new javax.swing.JLabel();
+        inumDCheck = new javax.swing.JTextField();
+        bCheckOut = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        informeIng = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        bmodih2 = new javax.swing.JPanel();
+        lnombreCheck = new javax.swing.JLabel();
+        inombreCheck = new javax.swing.JTextField();
+        iapellidoCheck = new javax.swing.JTextField();
+        lapellidoCheck = new javax.swing.JLabel();
+        idniCheck = new javax.swing.JTextField();
+        ldniCheck = new javax.swing.JLabel();
+        ltotalCheck = new javax.swing.JLabel();
+        iTotalCheck = new javax.swing.JTextField();
+        bLimpiar = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1701,55 +1716,157 @@ public class MenuR extends javax.swing.JFrame {
 
         jMenu.addTab("tab9", modificarReservacion);
 
-        informeHabi.setBackground(new java.awt.Color(255, 255, 255));
+        checkout.setBackground(new java.awt.Color(255, 255, 255));
+        checkout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("INFORME HABITACION");
+        peliminarC3.setBackground(new java.awt.Color(233, 230, 230));
+        peliminarC3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout informeHabiLayout = new javax.swing.GroupLayout(informeHabi);
-        informeHabi.setLayout(informeHabiLayout);
-        informeHabiLayout.setHorizontalGroup(
-            informeHabiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informeHabiLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        informeHabiLayout.setVerticalGroup(
-            informeHabiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informeHabiLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(351, Short.MAX_VALUE))
-        );
+        lcodeCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lcodeCheck.setForeground(new java.awt.Color(51, 51, 51));
+        lcodeCheck.setText("CODIGO");
+        peliminarC3.add(lcodeCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
-        jMenu.addTab("tab10", informeHabi);
+        icodeCheck.setBackground(new java.awt.Color(153, 153, 153));
+        icodeCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        icodeCheck.setForeground(new java.awt.Color(255, 255, 255));
+        icodeCheck.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        icodeCheck.setBorder(null);
+        icodeCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                icodeCheckActionPerformed(evt);
+            }
+        });
+        peliminarC3.add(icodeCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 150, 25));
 
-        informeIng.setBackground(new java.awt.Color(255, 255, 255));
+        lnumDCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnumDCheck.setForeground(new java.awt.Color(51, 51, 51));
+        lnumDCheck.setText("N° DIAS");
+        peliminarC3.add(lnumDCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("INFORME INGRESOS");
+        inumDCheck.setBackground(new java.awt.Color(153, 153, 153));
+        inumDCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inumDCheck.setForeground(new java.awt.Color(255, 255, 255));
+        inumDCheck.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inumDCheck.setBorder(null);
+        inumDCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inumDCheckActionPerformed(evt);
+            }
+        });
+        peliminarC3.add(inumDCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 150, 25));
 
-        javax.swing.GroupLayout informeIngLayout = new javax.swing.GroupLayout(informeIng);
-        informeIng.setLayout(informeIngLayout);
-        informeIngLayout.setHorizontalGroup(
-            informeIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informeIngLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        informeIngLayout.setVerticalGroup(
-            informeIngLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informeIngLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(351, Short.MAX_VALUE))
-        );
+        bCheckOut.setBackground(new java.awt.Color(102, 102, 102));
+        bCheckOut.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bCheckOut.setForeground(new java.awt.Color(255, 255, 255));
+        bCheckOut.setText("CHECKOUT");
+        bCheckOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bCheckOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCheckOutActionPerformed(evt);
+            }
+        });
+        peliminarC3.add(bCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, 30));
 
-        jMenu.addTab("tab11", informeIng);
+        checkout.add(peliminarC3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 320, 130));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgeliminarcliente.png"))); // NOI18N
+        checkout.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 160, 200));
+
+        bmodih2.setBackground(new java.awt.Color(233, 230, 230));
+        bmodih2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lnombreCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lnombreCheck.setForeground(new java.awt.Color(51, 51, 51));
+        lnombreCheck.setText("NOMBRE");
+        bmodih2.add(lnombreCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+
+        inombreCheck.setEditable(false);
+        inombreCheck.setBackground(new java.awt.Color(153, 153, 153));
+        inombreCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombreCheck.setForeground(new java.awt.Color(255, 255, 255));
+        inombreCheck.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inombreCheck.setBorder(null);
+        inombreCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inombreCheckActionPerformed(evt);
+            }
+        });
+        bmodih2.add(inombreCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 150, 25));
+
+        iapellidoCheck.setEditable(false);
+        iapellidoCheck.setBackground(new java.awt.Color(153, 153, 153));
+        iapellidoCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iapellidoCheck.setForeground(new java.awt.Color(255, 255, 255));
+        iapellidoCheck.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iapellidoCheck.setBorder(null);
+        iapellidoCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iapellidoCheckActionPerformed(evt);
+            }
+        });
+        bmodih2.add(iapellidoCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 150, 25));
+
+        lapellidoCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lapellidoCheck.setForeground(new java.awt.Color(51, 51, 51));
+        lapellidoCheck.setText("APELLIDOS");
+        bmodih2.add(lapellidoCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+
+        idniCheck.setEditable(false);
+        idniCheck.setBackground(new java.awt.Color(153, 153, 153));
+        idniCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        idniCheck.setForeground(new java.awt.Color(255, 255, 255));
+        idniCheck.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        idniCheck.setBorder(null);
+        idniCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idniCheckActionPerformed(evt);
+            }
+        });
+        bmodih2.add(idniCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 150, 25));
+
+        ldniCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ldniCheck.setForeground(new java.awt.Color(51, 51, 51));
+        ldniCheck.setText("DNI");
+        bmodih2.add(ldniCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+
+        ltotalCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ltotalCheck.setForeground(new java.awt.Color(51, 51, 51));
+        ltotalCheck.setText("IMPORTE S/. ");
+        bmodih2.add(ltotalCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        iTotalCheck.setEditable(false);
+        iTotalCheck.setBackground(new java.awt.Color(153, 153, 153));
+        iTotalCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        iTotalCheck.setForeground(new java.awt.Color(255, 255, 255));
+        iTotalCheck.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        iTotalCheck.setBorder(null);
+        iTotalCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iTotalCheckActionPerformed(evt);
+            }
+        });
+        bmodih2.add(iTotalCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 150, 25));
+
+        bLimpiar.setBackground(new java.awt.Color(102, 102, 102));
+        bLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        bLimpiar.setText("LIMPIAR");
+        bLimpiar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimpiarActionPerformed(evt);
+            }
+        });
+        bmodih2.add(bLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 120, 30));
+
+        checkout.add(bmodih2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 320, 270));
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgmodihuesped.png"))); // NOI18N
+        checkout.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 300, 160));
+
+        jMenu.addTab("tab11", checkout);
 
         bg.add(jMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 710, 560));
 
@@ -2282,6 +2399,62 @@ public class MenuR extends javax.swing.JFrame {
         mpGenInfoH.setBackground(new Color(86, 136, 187));
     }//GEN-LAST:event_mlGenInfoHMouseMoved
 
+    private void icodeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icodeCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icodeCheckActionPerformed
+
+    private void bLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimpiarActionPerformed
+        icodeCheck.setText("");
+        inombreCheck.setText("");
+        inumDCheck.setText("");
+        iapellidoCheck.setText("");
+        iTotalCheck.setText("");
+        idniCheck.setText(""); 
+    }//GEN-LAST:event_bLimpiarActionPerformed
+
+    private void inumDCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inumDCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inumDCheckActionPerformed
+
+    private void inombreCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombreCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inombreCheckActionPerformed
+
+    private void iapellidoCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iapellidoCheckActionPerformed
+
+    private void idniCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idniCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idniCheckActionPerformed
+
+    private void iTotalCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iTotalCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iTotalCheckActionPerformed
+
+    private void bCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCheckOutActionPerformed
+        String code = icodeCheck.getText();
+        int numD = Integer.parseInt(inumDCheck.getText()); 
+        int i = GC.buscarPosHuesped(code);
+        int numH = arregloC[i].getNumH();
+        
+        float precio = arregloH[numH-1].getPrecNoche();
+        
+        arregloC[i].calcularImporte(precio, numD);
+        
+        int dias = Integer.parseInt(inumDCheck.getText());
+        inombreCheck.setText(arregloC[i].getNom()); 
+        iapellidoCheck.setText(arregloC[i].getApell()); 
+        idniCheck.setText(String.valueOf(arregloC[i].getDni())); 
+        iTotalCheck.setText("S/."+String.valueOf(arregloC[i].getCuentaC())); 
+        
+        arregloC[i].setEst("E"); //SALIDA
+        arregloH[numH-1].setEstado("SUCIO");
+        CargarTablaC();
+        CargarTablaH();
+        CargarTablaS();
+    }//GEN-LAST:event_bCheckOutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2321,8 +2494,10 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel arrastar;
     private javax.swing.JButton bBuscarMH;
     private javax.swing.JButton bBuscarMH1;
+    private javax.swing.JButton bCheckOut;
     private javax.swing.JButton bEliminarC;
     private javax.swing.JButton bEliminarCR;
+    private javax.swing.JButton bLimpiar;
     private javax.swing.JButton bRegisS;
     private javax.swing.JButton bagregar;
     private javax.swing.JPanel bg;
@@ -2330,6 +2505,7 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JButton bmodificarCH1;
     private javax.swing.JPanel bmodih;
     private javax.swing.JPanel bmodih1;
+    private javax.swing.JPanel bmodih2;
     private javax.swing.ButtonGroup botonesAgregarH;
     private javax.swing.ButtonGroup botonesModiHues;
     private javax.swing.ButtonGroup botonesReservarH;
@@ -2343,13 +2519,17 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JRadioButton cMiembroCH1;
     private javax.swing.JRadioButton cMiembroCR;
     private javax.swing.JPanel cerrarses;
+    private javax.swing.JPanel checkout;
     private javax.swing.JPanel dashboard;
     private javax.swing.JPanel eliminarReservacion;
     private javax.swing.JLabel flecha;
+    private javax.swing.JTextField iTotalCheck;
     private javax.swing.JTextField iapellidoC;
     private javax.swing.JTextField iapellidoCH;
     private javax.swing.JTextField iapellidoCH1;
     private javax.swing.JTextField iapellidoCR;
+    private javax.swing.JTextField iapellidoCheck;
+    private javax.swing.JTextField icodeCheck;
     private javax.swing.JTextField icodeMC;
     private javax.swing.JTextField icodeMCR;
     private javax.swing.JTextField icodeMS;
@@ -2359,22 +2539,23 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JTextField idniCH;
     private javax.swing.JTextField idniCH1;
     private javax.swing.JTextField idniCR;
+    private javax.swing.JTextField idniCheck;
     private javax.swing.JLabel imgMenuPrinvipal;
     private javax.swing.JLabel imgpersona;
-    private javax.swing.JPanel informeHabi;
-    private javax.swing.JPanel informeIng;
     private javax.swing.JTextField inomSerS;
     private javax.swing.JTextField inombreC;
     private javax.swing.JTextField inombreCH;
     private javax.swing.JTextField inombreCH1;
     private javax.swing.JTextField inombreCR;
+    private javax.swing.JTextField inombreCheck;
+    private javax.swing.JTextField inumDCheck;
     private javax.swing.JTextField inumHabC;
     private javax.swing.JTextField inumHabCR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2401,6 +2582,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel lapellidoC1;
     private javax.swing.JLabel lapellidoCH;
     private javax.swing.JLabel lapellidoCH1;
+    private javax.swing.JLabel lapellidoCheck;
+    private javax.swing.JLabel lcodeCheck;
     private javax.swing.JLabel lcodeMC;
     private javax.swing.JLabel lcodeMCR;
     private javax.swing.JLabel lcodeMS;
@@ -2410,6 +2593,7 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel ldniC1;
     private javax.swing.JLabel ldniCH;
     private javax.swing.JLabel ldniCH1;
+    private javax.swing.JLabel ldniCheck;
     private javax.swing.JLabel lexit;
     private javax.swing.JLabel lhabitacionC;
     private javax.swing.JLabel lhabitacionCR;
@@ -2419,6 +2603,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel lnombreCH;
     private javax.swing.JLabel lnombreCH1;
     private javax.swing.JLabel lnombreCR;
+    private javax.swing.JLabel lnombreCheck;
+    private javax.swing.JLabel lnumDCheck;
     private javax.swing.JLabel lpEmpleados;
     private javax.swing.JLabel lpHabitaciones;
     private javax.swing.JLabel lpReportes;
@@ -2427,6 +2613,7 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel lpaseClienteH1;
     private javax.swing.JLabel lpaseClienteR;
     private javax.swing.JLabel lrolprofile;
+    private javax.swing.JLabel ltotalCheck;
     private javax.swing.JLabel luserprofile;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel menuimagen;
@@ -2459,6 +2646,7 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JPanel peliminarC;
     private javax.swing.JPanel peliminarC1;
     private javax.swing.JPanel peliminarC2;
+    private javax.swing.JPanel peliminarC3;
     private javax.swing.JPanel peliminarHuesped;
     private javax.swing.JPanel perfilmenu;
     private javax.swing.JPanel pexit;

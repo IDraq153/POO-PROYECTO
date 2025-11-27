@@ -19,6 +19,8 @@ public abstract class Huesped {
     }
 
     //METODOS
+    public abstract void calcularImporte(float prec, int dias);
+    
     public abstract void generarCodigo();
     
     //GETTERS AND SETTERS
