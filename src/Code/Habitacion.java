@@ -1,6 +1,6 @@
 package Code;
 
-public abstract class Habitacion {
+public class Habitacion {
 
     private int num, capMax, cantP, numD;
     private float precNoche;
@@ -16,9 +16,6 @@ public abstract class Habitacion {
         this.tipoHabi = tipoHabi;
         this.estado = estado;
     }
-
-    //METODOS
-    public abstract void CalcularPrecio(int cantP, int numD);
 
     //GETTERS AND SETTERS
     public int getNum() {

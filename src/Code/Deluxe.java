@@ -6,8 +6,4 @@ public class Deluxe extends Habitacion {
         super(capMax, tipoHabi, estado, precNoche);
     }
 
-    //METODOS
-    @Override
-    public void CalcularPrecio(int cantP, int numD) {
-    }
 }
