@@ -2,7 +2,7 @@ package Code.Servicio;
 
 import Code.Servicio.Servicio;
 
-public class Limpieza extends Servicio {
+public class Limpieza extends Servicio implements Facturable {
 
     private boolean esExpress;
 

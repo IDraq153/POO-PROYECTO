@@ -1,6 +1,6 @@
 package Code.Servicio;
 
-public class Relax extends Servicio {
+public class Relax extends Servicio implements Facturable {
 
     private boolean incAromaTerap;
 

@@ -16,6 +16,7 @@ import Code.Servicio.Relax;
 import Code.Servicio.Servicio;
 import Code.Habitacion.Suite;
 import Code.Huesped.GestionHuesped;
+import Code.Servicio.Parking;
 import Code.Servicio.Tour;
 import java.awt.Color;
 import static java.lang.System.exit;
@@ -312,7 +313,7 @@ public class Menu extends javax.swing.JFrame {
         pAgregarHab1 = new javax.swing.JPanel();
         bagregarAS = new javax.swing.JButton();
         ltipodeservicioAS = new javax.swing.JLabel();
-        cLavanderiaAS = new javax.swing.JRadioButton();
+        cParkingAS = new javax.swing.JRadioButton();
         cMasajeAS = new javax.swing.JRadioButton();
         iprecioAS = new javax.swing.JTextField();
         lprecioAS = new javax.swing.JLabel();
@@ -321,6 +322,7 @@ public class Menu extends javax.swing.JFrame {
         iCantDisAS = new javax.swing.JTextField();
         lnombreAS = new javax.swing.JLabel();
         inombreAS = new javax.swing.JTextField();
+        cLavanderiaAS1 = new javax.swing.JRadioButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtableagregarSer = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -340,7 +342,7 @@ public class Menu extends javax.swing.JFrame {
         pmsservv = new javax.swing.JPanel();
         bModificarMS = new javax.swing.JButton();
         ltipodeservicioms = new javax.swing.JLabel();
-        cLavanderiaMS = new javax.swing.JRadioButton();
+        cParkingMS = new javax.swing.JRadioButton();
         cMasajeMS = new javax.swing.JRadioButton();
         iprecioMS = new javax.swing.JTextField();
         lprecioMS = new javax.swing.JLabel();
@@ -349,6 +351,7 @@ public class Menu extends javax.swing.JFrame {
         iCantDisMS = new javax.swing.JTextField();
         lnombresMS = new javax.swing.JLabel();
         inombresMS = new javax.swing.JTextField();
+        cLavanderiaMS1 = new javax.swing.JRadioButton();
         imgMS = new javax.swing.JLabel();
         imgMSX = new javax.swing.JLabel();
         jPanelInforH = new javax.swing.JPanel();
@@ -1967,16 +1970,16 @@ public class Menu extends javax.swing.JFrame {
         ltipodeservicioAS.setText("TIPO DE SERVICIO");
         pAgregarHab1.add(ltipodeservicioAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
 
-        botonesAgregarServ.add(cLavanderiaAS);
-        cLavanderiaAS.setForeground(new java.awt.Color(51, 51, 51));
-        cLavanderiaAS.setText("LIMPIEZA");
-        cLavanderiaAS.setActionCommand("DOUBLE");
-        cLavanderiaAS.addActionListener(new java.awt.event.ActionListener() {
+        botonesAgregarServ.add(cParkingAS);
+        cParkingAS.setForeground(new java.awt.Color(51, 51, 51));
+        cParkingAS.setText("PARKING");
+        cParkingAS.setActionCommand("DOUBLE");
+        cParkingAS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cLavanderiaASActionPerformed(evt);
+                cParkingASActionPerformed(evt);
             }
         });
-        pAgregarHab1.add(cLavanderiaAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 109, -1, -1));
+        pAgregarHab1.add(cParkingAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
 
         botonesAgregarServ.add(cMasajeAS);
         cMasajeAS.setForeground(new java.awt.Color(51, 51, 51));
@@ -1987,7 +1990,7 @@ public class Menu extends javax.swing.JFrame {
                 cMasajeASActionPerformed(evt);
             }
         });
-        pAgregarHab1.add(cMasajeAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        pAgregarHab1.add(cMasajeAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         iprecioAS.setBackground(new java.awt.Color(153, 153, 153));
         iprecioAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -2015,7 +2018,7 @@ public class Menu extends javax.swing.JFrame {
                 cTourASActionPerformed(evt);
             }
         });
-        pAgregarHab1.add(cTourAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+        pAgregarHab1.add(cTourAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
         lcantDisAS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lcantDisAS.setForeground(new java.awt.Color(51, 51, 51));
@@ -2050,6 +2053,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         pAgregarHab1.add(inombreAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 25));
+
+        botonesAgregarServ.add(cLavanderiaAS1);
+        cLavanderiaAS1.setForeground(new java.awt.Color(51, 51, 51));
+        cLavanderiaAS1.setText("LIMPIEZA");
+        cLavanderiaAS1.setActionCommand("DOUBLE");
+        cLavanderiaAS1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cLavanderiaAS1ActionPerformed(evt);
+            }
+        });
+        pAgregarHab1.add(cLavanderiaAS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
 
         jPanelAgregarSer.add(pAgregarHab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 350, 270));
 
@@ -2201,16 +2215,16 @@ public class Menu extends javax.swing.JFrame {
         ltipodeservicioms.setText("TIPO DE SERVICIO");
         pmsservv.add(ltipodeservicioms, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
 
-        botonesModiSer.add(cLavanderiaMS);
-        cLavanderiaMS.setForeground(new java.awt.Color(51, 51, 51));
-        cLavanderiaMS.setText("LIMPIEZA");
-        cLavanderiaMS.setActionCommand("DOUBLE");
-        cLavanderiaMS.addActionListener(new java.awt.event.ActionListener() {
+        botonesModiSer.add(cParkingMS);
+        cParkingMS.setForeground(new java.awt.Color(51, 51, 51));
+        cParkingMS.setText("PARKING");
+        cParkingMS.setActionCommand("DOUBLE");
+        cParkingMS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cLavanderiaMSActionPerformed(evt);
+                cParkingMSActionPerformed(evt);
             }
         });
-        pmsservv.add(cLavanderiaMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 109, -1, -1));
+        pmsservv.add(cParkingMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
 
         botonesModiSer.add(cMasajeMS);
         cMasajeMS.setForeground(new java.awt.Color(51, 51, 51));
@@ -2221,7 +2235,7 @@ public class Menu extends javax.swing.JFrame {
                 cMasajeMSActionPerformed(evt);
             }
         });
-        pmsservv.add(cMasajeMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        pmsservv.add(cMasajeMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         iprecioMS.setBackground(new java.awt.Color(153, 153, 153));
         iprecioMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -2249,7 +2263,7 @@ public class Menu extends javax.swing.JFrame {
                 cTourMSActionPerformed(evt);
             }
         });
-        pmsservv.add(cTourMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+        pmsservv.add(cTourMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
         lcantDisMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lcantDisMS.setForeground(new java.awt.Color(51, 51, 51));
@@ -2284,6 +2298,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         pmsservv.add(inombresMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 25));
+
+        botonesModiSer.add(cLavanderiaMS1);
+        cLavanderiaMS1.setForeground(new java.awt.Color(51, 51, 51));
+        cLavanderiaMS1.setText("LIMPIEZA");
+        cLavanderiaMS1.setActionCommand("DOUBLE");
+        cLavanderiaMS1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cLavanderiaMS1ActionPerformed(evt);
+            }
+        });
+        pmsservv.add(cLavanderiaMS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
 
         jPanelModificarSer.add(pmsservv, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 350, 270));
 
@@ -3021,21 +3046,28 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cocupadoMHActionPerformed
 
     private void bagregarASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregarASActionPerformed
-        String nom = inombreAS.getText();
-        float prec = Float.parseFloat(iprecioAS.getText());
-        int cant = Integer.parseInt(iCantDisAS.getText());
-        if (cMasajeAS.isSelected()) {
-            Relax ref = new Relax(nom, prec, cant);  
-            ref.setTipo("RELAX");
+
+        if (cParkingAS.isSelected()) {
+            Parking ref = new Parking();
+            ref.redEspacio();
             GS.IngresarServicio(ref);
-        } else if (cTourAS.isSelected()) {
-            Tour ref = new Tour(nom, prec, cant);
-            ref.setTipo("TOUR");
-            GS.IngresarServicio(ref);
-        } else if (cLavanderiaAS.isSelected()) {
-            Limpieza ref = new Limpieza(nom, prec, cant);
-            ref.setTipo("LIMPIEZA");
-            GS.IngresarServicio(ref);
+        } else {
+            String nom = inombreAS.getText();
+            float prec = Float.parseFloat(iprecioAS.getText());
+            int cant = Integer.parseInt(iCantDisAS.getText());
+            if (cMasajeAS.isSelected()) {
+                Relax ref = new Relax(nom, prec, cant);  
+                ref.setTipo("RELAX");
+                GS.IngresarServicio(ref);
+            } else if (cTourAS.isSelected()) {
+                Tour ref = new Tour(nom, prec, cant);
+                ref.setTipo("TOUR");
+                GS.IngresarServicio(ref);
+            } else if (cLavanderiaAS1.isSelected()) {
+                Limpieza ref = new Limpieza(nom, prec, cant);
+                ref.setTipo("LIMPIEZA");
+                GS.IngresarServicio(ref);
+            }
         }
         
         CargarTablaS(); 
@@ -3063,9 +3095,9 @@ public class Menu extends javax.swing.JFrame {
         }
     }
     
-    private void cLavanderiaASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaASActionPerformed
+    private void cParkingASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cParkingASActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cLavanderiaASActionPerformed
+    }//GEN-LAST:event_cParkingASActionPerformed
 
     private void cMasajeASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMasajeASActionPerformed
         // TODO add your handling code here:
@@ -3111,7 +3143,7 @@ public class Menu extends javax.swing.JFrame {
             } else  if (arregloS[i].getTipo().equalsIgnoreCase("TOUR")) {
                 cTourMS.setSelected(true);
             } else if (arregloS[i].getTipo().equalsIgnoreCase("LIMPIEZA")) {
-                cLavanderiaMS.setSelected(true);
+                cParkingMS.setSelected(true);
             }
         }
     }//GEN-LAST:event_bBuscarSActionPerformed
@@ -3131,8 +3163,10 @@ public class Menu extends javax.swing.JFrame {
                 arregloS[i].setTipo("RELAX");
             } else if (cTourMS.isSelected()) {
                 arregloS[i].setTipo("TOUR");
-            } else if (cLavanderiaMS.isSelected()) {
+            } else if (cLavanderiaMS1.isSelected()) {
                 arregloS[i].setTipo("LIMPIEZA");
+            } else if (cParkingMS.isSelected()) {
+                arregloS[i].setTipo("PARKING");
             }
         }
         CargarTablaS();
@@ -3143,9 +3177,9 @@ public class Menu extends javax.swing.JFrame {
         botonesModiSer.clearSelection();
     }//GEN-LAST:event_bModificarMSActionPerformed
 
-    private void cLavanderiaMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaMSActionPerformed
+    private void cParkingMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cParkingMSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cLavanderiaMSActionPerformed
+    }//GEN-LAST:event_cParkingMSActionPerformed
 
     private void cMasajeMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMasajeMSActionPerformed
         // TODO add your handling code here:
@@ -3189,6 +3223,14 @@ public class Menu extends javax.swing.JFrame {
         float ingresos = GC.calcularIngresos();
         iTotal.setText(String.valueOf(ingresos));
     }//GEN-LAST:event_bTotalActionPerformed
+
+    private void cLavanderiaAS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaAS1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cLavanderiaAS1ActionPerformed
+
+    private void cLavanderiaMS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cLavanderiaMS1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cLavanderiaMS1ActionPerformed
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -3261,10 +3303,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JRadioButton cDeluxeMH;
     private javax.swing.JRadioButton cEstandarH;
     private javax.swing.JRadioButton cEstandarMH;
-    private javax.swing.JRadioButton cLavanderiaAS;
-    private javax.swing.JRadioButton cLavanderiaMS;
+    private javax.swing.JRadioButton cLavanderiaAS1;
+    private javax.swing.JRadioButton cLavanderiaMS1;
     private javax.swing.JRadioButton cMasajeAS;
     private javax.swing.JRadioButton cMasajeMS;
+    private javax.swing.JRadioButton cParkingAS;
+    private javax.swing.JRadioButton cParkingMS;
     private javax.swing.JRadioButton cRecepcionita;
     private javax.swing.JRadioButton cRecepcionitaM;
     private javax.swing.JRadioButton cSuiteMH;

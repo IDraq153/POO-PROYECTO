@@ -1,6 +1,6 @@
 package Code.Servicio;
 
-public abstract class Servicio {
+public class Servicio {
 
     protected String nomServicio, tipo;
     protected float precServicio;
@@ -13,9 +13,6 @@ public abstract class Servicio {
         this.cantSerDisponibles = cantSerDisponibles;
         this.tipo = "";
     }
-
-    //METODOS
-    public abstract float CalcularPrecioFinal();
 
     //GETTERS AND SETTERS
     public String getNomServicio() {

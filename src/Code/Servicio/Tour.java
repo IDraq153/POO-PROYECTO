@@ -2,7 +2,7 @@ package Code.Servicio;
 
 import Code.Servicio.Servicio;
 
-public class Tour extends Servicio {
+public class Tour extends Servicio implements Facturable {
 
     private String dest;
 
