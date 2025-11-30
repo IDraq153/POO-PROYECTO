@@ -3145,7 +3145,7 @@ public class Menu extends javax.swing.JFrame {
             } else if (tipo.equalsIgnoreCase("TOUR")) {
                 cTourMS.setSelected(true);
             } else if (tipo.equalsIgnoreCase("LIMPIEZA")) {
-                cLavanderiaMS1.setSelected(true); // Corregido
+                cLavanderiaMS1.setSelected(true); 
             } else if (tipo.equalsIgnoreCase("PARKING")) {
                 cParkingMS.setSelected(true);
             }
