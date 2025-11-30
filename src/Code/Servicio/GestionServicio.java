@@ -70,6 +70,26 @@ public class GestionServicio {
         }
     }
 
+    //POO 
+    public Servicio obtenerArreglo(String nom) {
+        int pos = buscarPoServicio(nom);
+        if (pos != -1) {
+            return arregloS[pos];
+        } else {
+            return null;
+        }
+    }
+    
+    public void modificarDatos(String nom, float nuevoPrecio, int nuevaCant, String nuevoTipo, String nomF) {
+        int i = buscarPoServicio(nom);
+        if (i != -1) {
+            arregloS[i].setNomServicio(nomF);
+            arregloS[i].setPrecServicio(nuevoPrecio);
+            arregloS[i].setCantSerDisponibles(nuevaCant); 
+            arregloS[i].setTipo(nuevoTipo); 
+        }
+    }
+    
     //GETTERS AND SETTERS
     public Servicio[] getArregloS() {
         return arregloS;

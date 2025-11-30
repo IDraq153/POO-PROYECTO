@@ -350,7 +350,7 @@ public class Menu extends javax.swing.JFrame {
         lcantDisMS = new javax.swing.JLabel();
         iCantDisMS = new javax.swing.JTextField();
         lnombresMS = new javax.swing.JLabel();
-        inombresMS = new javax.swing.JTextField();
+        inombresMSx = new javax.swing.JTextField();
         cLavanderiaMS1 = new javax.swing.JRadioButton();
         imgMS = new javax.swing.JLabel();
         imgMSX = new javax.swing.JLabel();
@@ -2287,17 +2287,17 @@ public class Menu extends javax.swing.JFrame {
         lnombresMS.setText("NOMBRE SERVICIO");
         pmsservv.add(lnombresMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
-        inombresMS.setBackground(new java.awt.Color(153, 153, 153));
-        inombresMS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        inombresMS.setForeground(new java.awt.Color(255, 255, 255));
-        inombresMS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inombresMS.setBorder(null);
-        inombresMS.addActionListener(new java.awt.event.ActionListener() {
+        inombresMSx.setBackground(new java.awt.Color(153, 153, 153));
+        inombresMSx.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inombresMSx.setForeground(new java.awt.Color(255, 255, 255));
+        inombresMSx.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inombresMSx.setBorder(null);
+        inombresMSx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inombresMSActionPerformed(evt);
+                inombresMSxActionPerformed(evt);
             }
         });
-        pmsservv.add(inombresMS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 25));
+        pmsservv.add(inombresMSx, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 25));
 
         botonesModiSer.add(cLavanderiaMS1);
         cLavanderiaMS1.setForeground(new java.awt.Color(51, 51, 51));
@@ -3131,20 +3131,26 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_inombreAEActionPerformed
 
     private void bBuscarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarSActionPerformed
-        boolean noencontro = false;
+
         String nom = inombreMS.getText();
-        int i = GS.buscarPoServicio(nom);
-        if (i != -1) {
-            inombresMS.setText(arregloS[i].getNomServicio());
-            iprecioMS.setText(String.valueOf(arregloS[i].getPrecServicio()));
-            iCantDisMS.setText(String.valueOf(arregloS[i].getCantSerDisponibles()));
-            if (arregloS[i].getTipo().equalsIgnoreCase("RELAX")) {
+        Servicio s = GS.obtenerArreglo(nom);
+        if (s != null) {
+            inombresMSx.setText(s.getNomServicio());
+            iprecioMS.setText(String.valueOf(s.getPrecServicio()));
+            iCantDisMS.setText(String.valueOf(s.getCantSerDisponibles()));
+            
+            String tipo = s.getTipo();
+            if (tipo.equalsIgnoreCase("RELAX")) {
                 cMasajeMS.setSelected(true);
-            } else  if (arregloS[i].getTipo().equalsIgnoreCase("TOUR")) {
+            } else if (tipo.equalsIgnoreCase("TOUR")) {
                 cTourMS.setSelected(true);
-            } else if (arregloS[i].getTipo().equalsIgnoreCase("LIMPIEZA")) {
+            } else if (tipo.equalsIgnoreCase("LIMPIEZA")) {
+                cLavanderiaMS1.setSelected(true); // Corregido
+            } else if (tipo.equalsIgnoreCase("PARKING")) {
                 cParkingMS.setSelected(true);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Servicio no encontrado"); 
         }
     }//GEN-LAST:event_bBuscarSActionPerformed
 
@@ -3154,24 +3160,28 @@ public class Menu extends javax.swing.JFrame {
 
     private void bModificarMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarMSActionPerformed
         String nom = inombreMS.getText();
-        int i = GS.buscarPoServicio(nom);
-        if (i != -1) {
-            arregloS[i].setNomServicio(inombresMS.getText());
-            arregloS[i].setPrecServicio(Float.parseFloat(iprecioMS.getText()));
-            arregloS[i].setCantSerDisponibles(Integer.parseInt(iCantDisMS.getText())); 
-            if (cMasajeMS.isSelected()) {
-                arregloS[i].setTipo("RELAX");
-            } else if (cTourMS.isSelected()) {
-                arregloS[i].setTipo("TOUR");
-            } else if (cLavanderiaMS1.isSelected()) {
-                arregloS[i].setTipo("LIMPIEZA");
-            } else if (cParkingMS.isSelected()) {
-                arregloS[i].setTipo("PARKING");
-            }
+        String nomF = inombresMSx.getText();
+        
+        float precN = Float.parseFloat(iprecioMS.getText());
+        int cantDisN = Integer.parseInt(iCantDisMS.getText());
+        String tipoN = "";
+        if (cMasajeMS.isSelected()) {
+            tipoN = "RELAX";
+        } else if (cTourMS.isSelected()) {
+            tipoN = "TOUR";
+        } else if (cLavanderiaMS1.isSelected()) {
+            tipoN = "LAVANDERIA";
+        } else if (cParkingMS.isSelected()) {
+            tipoN = "PARKING";
         }
+        if (tipoN.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Selecciona un tipo de servicio"); 
+        }
+        
+        GS.modificarDatos(nom, precN, cantDisN, tipoN, nomF);
         CargarTablaS();
         inombreMS.setText("");
-        inombresMS.setText("");
+        inombresMSx.setText("");
         iCantDisMS.setText("");
         iprecioMS.setText("");
         botonesModiSer.clearSelection();
@@ -3197,9 +3207,9 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_iCantDisMSActionPerformed
 
-    private void inombresMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombresMSActionPerformed
+    private void inombresMSxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inombresMSxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inombresMSActionPerformed
+    }//GEN-LAST:event_inombresMSxActionPerformed
 
     private void flechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaMouseEntered
         cerrarses.setBackground(new Color(51,153,255));
@@ -3348,7 +3358,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField inombreAS;
     private javax.swing.JTextField inombreM;
     private javax.swing.JTextField inombreMS;
-    private javax.swing.JTextField inombresMS;
+    private javax.swing.JTextField inombresMSx;
     private javax.swing.JTextField inumeroEH;
     private javax.swing.JTextField inumeroHM;
     private javax.swing.JTextField iprecioAS;
