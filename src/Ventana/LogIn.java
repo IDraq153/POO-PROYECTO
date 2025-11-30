@@ -1,6 +1,6 @@
 package Ventana;
 
-import Code.Empleado;
+import Code.Empleado.Empleado;
 import Code.GestionSistema;
 import java.awt.Color;
 import static java.lang.System.exit;

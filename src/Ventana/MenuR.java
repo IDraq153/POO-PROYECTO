@@ -1,16 +1,16 @@
 package Ventana;
 
-import Code.Base;
-import Code.Empleado;
-import Code.GestionHabitacion;
-import Code.GestionHuesped;
-import Code.GestionPersona;
-import Code.GestionServicio;
+import Code.Huesped.Base;
+import Code.Empleado.Empleado;
+import Code.Habitacion.GestionHabitacion;
+import Code.Huesped.GestionHuesped;
+import Code.Empleado.GestionPersona;
+import Code.Servicio.GestionServicio;
 import Code.GestionSistema;
-import Code.Habitacion;
-import Code.Huesped;
-import Code.Miembro;
-import Code.Servicio;
+import Code.Habitacion.Habitacion;
+import Code.Huesped.Huesped;
+import Code.Huesped.Miembro;
+import Code.Servicio.Servicio;
 import java.awt.Color;
 import static java.lang.System.exit;
 import javax.swing.JOptionPane;

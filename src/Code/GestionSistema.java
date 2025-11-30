@@ -1,5 +1,16 @@
 package Code;
 
+import Code.Empleado.Administrador;
+import Code.Empleado.GestionPersona;
+import Code.Empleado.Recepcionista;
+import Code.Habitacion.Deluxe;
+import Code.Habitacion.Estandar;
+import Code.Habitacion.GestionHabitacion;
+import Code.Habitacion.Suite;
+import Code.Huesped.GestionHuesped;
+import Code.Servicio.GestionServicio;
+import Code.Servicio.Tour;
+
 public class GestionSistema {
 
     private GestionHabitacion GH;
@@ -31,22 +42,14 @@ public class GestionSistema {
         Estandar est1 = new Estandar(2, "EST", "DISPONIBLE", 40);
         Estandar est2 = new Estandar(2, "EST", "DISPONIBLE", 40);
         Estandar est3 = new Estandar(3, "EST", "DISPONIBLE", 45);
-        Estandar est4 = new Estandar(3, "EST", "DISPONIBLE", 45);
-        Estandar est5 = new Estandar(2, "EST", "DISPONIBLE", 40);
-        Estandar est6 = new Estandar(3, "EST", "DISPONIBLE", 45);
-        Estandar ref1 = new Estandar(2, "EST", "DISPONIBLE", 40);
         
         Deluxe del1 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
         Deluxe del2 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
         Deluxe del3 = new Deluxe(4, "DEL", "DISPONIBLE", 70);
-        Deluxe del4 = new Deluxe(4, "DEL", "DISPONIBLE", 70);
-        Deluxe del5 = new Deluxe(3, "DEL", "DISPONIBLE", 60);
         
         Suite sui1 = new Suite(5, "SUI", "DISPONIBLE", 100);
         Suite sui2 = new Suite(5, "SUI", "DISPONIBLE", 100);
         Suite sui3 = new Suite(5, "SUI", "DISPONIBLE", 120);
-        Suite sui4 = new Suite(5, "SUI", "DISPONIBLE", 120);
-        Suite sui5 = new Suite(5, "SUI", "DISPONIBLE", 100);
 
         Tour sref1 = new Tour("IcaTour", 50, 15);
         sref1.setTipo("Tour"); 
@@ -55,22 +58,12 @@ public class GestionSistema {
         GH.IngresarHab(est1);
         GH.IngresarHab(est2);
         GH.IngresarHab(est3);
-        GH.IngresarHab(est4);
-        GH.IngresarHab(est5);
-        GH.IngresarHab(est6);
-        GH.IngresarHab(est6);
         GH.IngresarHab(del1);
         GH.IngresarHab(del2);
         GH.IngresarHab(del3);
-        GH.IngresarHab(del4);
-        GH.IngresarHab(del5);
         GH.IngresarHab(sui1);
         GH.IngresarHab(sui2);
         GH.IngresarHab(sui3);
-        GH.IngresarHab(sui4);
-        GH.IngresarHab(sui5);
-        
-        GH.IngresarHab(ref1);
         GH.IngresarHab(ref2);
         GH.IngresarHab(ref3);
         GP.IngresarE(adm); 

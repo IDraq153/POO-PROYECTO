@@ -1,22 +1,22 @@
 package Ventana;
 
-import Code.Administrador;
-import Code.Deluxe;
-import Code.Empleado;
-import Code.Estandar;
-import Code.GestionHabitacion;
-import Code.GestionHuesped;
-import Code.GestionPersona;
-import Code.GestionServicio;
+import Code.Empleado.Administrador;
+import Code.Habitacion.Deluxe;
+import Code.Empleado.Empleado;
+import Code.Habitacion.Estandar;
+import Code.Habitacion.GestionHabitacion;
+import Code.Empleado.GestionPersona;
+import Code.Servicio.GestionServicio;
 import Code.GestionSistema;
-import Code.Habitacion;
-import Code.Huesped;
-import Code.Limpieza;
-import Code.Recepcionista;
-import Code.Relax;
-import Code.Servicio;
-import Code.Suite;
-import Code.Tour;
+import Code.Habitacion.Habitacion;
+import Code.Huesped.Huesped;
+import Code.Servicio.Limpieza;
+import Code.Empleado.Recepcionista;
+import Code.Servicio.Relax;
+import Code.Servicio.Servicio;
+import Code.Habitacion.Suite;
+import Code.Huesped.GestionHuesped;
+import Code.Servicio.Tour;
 import java.awt.Color;
 import static java.lang.System.exit;
 import javax.swing.JOptionPane;
@@ -2851,12 +2851,15 @@ public class Menu extends javax.swing.JFrame {
         }
         if (cEstandarH.isSelected()) {
             Estandar ref = new Estandar(capMax, "EST", estado, precioF);
+            ref.calcularPrecio();
             GH.IngresarHab(ref);
         } else if (cdeluxeH.isSelected()) {
             Deluxe ref = new Deluxe(capMax, "DEL", estado, precioF);
+            ref.calcularPrecio();
             GH.IngresarHab(ref);
         } else if (csuiteH.isSelected()) {
             Suite ref = new Suite(capMax, "SUI" , estado, precioF);
+            ref.calcularPrecio();
             GH.IngresarHab(ref);
         }
         System.out.println(GH.getContaH());
@@ -3022,7 +3025,7 @@ public class Menu extends javax.swing.JFrame {
         float prec = Float.parseFloat(iprecioAS.getText());
         int cant = Integer.parseInt(iCantDisAS.getText());
         if (cMasajeAS.isSelected()) {
-            Relax ref = new Relax(nom, prec, cant);
+            Relax ref = new Relax(nom, prec, cant);  
             ref.setTipo("RELAX");
             GS.IngresarServicio(ref);
         } else if (cTourAS.isSelected()) {
