@@ -3083,15 +3083,18 @@ public class Menu extends javax.swing.JFrame {
             int cant = Integer.parseInt(iCantDisAS.getText());
             if (cMasajeAS.isSelected()) {
                 Relax ref = new Relax(nom, prec, cant);  
+                ref.CalcularPrecioFinal();
                 ref.setTipo("RELAX");
                 GS.IngresarServicio(ref);
             } else if (cTourAS.isSelected()) {
                 Tour ref = new Tour(nom, prec, cant);
                 ref.setTipo("TOUR");
+                ref.CalcularPrecioFinal();
                 GS.IngresarServicio(ref);
             } else if (cLavanderiaAS1.isSelected()) {
                 Limpieza ref = new Limpieza(nom, prec, cant);
                 ref.setTipo("LIMPIEZA");
+                ref.CalcularPrecioFinal();
                 GS.IngresarServicio(ref);
             }
         }

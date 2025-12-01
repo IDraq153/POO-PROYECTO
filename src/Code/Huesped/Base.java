@@ -1,6 +1,5 @@
 package Code.Huesped;
 
-import Code.Huesped.Huesped;
 import java.util.Random;
 
 public class Base extends Huesped {

@@ -20,7 +20,53 @@ public class GestionHuesped {
             JOptionPane.showMessageDialog(null, "Aforo maximo alcanzado");
         }
     }
+    
+    public void EliminarHuesped(String code) {
+        boolean noencontro = false;
+        for (int i = 0; i < contaC; i++) {
+            if (arregloC[i].getCode().equalsIgnoreCase(code)) {
+                for (int j = i; j < contaC - 1; j++) {
+                    arregloC[j] = arregloC[j + 1];
+                }
+                arregloC[contaC - 1] = null;
+                contaC--;
+                noencontro = false;
+                break;
+            } else {
+                noencontro = true;
+            }
+        }
+        if (noencontro == true) {
+            JOptionPane.showMessageDialog(null, "Huesped no encontrado");
+        }
+    }
+    
+    public void EliminarReservacion(String code) {
+        boolean noeonctro = false;
+        for (int i = 0; i < contaC; i++) {
+            if (arregloC[i].getCode().equalsIgnoreCase(code) && arregloC[i].getEst().equalsIgnoreCase("R")) {
+                arregloC[i].setEst("");
+                noeonctro = false;
+                break;
+            } else {
+                noeonctro = true;
+            }
+        }
+        if (noeonctro == true) {
+            JOptionPane.showMessageDialog(null, "El usuario no tiene reservacion o no fue encontrado");
+        }
+    }
 
+    public void modificarDatos(String code, String nom, String apell, String dniF, String pase) {
+        int i = buscarPosHuesped(code);
+        if (i != -1) {
+            arregloC[i].setNom(nom);
+            arregloC[i].setApell(apell);
+            arregloC[i].setDni(Integer.parseInt(dniF)); 
+            arregloC[i].setPase(pase); 
+        }        
+    }
+    
     public void registrarConsumo(String cod, float prec) {
         for (int i = 0; i < contaC; i++) {
             if (arregloC[i].getCode().equalsIgnoreCase(cod)) {
@@ -69,40 +115,7 @@ public class GestionHuesped {
         return ing;
     }
 
-    public void EliminarHuesped(String code) {
-        boolean noencontro = false;
-        for (int i = 0; i < contaC; i++) {
-            if (arregloC[i].getCode().equalsIgnoreCase(code)) {
-                for (int j = i; j < contaC - 1; j++) {
-                    arregloC[j] = arregloC[j + 1];
-                }
-                arregloC[contaC - 1] = null;
-                contaC--;
-                noencontro = false;
-            } else {
-                noencontro = true;
-            }
-        }
-        if (noencontro == true) {
-            JOptionPane.showMessageDialog(null, "Huesped no encontrado");
-        }
-    }
 
-    public void EliminarReservacion(String code) {
-        boolean noeonctro = false;
-        for (int i = 0; i < contaC; i++) {
-            if (arregloC[i].getCode().equalsIgnoreCase(code) && arregloC[i].getEst().equalsIgnoreCase("R")) {
-                arregloC[i].setEst("");
-                noeonctro = false;
-                break;
-            } else {
-                noeonctro = true;
-            }
-        }
-        if (noeonctro == true) {
-            JOptionPane.showMessageDialog(null, "El usuario no tiene reservacion o no fue encontrado");
-        }
-    }
     
     public Huesped obtenerHuesped(String code ) {
         int i = buscarPosHuesped(code);
@@ -113,15 +126,6 @@ public class GestionHuesped {
         }
     }
     
-    public void modificarDatos(String code, String nom, String apell, String dniF, String pase) {
-        int i = buscarPosHuesped(code);
-        if (i != -1) {
-            arregloC[i].setNom(nom);
-            arregloC[i].setApell(apell);
-            arregloC[i].setDni(Integer.parseInt(dniF)); 
-            arregloC[i].setPase(pase); 
-        }        
-    }
     
     public Huesped[] getArregloC() {
         return arregloC;

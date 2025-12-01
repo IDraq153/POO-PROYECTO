@@ -4,7 +4,6 @@ import Code.Huesped.Base;
 import Code.Empleado.Empleado;
 import Code.Habitacion.GestionHabitacion;
 import Code.Huesped.GestionHuesped;
-import Code.Empleado.GestionPersona;
 import Code.Servicio.GestionServicio;
 import Code.GestionSistema;
 import Code.Habitacion.Habitacion;
@@ -21,17 +20,12 @@ public class MenuR extends javax.swing.JFrame {
     private DefaultTableModel modelo;
     private DefaultTableModel modeloH;
     private DefaultTableModel modeloS;
-    private GestionPersona GP;
     private GestionHabitacion GH;
     private GestionServicio GS;
     private GestionHuesped GC;
     private Habitacion[] arregloH;
     private Huesped[] arregloC;
-    private Empleado[] arreglo;
-    private Servicio[] arregloS;  
-    private Empleado menuS;
     GestionSistema sis;
-    Empleado personActual;
     int mousepX;
     int mousepY;
     
@@ -39,8 +33,7 @@ public class MenuR extends javax.swing.JFrame {
     public MenuR(Empleado ref, GestionSistema sis) {
         initComponents();
         this.sis = sis;
-        this.personActual = ref;
-        this.GP = sis.getGP();
+        sis.getGP();
         this.GH = sis.getGH();
         this.GS = sis.getGS();
         this.GC = sis.getGC();
@@ -98,7 +91,7 @@ public class MenuR extends javax.swing.JFrame {
         jtableHabitaciones.getColumnModel().getColumn(0).setPreferredWidth(30); 
         
         this.arregloH = GH.getArregloHab();
-        this.arregloS = GS.getArregloS();
+        GS.getArregloS();
         this.arregloC = GC.getArregloC();
         CargarTablaH();
         CargarTablaC();
