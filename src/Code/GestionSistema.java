@@ -40,6 +40,10 @@ public class GestionSistema {
         GP.modificarDatos(dniB, nuevoNom, nuevoAp, nuevoDni, nuevoUser, nuevoPass, rol);
     }
     
+    public void modificarDatos(String code, String nom, String apell, String dniF, String pase){
+        GC.modificarDatos(code, nom, apell, dniF, pase); 
+    } 
+    
     private void CargarDatosIniciales() {
         
         // Más administradores

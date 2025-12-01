@@ -9,17 +9,15 @@ public class Limpieza extends Servicio implements Facturable {
     //CONSTRUCTOR
     public Limpieza(String nomServicio, float precServicio, int cantSerDisponibles) {
         super(nomServicio, precServicio, cantSerDisponibles);
-        this.esExpress = false;
+        this.esExpress = true;
     }
 
     //METODOS
     @Override    
-    public float CalcularPrecioFinal() {
-        float precio = this.precServicio;
+    public void CalcularPrecioFinal() {
         if (esExpress == true) {
-            precio += this.precServicio*0.2f;
+            this.precServicio+=20;
         }
-        return precio;
     }
 
     //GETTERS AND SETTERS

@@ -1,7 +1,5 @@
 package Code.Servicio;
 
-import Code.Servicio.Servicio;
-
 public class Tour extends Servicio implements Facturable {
 
     private String dest;
@@ -14,8 +12,8 @@ public class Tour extends Servicio implements Facturable {
 
     //METODO
     @Override
-    public float CalcularPrecioFinal() {
-        return this.precServicio + 10;
+    public void CalcularPrecioFinal() {
+        this.precServicio += 10; 
     }    
     
     //GETTERS AND SETTERS

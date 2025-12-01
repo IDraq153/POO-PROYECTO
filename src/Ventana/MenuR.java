@@ -2150,14 +2150,17 @@ public class MenuR extends javax.swing.JFrame {
 
     private void bBuscarMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarMHActionPerformed
         String code = icodigoMH.getText();
-        int i = GC.buscarPosHuesped(code);
-        if (i != -1) {
-            inombreCH.setText(arregloC[i].getNom().toUpperCase());
-            iapellidoCH.setText(arregloC[i].getApell().toUpperCase());
-            idniCH.setText(String.valueOf(arregloC[i].getDni()));
-            if (arregloC[i].getPase().equalsIgnoreCase("base")) {
+        if (code.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el codigo del huesped");
+        }
+        Huesped c = GC.obtenerHuesped(code);
+        if (c!=null) {
+            inombreCH.setText(c.getNom().toUpperCase());
+            iapellidoCH.setText(c.getApell().toUpperCase());
+            idniCH.setText(String.valueOf(c.getDni()));
+            if (c.getPase().equalsIgnoreCase("base")) {
                 cBaseCH.setSelected(true);
-            } else if (arregloC[i].getPase().equalsIgnoreCase("Miembro")) {
+            } else if (c.getPase().equalsIgnoreCase("Miembro")) {
                 cMiembroCH.setSelected(true);
             }
         }
@@ -2169,23 +2172,26 @@ public class MenuR extends javax.swing.JFrame {
 
     private void bmodificarCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarCHActionPerformed
         String code = icodigoMH.getText();
-        int i = GC.buscarPosHuesped(code);
-        if (i != -1) {
-            arregloC[i].setNom(inombreCH.getText());
-            arregloC[i].setApell(iapellidoCH.getText());
-            arregloC[i].setDni(Integer.parseInt(idniCH.getText()));
-            if (cBaseCH.isSelected()) {
-                arregloC[i].setPase("Base");
-            } else if (cMiembroCH.isSelected()) {
-                arregloC[i].setPase("Miembro");
-            }
-            CargarTablaC();
-            inombreCH.setText("");
-            iapellidoCH.setText("");
-            idniCH.setText("");
-            icodigoMH.setText(""); 
-            botonesModiHues.clearSelection();           
+        String nom = inombreCH.getText();
+        String apell = iapellidoCH.getText();
+        String dniF = idniCH.getText();
+        String pase = "";
+        if (cBaseCH.isSelected()) {
+           pase = "Base";
+        } else if (cMiembroCH.isSelected()) {
+            pase = "Miembro";
         }
+        if (pase.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Pase debe ser seleccionado");
+            return;
+        } 
+        sis.modificarDatos(code, nom, apell, dniF, pase); 
+        CargarTablaC();
+        inombreCH.setText("");
+        iapellidoCH.setText("");
+        idniCH.setText("");
+        icodigoMH.setText(""); 
+        botonesModiHues.clearSelection();  
     }//GEN-LAST:event_bmodificarCHActionPerformed
 
     private void iapellidoCHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iapellidoCHActionPerformed

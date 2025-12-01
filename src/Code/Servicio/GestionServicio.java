@@ -1,6 +1,5 @@
 package Code.Servicio;
 
-import Code.Servicio.Servicio;
 import javax.swing.JOptionPane;
 
 public class GestionServicio {
@@ -31,7 +30,21 @@ public class GestionServicio {
                     JOptionPane.showMessageDialog(null, "No hay cupos disponibles");
                 } else {
                     arregloS[i].setCantSerDisponibles(arregloS[i].getCantSerDisponibles()-1);
-                    prec = arregloS[i].getPrecServicio();
+                    if (arregloS[i] instanceof Relax) {
+                        Relax servRelax = (Relax) arregloS[i];
+                        servRelax.CalcularPrecioFinal();
+                        prec = arregloS[i].getPrecServicio();
+                    } else if (arregloS[i] instanceof Limpieza) {
+                        Limpieza sevLimpieza = (Limpieza) arregloS[i];
+                        sevLimpieza.CalcularPrecioFinal();
+                        prec = arregloS[i].getPrecServicio();
+                    } else if (arregloS[i] instanceof Parking) {
+                        prec = arregloS[i].getPrecServicio();
+                    } else if (arregloS[i] instanceof Tour) {
+                        Tour serTour = (Tour) arregloS[i];
+                        serTour.CalcularPrecioFinal();
+                        prec = arregloS[i].getPrecServicio();
+                    }
                     JOptionPane.showMessageDialog(null, "Importe actualizado");
                     break;                    
                 }

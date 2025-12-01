@@ -104,6 +104,25 @@ public class GestionHuesped {
         }
     }
     
+    public Huesped obtenerHuesped(String code ) {
+        int i = buscarPosHuesped(code);
+        if (i != -1) {
+            return arregloC[i];
+        } else {
+            return null;
+        }
+    }
+    
+    public void modificarDatos(String code, String nom, String apell, String dniF, String pase) {
+        int i = buscarPosHuesped(code);
+        if (i != -1) {
+            arregloC[i].setNom(nom);
+            arregloC[i].setApell(apell);
+            arregloC[i].setDni(Integer.parseInt(dniF)); 
+            arregloC[i].setPase(pase); 
+        }        
+    }
+    
     public Huesped[] getArregloC() {
         return arregloC;
     }

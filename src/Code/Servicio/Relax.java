@@ -7,17 +7,15 @@ public class Relax extends Servicio implements Facturable {
     //CONSTRUCTOR
     public Relax(String nomServicio, float precServicio, int cantSerDisponibles) {
         super(nomServicio, precServicio, cantSerDisponibles);
-        this.incAromaTerap = false;
+        this.incAromaTerap = true;
     }
     
     //METODOS
     @Override
-    public float CalcularPrecioFinal() {
-        float precio = this.precServicio;
+    public void CalcularPrecioFinal() {
         if (this.incAromaTerap == true) {
-            precio+=30;
+            this.precServicio+=30;
         }
-        return precio;
     }    
     
     //GETTERS AND SETTERS

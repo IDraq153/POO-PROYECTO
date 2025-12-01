@@ -34,13 +34,8 @@ public class Menu extends javax.swing.JFrame {
     private GestionHabitacion GH;
     private GestionServicio GS;
     private GestionHuesped GC;
-    private Huesped[] arregloC;
-    private Habitacion[] arregloH;
-    private Empleado[] arreglo;
-    private Servicio[] arregloS;
     private Empleado menuE;
     GestionSistema sis;
-    Empleado personActual;
     int mousepX;
     int mousepY;
 
@@ -48,7 +43,6 @@ public class Menu extends javax.swing.JFrame {
     public Menu(Empleado ref, GestionSistema sis) {
         initComponents();
         this.sis = sis;
-        this.personActual = ref;
         this.GH = sis.getGH();
         this.GP = sis.getGP();
         this.GS = sis.getGS();
@@ -129,10 +123,10 @@ public class Menu extends javax.swing.JFrame {
         lrolprofile.setText("ADMINISTRADOR");
 
         //ARREGLO
-        this.arreglo = GP.getArregloPersona();
-        this.arregloH = GH.getArregloHab();
-        this.arregloS = GS.getArregloS();
-        this.arregloC = GC.getArregloC();
+        GP.getArregloPersona();
+        GH.getArregloHab();
+        GS.getArregloS();
+        GC.getArregloC();
         this.menuE = ref;
         CargarTablaH();
         CargarTablaC();
@@ -2824,6 +2818,7 @@ public class Menu extends javax.swing.JFrame {
         }
         if (rol.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un rol");
+            return;
         }
         
         if (menuE.getDni().equalsIgnoreCase(persN)) {
@@ -3006,9 +3001,11 @@ public class Menu extends javax.swing.JFrame {
         
         if (est.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un estado");
+            return;
         } 
         if (tipo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo");
+            return;
         }
 
         sis.modificarDatos(num, cap, precN, est, tipo);
@@ -3069,7 +3066,6 @@ public class Menu extends javax.swing.JFrame {
 
         if (cParkingAS.isSelected()) {
             Parking ref = new Parking();
-            ref.redEspacio();
             GS.IngresarServicio(ref);
         } else {
             String nom = inombreAS.getText();
@@ -3196,6 +3192,7 @@ public class Menu extends javax.swing.JFrame {
         }
         if (tipoN.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Selecciona un tipo de servicio"); 
+            return;
         }
         
         sis.modificarDatos(nom, precN, cantDisN, tipoN, nomF);
