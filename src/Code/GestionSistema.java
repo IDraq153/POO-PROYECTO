@@ -27,6 +27,19 @@ public class GestionSistema {
         CargarDatosIniciales();
     }
     
+    //SOBRECARGA DE METODOS
+    public void modificarDatos(int numH, int nuevoC, float nuevoP, String est, String tipo) {
+        GH.modificarDatos(numH, nuevoC, nuevoP, est, tipo); 
+    }
+
+    public void modificarDatos(String nom, float nuevoPrecio, int nuevaCant, String nuevoTipo, String nomF) {
+        GS.modificarDatos(nom, nuevoPrecio, nuevaCant, nuevoTipo, nomF); 
+    }
+    
+    public void modificarDatos(String dniB, String nuevoNom, String nuevoAp, String nuevoDni, String nuevoUser, String nuevoPass, String rol) {
+        GP.modificarDatos(dniB, nuevoNom, nuevoAp, nuevoDni, nuevoUser, nuevoPass, rol);
+    }
+    
     private void CargarDatosIniciales() {
         
         // Más administradores

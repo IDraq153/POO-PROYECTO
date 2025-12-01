@@ -32,6 +32,28 @@ public class GestionPersona {
         JOptionPane.showMessageDialog(null, "Empleado no encontrado");
         return -1;
     }
+    
+    public Empleado ObtenerEmpleado(String dni) {
+        int pos = buscarPosicionEmp(dni);
+        if (pos != -1) {
+            return arregloPersona[pos];
+        } else {
+            return null;
+        }
+    }
+    
+    public void modificarDatos(String dniB, String nuevoNom, String nuevoAp, String nuevoDni, String nuevoUser, String nuevoPass, String rol) {
+        int i = buscarPosicionEmp(dniB);
+        if (i != -1) {
+            arregloPersona[i].setNombre(nuevoNom);
+            arregloPersona[i].setApellido(nuevoAp);
+            arregloPersona[i].setDni(nuevoDni);
+            arregloPersona[i].setUser(nuevoUser);
+            arregloPersona[i].setContra(nuevoPass);
+            arregloPersona[i].setRol(rol); 
+            JOptionPane.showMessageDialog(null, "Cambios hechos en empleado");
+        }
+    }
 
     public void EliminarE(String dni) {
         boolean Noencontro = false;

@@ -292,7 +292,7 @@ public class Menu extends javax.swing.JFrame {
         pEliminarH1 = new javax.swing.JPanel();
         lnumeroHM = new javax.swing.JLabel();
         inumeroHM = new javax.swing.JTextField();
-        bModificarHab = new javax.swing.JButton();
+        bBuscarHab = new javax.swing.JButton();
         pModificarHab = new javax.swing.JPanel();
         bmodificarHab = new javax.swing.JButton();
         icapacidadMH = new javax.swing.JTextField();
@@ -1796,17 +1796,17 @@ public class Menu extends javax.swing.JFrame {
         });
         pEliminarH1.add(inumeroHM, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 150, 25));
 
-        bModificarHab.setBackground(new java.awt.Color(102, 102, 102));
-        bModificarHab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bModificarHab.setForeground(new java.awt.Color(255, 255, 255));
-        bModificarHab.setText("BUSCAR");
-        bModificarHab.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        bModificarHab.addActionListener(new java.awt.event.ActionListener() {
+        bBuscarHab.setBackground(new java.awt.Color(102, 102, 102));
+        bBuscarHab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bBuscarHab.setForeground(new java.awt.Color(255, 255, 255));
+        bBuscarHab.setText("BUSCAR");
+        bBuscarHab.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bBuscarHab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bModificarHabActionPerformed(evt);
+                bBuscarHabActionPerformed(evt);
             }
         });
-        pEliminarH1.add(bModificarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 30));
+        pEliminarH1.add(bBuscarHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 30));
 
         jPanelModificarHab.add(pEliminarH1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 290, 100));
 
@@ -2785,16 +2785,19 @@ public class Menu extends javax.swing.JFrame {
     private void bBuscarModificarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarModificarEActionPerformed
         //HACE LA BUSQUEDA DEL EMPLEADO Y TRAE SU INFORMACION AL CAMPO
         String dni = idniModiE.getText();
-        int i = GP.buscarPosicionEmp(dni);
-        if (i != -1) {
-            inombreM.setText(arreglo[i].getNombre());
-            iapellidoM.setText(arreglo[i].getApellido());
-            idniM.setText(arreglo[i].getDni());
-            iuserM.setText(arreglo[i].getUser());
-            icontraM.setText(arreglo[i].getContra());
-            if (arreglo[i].getRol().equalsIgnoreCase("Admin")) {
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el Dni del empleado");
+        } 
+        Empleado e = GP.ObtenerEmpleado(dni);
+        if (e!= null) {
+            inombreM.setText(e.getNombre());
+            iapellidoM.setText(e.getApellido());
+            idniM.setText(e.getDni());
+            iuserM.setText(e.getUser());
+            icontraM.setText(e.getContra());
+            if (e.getRol().equalsIgnoreCase("Admin")) {
                 cAdministradorM.setSelected(true);
-            } else if (arreglo[i].getRol().equalsIgnoreCase("Rec")) {
+            } else if (e.getRol().equalsIgnoreCase("Rec")) {
                 cRecepcionitaM.setSelected(true);
             }
         }
@@ -2808,24 +2811,28 @@ public class Menu extends javax.swing.JFrame {
         //REALIZA LOS CAMBIOS AL EMPLEADO
         String dni = idniModiE.getText();
         String persN = idniModiE.getText();
+        String nom = inombreM.getText();
+        String apell = iapellidoM.getText();
+        String dniF = idniM.getText(); 
+        String user = iuserM.getText();
+        String contra = icontraM.getText();
+        String rol = "";
+        if (cAdministradorM.isSelected()) {
+            rol = "ADMIN";
+        } else if (cRecepcionitaM.isSelected()) {
+            rol = "REC";
+        }
+        if (rol.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un rol");
+        }
+        
         if (menuE.getDni().equalsIgnoreCase(persN)) {
             JOptionPane.showMessageDialog(null, "No puedes modificarte a ti mismo"); 
+            
         } else {
-            int i = GP.buscarPosicionEmp(dni);
-            if (i != -1) {
-                arreglo[i].setNombre(inombreM.getText());
-                arreglo[i].setApellido(iapellidoM.getText());
-                arreglo[i].setDni(idniM.getText());
-                arreglo[i].setUser(iuserM.getText());
-                arreglo[i].setContra(icontraM.getText());
-                if (cAdministradorM.isSelected()) {
-                    arreglo[i].setRol("ADMIN");
-                } else if (cRecepcionitaM.isSelected()) {
-                    arreglo[i].setRol("REC");
-                }
-                JOptionPane.showMessageDialog(null, "Cambios hechos en empleado");
-            }
+            sis.modificarDatos(dni, nom, apell, dniF, user, contra, rol);
         }
+        
         //VACIA LOS TEXTFIELDS
         CargarTabla();
         inombreM.setText("");
@@ -2948,51 +2955,64 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inumeroHMActionPerformed
 
-    private void bModificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarHabActionPerformed
+    private void bBuscarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarHabActionPerformed
         int num = Integer.parseInt(inumeroHM.getText());
-        int i = GH.BuscarHab(num);
-        if (i != -1) {
-            icapacidadMH.setText(String.valueOf(arregloH[i].getCapMax()));
-            iprecioMH.setText(String.valueOf(arregloH[i].getPrecNoche()));
-            iprecioMH.setText(String.valueOf(arregloH[i].getPrecNoche()));
-            if (arregloH[i].getEstado().equalsIgnoreCase("DISPONIBLE")) {
-                cdisponibleMH.setSelected(true);
-            } else if (arregloH[i].getEstado().equalsIgnoreCase("RESERVADO")) {
-                creservadoMH.setSelected(true);
-            } else if (arregloH[i].getEstado().equalsIgnoreCase("OCUPADO")) {
-                cocupadoMH.setSelected(true); 
-            }
-            if (arregloH[i].getTipoHabi().equalsIgnoreCase("EST")) {
-                cEstandarMH.setSelected(true);
-            } else if (arregloH[i].getTipoHabi().equalsIgnoreCase("DEL")) {
-                cDeluxeMH.setSelected(true);
-            } else if (arregloH[i].getTipoHabi().equalsIgnoreCase("SUI")) {
-                cSuiteMH.setSelected(true);
-            }
+        Habitacion h = GH.obtenerArreglo(num);
+
+        icapacidadMH.setText(String.valueOf(h.getCapMax()));
+        iprecioMH.setText(String.valueOf(h.getPrecNoche()));
+        iprecioMH.setText(String.valueOf(h.getPrecNoche()));
+
+        String est = h.getEstado();  
+        if (est.equalsIgnoreCase("DISPONIBLE")) {
+            cdisponibleMH.setSelected(true);
+        } else if (est.equalsIgnoreCase("RESERVADO")) {
+            creservadoMH.setSelected(true);
+        } else if (est.equalsIgnoreCase("OCUPADO")) {
+            cocupadoMH.setSelected(true); 
         }
-    }//GEN-LAST:event_bModificarHabActionPerformed
+
+        String tip = h.getTipoHabi();
+        if (tip.equalsIgnoreCase("EST")) {
+            cEstandarMH.setSelected(true);
+        } else if (tip.equalsIgnoreCase("DEL")) {
+            cDeluxeMH.setSelected(true);
+        } else if (tip.equalsIgnoreCase("SUI")) {
+            cSuiteMH.setSelected(true);
+        }
+    }//GEN-LAST:event_bBuscarHabActionPerformed
 
     private void bmodificarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificarHabActionPerformed
-        int num = Integer.parseInt(inumeroHM.getText());     
-        int  i = GH.BuscarHab(num);
-        if (i != -1) {
-            arregloH[i].setCapMax(Integer.parseInt(icapacidadMH.getText())); 
-            arregloH[i].setPrecNoche(Float.parseFloat(iprecioMH.getText())); 
-            if (cdisponibleMH.isSelected()) {
-                arregloH[i].setEstado("DISPONIBLE");
-            } else if (creservadoMH.isSelected()) {
-                arregloH[i].setEstado("RESERVADO");
-            } else if (cocupadoMH.isSelected()) {
-                arregloH[i].setEstado("OCUPADO");
-            }
-            if (cEstandarMH.isSelected()) {
-                arregloH[i].setTipoHabi("EST");
-            } else if (cDeluxeMH.isSelected()) {
-                arregloH[i].setTipoHabi("DEL");
-            } else if (cSuiteMH.isSelected()) {
-                arregloH[i].setTipoHabi("SUI");
+        int num = Integer.parseInt(inumeroHM.getText());  
+        int cap = Integer.parseInt(icapacidadMH.getText()); 
+        float precN = Float.parseFloat(iprecioMH.getText()); 
+        String est = "";
+        String tipo = "";
+        if (cdisponibleMH.isSelected()) {
+            est = "DISPONIBLE";
+        } else if (creservadoMH.isSelected()) {
+            est = "RESERVADO";
+        } else if (cocupadoMH.isSelected()) {
+            est = "OCUPADO";
         }
+        
+        if (cEstandarMH.isSelected()) {
+            tipo = "EST";
+        } else if (cDeluxeMH.isSelected()) {
+            tipo = "DEL";
+        } else if (cSuiteMH.isSelected()) {
+            tipo = "SUI";
         }
+        
+        if (est.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un estado");
+        } 
+        if (tipo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo");
+        }
+
+        sis.modificarDatos(num, cap, precN, est, tipo);
+
         CargarTablaH();
         inumeroHM.setText("");
         icapacidadMH.setText("");
@@ -3178,7 +3198,7 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona un tipo de servicio"); 
         }
         
-        GS.modificarDatos(nom, precN, cantDisN, tipoN, nomF);
+        sis.modificarDatos(nom, precN, cantDisN, tipoN, nomF);
         CargarTablaS();
         inombreMS.setText("");
         inombresMSx.setText("");
@@ -3286,9 +3306,9 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arrastar;
+    private javax.swing.JButton bBuscarHab;
     private javax.swing.JButton bBuscarModificarE;
     private javax.swing.JButton bBuscarS;
-    private javax.swing.JButton bModificarHab;
     private javax.swing.JButton bModificarMS;
     private javax.swing.JButton bTotal;
     private javax.swing.JButton bagregar;

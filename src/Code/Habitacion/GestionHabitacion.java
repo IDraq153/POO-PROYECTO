@@ -1,6 +1,5 @@
 package Code.Habitacion;
 
-import Code.Habitacion.Habitacion;
 import javax.swing.JOptionPane;
 
 public class GestionHabitacion {
@@ -53,6 +52,25 @@ public class GestionHabitacion {
         }
         if (Noencontro == true) {
             JOptionPane.showMessageDialog(null, "Habitacion no encontrada");
+        }
+    }
+    
+    public void modificarDatos(int numH, int nuevoC, float nuevoP, String est, String tipo) {
+        int i = BuscarHab(numH);
+        if (i != -1) {
+            arregloHab[i].setCapMax(nuevoC);
+            arregloHab[i].setPrecNoche(nuevoP);
+            arregloHab[i].setEstado(est);
+            arregloHab[i].setTipoHabi(tipo);
+        }
+    }
+    
+    public Habitacion obtenerArreglo(int num) {
+        int pos = BuscarHab(num);
+        if (pos != -1) {
+            return arregloHab[pos];
+        } else {
+            return null;
         }
     }
 
