@@ -2485,6 +2485,11 @@ public class Menu extends javax.swing.JFrame {
         String dni = this.idni.getText();
         String user = this.iuser.getText();
         String password = this.icontra.getText();
+        
+        if (nom.trim().isEmpty() || apell.trim().isEmpty() || dni.trim().isEmpty() || user.trim().isEmpty() || password.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos de datos personales son obligatorios.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            return;            
+        }
         if (this.cAdministrador.isSelected()) {
             Administrador ref = new Administrador(nom, apell, "ADMIN", dni, user, password);
             GP.IngresarE(ref);
@@ -2763,6 +2768,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void beliminarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliminarEmpActionPerformed
         String dni = idniC.getText();
+        if (dni.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el DNI del empleado a eliminar.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (dni.equalsIgnoreCase(menuE.getDni())) {
             JOptionPane.showMessageDialog(null, "No te puedes eliminar a ti mismo");
         } else {
@@ -2777,10 +2786,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_idniModiEActionPerformed
 
     private void bBuscarModificarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarModificarEActionPerformed
-        //HACE LA BUSQUEDA DEL EMPLEADO Y TRAE SU INFORMACION AL CAMPO
+        //HACE LA BUSQUEDA DEL EMPLEADO Y TRAE SU INFORMACION AL CAMPO xd
         String dni = idniModiE.getText();
         if (dni.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar el Dni del empleado");
+            JOptionPane.showMessageDialog(null, "Debe ingresar el Dni del empleado", "Error de Validacion", JOptionPane.WARNING_MESSAGE);
+            return;
         } 
         Empleado e = GP.ObtenerEmpleado(dni);
         if (e!= null) {
@@ -2866,6 +2876,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void bagregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bagregar1ActionPerformed
         //AGREGAR HABITACION A LA LISTA
+        
         int capMax = Integer.parseInt(this.icapacidadH.getText());
         float precioF = Float.parseFloat(iprecioH.getText());
         String estado = "";
@@ -2889,7 +2900,6 @@ public class Menu extends javax.swing.JFrame {
             ref.calcularPrecio();
             GH.IngresarHab(ref);
         }
-        System.out.println(GH.getContaH());
         CargarTablaH();
         this.icapacidadH.setText("");
         this.iprecioH.setText("");
